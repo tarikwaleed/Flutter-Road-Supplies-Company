@@ -14,17 +14,11 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-                height: 50,
-                width: 50,
-                child: Image.asset(
-                  'assets/images/logo.png',
-                  fit: BoxFit.fill,
-                )),
-          ],
+        flexibleSpace: Center(
+          child: Image(
+            image: AssetImage('assets/images/logo.png'),
+            fit: BoxFit.contain,
+          ),
         ),
       ),
     );
