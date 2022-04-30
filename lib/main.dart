@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:salah_construction/constants.dart';
 import 'package:salah_construction/screens/home/home_screen.dart';
 
@@ -32,11 +34,29 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      localizationsDelegates: const [
+        GlobalCupertinoLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ],
+      supportedLocales: const [
+        Locale(
+          "ar",
+          "AE",
+        ), // OR Locale('ar', 'AE') OR Other RTL locales
+      ],
+      locale: const Locale(
+        "ar",
+        "AE",
+      ),
+      // OR Locale('ar', 'AE') OR Other RTL locales,
       title: 'Salah Construction',
       theme: ThemeData(
         primarySwatch: buildMaterialColor(salahSandColor),
+        textTheme: GoogleFonts.tajawalTextTheme(),
+
       ),
-      home: const HomeScreen(title: 'Salah Construction'),
+      home: const HomeScreen(title: 'الصلاح'),
     );
   }
 }
