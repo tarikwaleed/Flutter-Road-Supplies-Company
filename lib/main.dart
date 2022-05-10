@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:salah_construction/constants.dart';
 import 'package:salah_construction/screens/home_screen.dart';
+import 'package:salah_construction/theme.dart';
 
 void main() {
   runApp(const MyApp());
@@ -53,7 +53,7 @@ class MyApp extends StatelessWidget {
       title: 'Salah Construction',
       theme: ThemeData(
         primarySwatch: buildMaterialColor(salahSandColor),
-        textTheme: GoogleFonts.tajawalTextTheme(),
+        textTheme: tajawalTextTheme,
 
       ),
       home: const HomeScreen(),

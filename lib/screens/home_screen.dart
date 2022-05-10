@@ -37,17 +37,21 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white70,
-        flexibleSpace: Center(
-          child: Image(
-            image: AssetImage('assets/images/logo.png'),
-            fit: BoxFit.contain,
-          ),
-        ),
-      ),
+      // appBar: AppBar(
+      //   backgroundColor: Colors.white70,
+      //   flexibleSpace: Center(
+      //     child: Image(
+      //       image: AssetImage('assets/images/logo.png'),
+      //       fit: BoxFit.contain,
+      //     ),
+      //   ),
+      // ),
       body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
+        child: Column(
+          children: [
+            Text("اهلا",style: Theme.of(context).textTheme.headline1)
+          ],
+        ),
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
