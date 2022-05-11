@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "873534784491",
+    "project_id": "salah-construction",
+    "storage_bucket": "salah-construction.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:873534784491:android:6a23b886579cfa35df0fae",
+        "android_client_info": {
+          "package_name": "com.takizee.salah_construction"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "873534784491-dojshbbrohih9kf2d5cngvju9iejp9qm.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyApZekbe8vnjJDVLd3wbVv6nGHZOGMeutg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "873534784491-dojshbbrohih9kf2d5cngvju9iejp9qm.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

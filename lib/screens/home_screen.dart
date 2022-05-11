@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:salah_construction/constants.dart';
+import 'package:salah_construction/db.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({
@@ -13,7 +14,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
-  TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
+      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> _widgetOptions = <Widget>[
     Text(
       'الخلاطات ',
@@ -34,8 +35,10 @@ class _HomeScreenState extends State<HomeScreen> {
       _selectedIndex = index;
     });
   }
+
   @override
   Widget build(BuildContext context) {
+    DBService db = DBService();
     return Scaffold(
       // appBar: AppBar(
       //   backgroundColor: Colors.white70,
@@ -49,16 +52,22 @@ class _HomeScreenState extends State<HomeScreen> {
       body: Center(
         child: Column(
           children: [
-            Text("اهلا",style: Theme.of(context).textTheme.headline1)
+            SizedBox(
+              height: 50,
+            ),
+            ElevatedButton(
+                onPressed: () {
+                  db.addUser();
+                },
+                child: Text("addUser"))
           ],
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: ImageIcon(AssetImage('assets/images/logo.png')),
-            label: ' الخلاطات'
-          ),
+              icon: ImageIcon(AssetImage('assets/images/logo.png')),
+              label: ' الخلاطات'),
           BottomNavigationBarItem(
             icon: Icon(Icons.attach_money_sharp),
             label: 'العملاء',
