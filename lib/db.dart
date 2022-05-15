@@ -9,7 +9,7 @@ class DBService {
   };
 
   void addUser() async {
-    db.collection("users").add(user).then((DocumentReference doc) =>
+    await db.collection("users").add(user).then((DocumentReference doc) =>
         print('DocumentSnapshot added with ID: ${doc.id}'));
   }
 }
