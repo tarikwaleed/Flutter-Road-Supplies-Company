@@ -80,8 +80,8 @@ class _MixersListState extends State<MixersList> {
                         key: UniqueKey(),
                         child: Container(
                           decoration: BoxDecoration(
-                              color: Colors.blue,
-                              borderRadius: BorderRadius.circular(16.0)),
+                            borderRadius: BorderRadius.circular(16.0),
+                          ),
                           child: ListTile(
                             onTap: () {
                               Navigator.pushNamed(context, "/edit",
@@ -89,6 +89,7 @@ class _MixersListState extends State<MixersList> {
                             },
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(8.0),
+                              side: BorderSide(color: Colors.blue),
                             ),
                             title: Text(
                                 retrievedMixersList![index].name.toString()),
