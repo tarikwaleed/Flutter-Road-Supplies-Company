@@ -56,6 +56,8 @@ class MyApp extends StatelessWidget {
       title: 'Salah Construction',
       theme: ThemeData(
         primarySwatch: buildMaterialColor(salahSandColor),
+        primaryColor: Colors.blue,
+        accentColor: Colors.black,
         textTheme: tajawalTextTheme,
       ),
       home: const HomeScreen(),

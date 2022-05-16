@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:salah_construction/constants.dart';
-import 'package:salah_construction/db.dart';
+import 'package:salah_construction/screens/mixers_list.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({
@@ -16,18 +16,9 @@ class _HomeScreenState extends State<HomeScreen> {
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> _widgetOptions = <Widget>[
-    Text(
-      'الخلاطات ',
-      style: optionStyle,
-    ),
-    Text(
-      'العملاء ',
-      style: optionStyle,
-    ),
-    Text(
-      'الموظفين',
-      style: optionStyle,
-    ),
+    MixersList(),
+    MixersList(),
+    MixersList(),
   ];
 
   void _onItemTapped(int index) {
@@ -38,30 +29,9 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    DBService db = DBService();
     return Scaffold(
-      // appBar: AppBar(
-      //   backgroundColor: Colors.white70,
-      //   flexibleSpace: Center(
-      //     child: Image(
-      //       image: AssetImage('assets/images/logo.png'),
-      //       fit: BoxFit.contain,
-      //     ),
-      //   ),
-      // ),
       body: Center(
-        child: Column(
-          children: [
-            SizedBox(
-              height: 50,
-            ),
-            ElevatedButton(
-                onPressed: () {
-                  db.addUser();
-                },
-                child: Text("addUser"))
-          ],
-        ),
+        child: _widgetOptions.elementAt(_selectedIndex),
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
@@ -78,8 +48,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: salahConcreteColor,
-        unselectedItemColor: Colors.grey[500],
+        selectedItemColor: Colors.black,
         onTap: _onItemTapped,
       ),
     );
