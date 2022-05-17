@@ -15,4 +15,8 @@ class MixerDBService {
   Future<void> deleteMixer(String documentId) async {
     await _db.collection("mixers").doc(documentId).delete();
   }
+
+  addMixer(Mixer mixer) async {
+    await _db.collection("mixers").add(mixer.toFirestore());
+  }
 }

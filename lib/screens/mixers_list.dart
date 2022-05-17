@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:salah_construction/models/mixer_model.dart';
 import 'package:salah_construction/services/mixer_db_service.dart';
 
@@ -39,8 +40,10 @@ class _MixersListState extends State<MixersList> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("الخلاطات"),
-        centerTitle: true,
+        title: Text(
+          "الخلاطات",
+          style: Theme.of(context).textTheme.headline6,
+        ),
         backgroundColor: Colors.white,
       ),
       body: RefreshIndicator(
@@ -57,7 +60,7 @@ class _MixersListState extends State<MixersList> {
                     separatorBuilder: (context, index) => const SizedBox(
                           height: 10,
                         ),
-                    itemBuilder: (context, index) {
+                    itemBuilder: (_, index) {
                       return Dismissible(
                         onDismissed: ((direction) async {
                           await mixerDBService.deleteMixer(
@@ -70,9 +73,12 @@ class _MixersListState extends State<MixersList> {
                               borderRadius: BorderRadius.circular(16.0)),
                           padding: const EdgeInsets.only(right: 28.0),
                           alignment: AlignmentDirectional.centerEnd,
-                          child: const Text(
-                            "مسح",
-                            style: TextStyle(color: Colors.white),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Icon(
+                              Icons.delete,
+                              color: Colors.white,
+                            ),
                           ),
                         ),
                         direction: DismissDirection.endToStart,
@@ -92,7 +98,9 @@ class _MixersListState extends State<MixersList> {
                               side: BorderSide(color: Colors.blue),
                             ),
                             title: Text(
-                                retrievedMixersList![index].name.toString()),
+                              retrievedMixersList![index].name.toString(),
+                              style: Theme.of(context).textTheme.bodyText1,
+                            ),
                             trailing: const Icon(Icons.arrow_right_sharp),
                           ),
                         ),
@@ -122,8 +130,54 @@ class _MixersListState extends State<MixersList> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          _showAddMixerPopup(context);
+        },
+        child: Icon(Icons.add),
       ),
     );
+  }
+
+  _showAddMixerPopup(context) {
+    final _formKey = GlobalKey<FormState>();
+    final mixerNameController = TextEditingController();
+    Alert(
+        context: context,
+        title: "اضافة خلاطة",
+        content: Form(
+          key: _formKey,
+          child: Column(
+            children: <Widget>[
+              TextFormField(
+                controller: mixerNameController,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'رجاء ادخال اسم الخلاطة';
+                  }
+                  return null;
+                },
+                decoration: InputDecoration(
+                    hintText: 'اسم الخلاطة',
+                    hintStyle: Theme.of(context).textTheme.bodyText1,
+                    focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.blue)),
+                    enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.blue))),
+              ),
+            ],
+          ),
+        ),
+        buttons: [
+          DialogButton(
+            onPressed: () {
+              if (_formKey.currentState!.validate()) {}
+
+            },
+            child: Text(
+              "اضافة",
+              style: Theme.of(context).textTheme.button,
+            ),
+          )
+        ]).show();
   }
 }

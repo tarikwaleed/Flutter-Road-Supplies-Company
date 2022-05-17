@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:salah_construction/constants.dart';
+import 'package:salah_construction/screens/add_mixer_screen.dart';
 import 'package:salah_construction/screens/home_screen.dart';
 import 'package:salah_construction/theme.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -35,10 +36,12 @@ class MyApp extends StatelessWidget {
       // OR Locale('ar', 'AE') OR Other RTL locales,
       title: 'Salah Construction',
       theme: ThemeData(
-        accentColor: Colors.blue,
         textTheme: tajawalTextTheme,
       ),
-      home: const HomeScreen(),
+      initialRoute: '/',
+      routes: {
+        '/':(context)=>const HomeScreen(),
+      },
     );
   }
 }
