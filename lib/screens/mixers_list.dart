@@ -66,6 +66,7 @@ class _MixersListState extends State<MixersList> {
                           await mixerDBService.deleteMixer(
                               retrievedMixersList![index].id.toString());
                           _dismiss();
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("تم مسح الخلاطة"),backgroundColor: Colors.green,));
                         }),
                         background: Container(
                           decoration: BoxDecoration(
@@ -180,8 +181,10 @@ class _MixersListState extends State<MixersList> {
               );
               await mixerDBService.addMixer(mixer);
               Navigator.pop(context);
-              ScaffoldMessenger
-
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                content: Text("تمت اضافة الخلاطة بنجاح، قم باعادة تحميل الصفحة"),
+                backgroundColor: Colors.green,
+              ));
             },
             child: Text(
               "اضافة",
