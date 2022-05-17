@@ -2,9 +2,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Mixer {
   final String? id;
-  final String? name;
+  final String name;
 
-  Mixer(this.name, this.id);
+  Mixer({
+    this.id,
+    required this.name,
+
+  });
 
   Mixer.fromFirestore(
     DocumentSnapshot<Map<String, dynamic>> snapshot,

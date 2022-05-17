@@ -141,6 +141,8 @@ class _MixersListState extends State<MixersList> {
   _showAddMixerPopup(context) {
     final _formKey = GlobalKey<FormState>();
     final mixerNameController = TextEditingController();
+    bool mixerAddedSuccessfully = false;
+    final bool isLoading = false;
     Alert(
         context: context,
         title: "اضافة خلاطة",
@@ -150,6 +152,7 @@ class _MixersListState extends State<MixersList> {
             children: <Widget>[
               TextFormField(
                 controller: mixerNameController,
+                keyboardType: TextInputType.text,
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'رجاء ادخال اسم الخلاطة';
@@ -169,8 +172,15 @@ class _MixersListState extends State<MixersList> {
         ),
         buttons: [
           DialogButton(
-            onPressed: () {
+            onPressed: () async {
               if (_formKey.currentState!.validate()) {}
+              String mixerName = mixerNameController.text;
+              Mixer mixer = Mixer(
+                name: mixerName,
+              );
+              await mixerDBService.addMixer(mixer);
+              Navigator.pop(context);
+              ScaffoldMessenger
 
             },
             child: Text(
