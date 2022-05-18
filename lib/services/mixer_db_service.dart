@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:salah_construction/models/mixer_model.dart';
 
-class MixerDBService {
+class ShipmentDBService {
   final FirebaseFirestore _db = FirebaseFirestore.instance;
 
   Future<List<Mixer>> retrieveMixers() async {

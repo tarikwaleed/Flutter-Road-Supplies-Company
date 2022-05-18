@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:salah_construction/models/mixer_model.dart';
 
+import '../services/mixer_db_service.dart';
+
 class MixerDetailsScreen extends StatefulWidget {
   const MixerDetailsScreen({Key? key}) : super(key: key);
 
@@ -9,6 +11,33 @@ class MixerDetailsScreen extends StatefulWidget {
 }
 
 class _MixerDetailsScreenState extends State<MixerDetailsScreen> {
+  ShipmentDBService shipmentDBService = ShipmentDBService();
+  Future<List<Mixer>>? shipmentsListFuture;
+  List<Mixer>? retrievedShipmentsList;
+
+  Future<void> _refresh() async {
+    shipmentsListFuture = shipmentDBService.retrieveMixers();
+    retrievedShipmentsList =
+        await shipmentDBService.retrieveMixers();
+    setState(() {});
+  }
+
+  void _dismiss() {
+    shipmentsListFuture = shipmentDBService.retrieveMixers();
+  }
+
+  Future<void> _initRetrieval() async {
+    shipmentsListFuture = shipmentDBService.retrieveMixers();
+    retrievedShipmentsList =
+        await shipmentDBService.retrieveMixers();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _initRetrieval();
+  }
+
   @override
   Widget build(BuildContext context) {
     final mixerFields = ModalRoute.of(context)!.settings.arguments as Mixer;
