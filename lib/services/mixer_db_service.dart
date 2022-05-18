@@ -8,7 +8,7 @@ class MixerDBService {
     QuerySnapshot<Map<String, dynamic>> snapshot =
         await _db.collection("mixers").get();
     return snapshot.docs
-        .map((snapshot) => Mixer.fromFirestore(snapshot))
+        .map((docSnapshot) => Mixer.fromFirestore(docSnapshot))
         .toList();
   }
 

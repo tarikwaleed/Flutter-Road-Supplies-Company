@@ -12,21 +12,21 @@ class MixersList extends StatefulWidget {
 
 class _MixersListState extends State<MixersList> {
   MixerDBService mixerDBService = MixerDBService();
-  Future<List<Mixer>>? mixersList;
+  Future<List<Mixer>>? mixersListFuture;
   List<Mixer>? retrievedMixersList;
 
   Future<void> _refresh() async {
-    mixersList = mixerDBService.retrieveMixers();
+    mixersListFuture = mixerDBService.retrieveMixers();
     retrievedMixersList = await mixerDBService.retrieveMixers();
     setState(() {});
   }
 
   void _dismiss() {
-    mixersList = mixerDBService.retrieveMixers();
+    mixersListFuture = mixerDBService.retrieveMixers();
   }
 
   Future<void> _initRetrieval() async {
-    mixersList = mixerDBService.retrieveMixers();
+    mixersListFuture = mixerDBService.retrieveMixers();
     retrievedMixersList = await mixerDBService.retrieveMixers();
   }
 
@@ -51,7 +51,7 @@ class _MixersListState extends State<MixersList> {
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: FutureBuilder(
-            future: mixersList,
+            future: mixersListFuture,
             builder:
                 (BuildContext context, AsyncSnapshot<List<Mixer>> snapshot) {
               if (snapshot.hasData && snapshot.data!.isNotEmpty) {
@@ -66,12 +66,15 @@ class _MixersListState extends State<MixersList> {
                           await mixerDBService.deleteMixer(
                               retrievedMixersList![index].id.toString());
                           _dismiss();
-                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("تم مسح الخلاطة"),backgroundColor: Colors.green,));
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            content: Text("تم مسح الخلاطة"),
+                            backgroundColor: Colors.green,
+                          ));
                         }),
                         background: Container(
                           decoration: BoxDecoration(
                               color: Colors.red,
-                              borderRadius: BorderRadius.circular(16.0)),
+                              borderRadius: BorderRadius.circular(8.0)),
                           padding: const EdgeInsets.only(right: 28.0),
                           alignment: AlignmentDirectional.centerEnd,
                           child: Padding(
@@ -91,7 +94,7 @@ class _MixersListState extends State<MixersList> {
                           ),
                           child: ListTile(
                             onTap: () {
-                              Navigator.pushNamed(context, "/edit",
+                              Navigator.pushNamed(context, "/mixer_details",
                                   arguments: retrievedMixersList![index]);
                             },
                             shape: RoundedRectangleBorder(
@@ -182,7 +185,8 @@ class _MixersListState extends State<MixersList> {
               await mixerDBService.addMixer(mixer);
               Navigator.pop(context);
               ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                content: Text("تمت اضافة الخلاطة بنجاح، قم باعادة تحميل الصفحة"),
+                content:
+                    Text("تمت اضافة الخلاطة بنجاح، قم باعادة تحميل الصفحة"),
                 backgroundColor: Colors.green,
               ));
             },
