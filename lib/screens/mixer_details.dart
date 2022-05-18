@@ -19,6 +19,9 @@ class _MixerDetailsScreenState extends State<MixerDetailsScreen> {
           style: Theme.of(context).textTheme.headline6,
         ),
         backgroundColor: Colors.white,
+        leading: BackButton(
+          color: Colors.black,
+        ),
       ),
     );
   }
