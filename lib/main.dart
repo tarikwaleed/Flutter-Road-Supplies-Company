@@ -5,6 +5,8 @@ import 'package:salah_construction/screens/mixer_details.dart';
 import 'package:salah_construction/theme.dart';
 import 'package:firebase_core/firebase_core.dart';
 
+import 'models/mixer_model.dart';
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -39,8 +41,7 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: '/',
       routes: {
-        '/': (context) => const HomeScreen(),
-        '/mixer_details': (context) => const MixerDetailsScreen(),
+        HomeScreen.routeName: (context) => const HomeScreen(),
       },
     );
   }

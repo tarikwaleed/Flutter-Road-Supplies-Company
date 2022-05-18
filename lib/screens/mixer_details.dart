@@ -4,7 +4,8 @@ import 'package:salah_construction/models/mixer_model.dart';
 import '../services/mixer_db_service.dart';
 
 class MixerDetailsScreen extends StatefulWidget {
-  const MixerDetailsScreen({Key? key}) : super(key: key);
+  const MixerDetailsScreen({Key? key})
+      : super(key: key);
 
   @override
   State<MixerDetailsScreen> createState() => _MixerDetailsScreenState();
@@ -17,8 +18,7 @@ class _MixerDetailsScreenState extends State<MixerDetailsScreen> {
 
   Future<void> _refresh() async {
     shipmentsListFuture = shipmentDBService.retrieveMixers();
-    retrievedShipmentsList =
-        await shipmentDBService.retrieveMixers();
+    retrievedShipmentsList = await shipmentDBService.retrieveMixers();
     setState(() {});
   }
 
@@ -28,8 +28,7 @@ class _MixerDetailsScreenState extends State<MixerDetailsScreen> {
 
   Future<void> _initRetrieval() async {
     shipmentsListFuture = shipmentDBService.retrieveMixers();
-    retrievedShipmentsList =
-        await shipmentDBService.retrieveMixers();
+    retrievedShipmentsList = await shipmentDBService.retrieveMixers();
   }
 
   @override
@@ -40,7 +39,6 @@ class _MixerDetailsScreenState extends State<MixerDetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final mixerFields = ModalRoute.of(context)!.settings.arguments as Mixer;
     return Scaffold(
       appBar: AppBar(
         title: Text(
