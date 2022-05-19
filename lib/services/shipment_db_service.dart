@@ -4,7 +4,7 @@ import 'package:salah_construction/models/shipment_model.dart';
 class ShipmentDBService {
   final FirebaseFirestore _db = FirebaseFirestore.instance;
 
-  Future<List<Shipment>> retreiveShipmentsByMixerId(String mixerId) async {
+  Future<List<Shipment>> retrieveShipmentsByMixerId(String mixerId) async {
     QuerySnapshot<Map<String, dynamic>> snapshot = await _db
         .collection("shipments")
         .where("mixer_id", isEqualTo: mixerId)

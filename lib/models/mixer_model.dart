@@ -7,7 +7,6 @@ class Mixer {
   Mixer({
     this.id,
     required this.name,
-
   });
 
   Mixer.fromFirestore(

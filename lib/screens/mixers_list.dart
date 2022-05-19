@@ -11,7 +11,7 @@ class MixersList extends StatefulWidget {
 }
 
 class _MixersListState extends State<MixersList> {
-  ShipmentDBService mixerDBService = ShipmentDBService();
+  MixerDBService mixerDBService = MixerDBService();
   Future<List<Mixer>>? mixersListFuture;
   List<Mixer>? retrievedMixersList;
 

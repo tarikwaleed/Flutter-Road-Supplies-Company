@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:salah_construction/models/mixer_model.dart';
-
-import '../services/mixer_db_service.dart';
+import 'package:salah_construction/models/shipment_model.dart';
+import '../services/shipment_db_service.dart';
 
 class MixerDetailsScreen extends StatefulWidget {
   final dynamic mixerData;
@@ -15,22 +14,29 @@ class MixerDetailsScreen extends StatefulWidget {
 
 class _MixerDetailsScreenState extends State<MixerDetailsScreen> {
   ShipmentDBService shipmentDBService = ShipmentDBService();
-  Future<List<Mixer>>? shipmentsListFuture;
-  List<Mixer>? retrievedShipmentsList;
+  Future<List<Shipment>>? shipmentsListFuture;
+  List<Shipment>? retrievedShipmentsList;
 
   Future<void> _refresh() async {
-    shipmentsListFuture = shipmentDBService.retrieveMixers();
-    retrievedShipmentsList = await shipmentDBService.retrieveMixers();
+    shipmentsListFuture =
+        shipmentDBService.retrieveShipmentsByMixerId(widget.mixerData.id);
+    retrievedShipmentsList =
+        await shipmentDBService.retrieveShipmentsByMixerId(widget.mixerData.id);
     setState(() {});
   }
 
-  void _dismiss() {
-    shipmentsListFuture = shipmentDBService.retrieveMixers();
-  }
+  // void _dismiss() {
+  //   shipmentsListFuture =
+  //       shipmentDBService.retrieveShipmentsByMixerId(widget.mixerData.id);
+  // }
 
   Future<void> _initRetrieval() async {
-    shipmentsListFuture = shipmentDBService.retrieveMixers();
-    retrievedShipmentsList = await shipmentDBService.retrieveMixers();
+    shipmentsListFuture =
+        shipmentDBService.retrieveShipmentsByMixerId(widget.mixerData.id);
+    retrievedShipmentsList =
+        await shipmentDBService.retrieveShipmentsByMixerId(widget.mixerData.id);
+    setState(() {});
+    debugPrint("retrieved shipment list is"+retrievedShipmentsList.toString());
   }
 
   @override
@@ -50,6 +56,67 @@ class _MixerDetailsScreenState extends State<MixerDetailsScreen> {
         backgroundColor: Colors.white,
         leading: BackButton(
           color: Colors.black,
+        ),
+      ),
+      body: RefreshIndicator(
+        onRefresh: _refresh,
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: FutureBuilder(
+            future: shipmentsListFuture,
+            builder:
+                (BuildContext context, AsyncSnapshot<List<Shipment>> snapshot) {
+              if (snapshot.hasData && snapshot.data!.isNotEmpty) {
+                return ListView.separated(
+                    itemCount: retrievedShipmentsList!.length,
+                    separatorBuilder: (context, index) => const SizedBox(
+                          height: 10,
+                        ),
+                    itemBuilder: (_, index) {
+                      return Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(16.0),
+                        ),
+                        child: ListTile(
+                          // onTap: () {
+                          //   Navigator.pushNamed(context, '/mixer_details',
+                          //       arguments: retrievedShipmentsList![index]);
+                          // },
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8.0),
+                            side: BorderSide(color: Colors.blue),
+                          ),
+                          title: Text(
+                            retrievedShipmentsList![index]
+                                .cartNumber
+                                .toString(),
+                            style: Theme.of(context).textTheme.bodyText1,
+                          ),
+                          trailing: const Icon(Icons.arrow_right_sharp),
+                        ),
+                      );
+                    });
+              } else if (snapshot.connectionState == ConnectionState.done &&
+                  retrievedShipmentsList!.isEmpty) {
+                return Center(
+                  child: ListView(
+                    children: const <Widget>[
+                      Align(
+                          alignment: AlignmentDirectional.center,
+                          child: Text(
+                            'لا يوجد نقل',
+                            style: TextStyle(
+                              color: Colors.red,
+                            ),
+                          )),
+                    ],
+                  ),
+                );
+              } else {
+                return const Center(child: CircularProgressIndicator());
+              }
+            },
+          ),
         ),
       ),
     );
