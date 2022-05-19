@@ -12,6 +12,11 @@ final tajawalTextTheme = TextTheme(
       fontWeight: FontWeight.w400,
       letterSpacing: 0.5,
       color: Colors.blueGrey),
+  bodyText2: GoogleFonts.tajawal(
+      fontSize: 16,
+      fontWeight: FontWeight.w400,
+      letterSpacing: 0.5,
+      color: Colors.blueGrey),
   button: GoogleFonts.tajawal(
     fontSize: 16,
     color: Colors.white,

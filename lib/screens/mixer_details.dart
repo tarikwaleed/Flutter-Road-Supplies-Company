@@ -36,7 +36,8 @@ class _MixerDetailsScreenState extends State<MixerDetailsScreen> {
     retrievedShipmentsList =
         await shipmentDBService.retrieveShipmentsByMixerId(widget.mixerData.id);
     setState(() {});
-    debugPrint("retrieved shipment list is"+retrievedShipmentsList.toString());
+    debugPrint(
+        "retrieved shipment list is" + retrievedShipmentsList.toString());
   }
 
   @override
@@ -87,10 +88,18 @@ class _MixerDetailsScreenState extends State<MixerDetailsScreen> {
                             side: BorderSide(color: Colors.blue),
                           ),
                           title: Text(
-                            retrievedShipmentsList![index]
-                                .cartNumber
-                                .toString(),
+                            "رقم العربية: " +
+                                retrievedShipmentsList![index]
+                                    .vehicleNumber
+                                    .toString(),
                             style: Theme.of(context).textTheme.bodyText1,
+                          ),
+                          subtitle: Text(
+                            "رقم المقطورة: " +
+                                retrievedShipmentsList![index]
+                                    .cartNumber
+                                    .toString(),
+                            style: Theme.of(context).textTheme.bodyText2,
                           ),
                           trailing: const Icon(Icons.arrow_right_sharp),
                         ),
@@ -118,6 +127,10 @@ class _MixerDetailsScreenState extends State<MixerDetailsScreen> {
             },
           ),
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: Icon(Icons.add),
       ),
     );
   }
