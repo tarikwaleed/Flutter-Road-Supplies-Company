@@ -94,7 +94,7 @@ class _MixersListState extends State<MixersList> {
                           ),
                           child: ListTile(
                             onTap: () {
-                              Navigator.pushNamed(context, "/mixer_details",
+                              Navigator.pushNamed(context, '/mixer_details',
                                   arguments: retrievedMixersList![index]);
                             },
                             shape: RoundedRectangleBorder(

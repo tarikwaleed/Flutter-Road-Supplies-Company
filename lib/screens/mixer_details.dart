@@ -4,7 +4,9 @@ import 'package:salah_construction/models/mixer_model.dart';
 import '../services/mixer_db_service.dart';
 
 class MixerDetailsScreen extends StatefulWidget {
-  const MixerDetailsScreen({Key? key})
+  final dynamic mixerData;
+
+  const MixerDetailsScreen({Key? key, required this.mixerData})
       : super(key: key);
 
   @override
@@ -42,7 +44,7 @@ class _MixerDetailsScreenState extends State<MixerDetailsScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "خلاطة ${mixerFields.name}",
+          "خلاطة ${widget.mixerData.name}",
           style: Theme.of(context).textTheme.headline6,
         ),
         backgroundColor: Colors.white,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:salah_construction/route_generator.dart';
 import 'package:salah_construction/screens/home_screen.dart';
 import 'package:salah_construction/screens/mixer_details.dart';
 import 'package:salah_construction/theme.dart';
@@ -40,9 +41,7 @@ class MyApp extends StatelessWidget {
         textTheme: tajawalTextTheme,
       ),
       initialRoute: '/',
-      routes: {
-        HomeScreen.routeName: (context) => const HomeScreen(),
-      },
+      onGenerateRoute: RouteGenerator.generateRoute,
     );
   }
 }
