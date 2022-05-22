@@ -21,7 +21,6 @@ class _MixersListState extends State<MixersList> {
     setState(() {});
   }
 
-
   Future<void> _initRetrieval() async {
     mixersListFuture = mixerDBService.retrieveMixers();
     retrievedMixersList = await mixerDBService.retrieveMixers();
@@ -52,33 +51,42 @@ class _MixersListState extends State<MixersList> {
             builder:
                 (BuildContext context, AsyncSnapshot<List<Mixer>> snapshot) {
               if (snapshot.hasData && snapshot.data!.isNotEmpty) {
-                return ListView.separated(
+                /////////// Refactor here //////////
+                return GridView.builder(
                     itemCount: retrievedMixersList!.length,
-                    separatorBuilder: (context, index) => const SizedBox(
-                          height: 10,
-                        ),
+                    scrollDirection: Axis.vertical,
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                    ),
                     itemBuilder: (_, index) {
-                      return Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(16.0),
-                        ),
-                        child: ListTile(
-                          onTap: () {
-                            Navigator.pushNamed(context, '/mixer_details',
-                                arguments: retrievedMixersList![index]);
-                          },
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(8.0),
-                            side: BorderSide(color: Colors.blue),
+                      return Center(
+                        child: Card(
+                          child: InkWell(
+                            onTap: () {
+                              Navigator.pushNamed(context, '/mixer_details',
+                                  arguments: retrievedMixersList![index]);
+                            },
+                            child: Container(
+                              child: Column(
+                                // mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  ClipRect(
+                                    child: Align(
+                                      alignment: Alignment.center,
+                                      heightFactor: 0.7,
+                                      child: Text(
+                                        retrievedMixersList![index].name,
+                                      ),
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
                           ),
-                          title: Text(
-                            retrievedMixersList![index].name.toString(),
-                            style: Theme.of(context).textTheme.bodyText1,
-                          ),
-                          trailing: const Icon(Icons.arrow_right_sharp),
                         ),
                       );
                     });
+                ///////////////////// END /////////////////////////
               } else if (snapshot.connectionState == ConnectionState.done &&
                   retrievedMixersList!.isEmpty) {
                 return Center(
