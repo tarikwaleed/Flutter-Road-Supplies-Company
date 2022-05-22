@@ -59,27 +59,20 @@ class _MixersListState extends State<MixersList> {
                       crossAxisCount: 2,
                     ),
                     itemBuilder: (_, index) {
-                      return Center(
-                        child: Card(
-                          child: InkWell(
-                            onTap: () {
-                              Navigator.pushNamed(context, '/mixer_details',
-                                  arguments: retrievedMixersList![index]);
-                            },
-                            child: Container(
-                              child: Column(
-                                // mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  ClipRect(
-                                    child: Align(
-                                      alignment: Alignment.center,
-                                      heightFactor: 0.7,
-                                      child: Text(
-                                        retrievedMixersList![index].name,
-                                      ),
-                                    ),
-                                  )
-                                ],
+                      return Card(
+                        color: Colors.blueGrey,
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.pushNamed(context, '/mixer_details',
+                                arguments: retrievedMixersList![index]);
+                          },
+                          child: ClipRect(
+                            child: Align(
+                              alignment: Alignment.center,
+                              heightFactor: 0.7,
+                              child: Text(
+                                retrievedMixersList![index].name,
+                                style: Theme.of(context).textTheme.caption,
                               ),
                             ),
                           ),
