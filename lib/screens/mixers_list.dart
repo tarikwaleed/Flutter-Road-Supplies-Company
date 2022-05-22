@@ -21,9 +21,6 @@ class _MixersListState extends State<MixersList> {
     setState(() {});
   }
 
-  void _dismiss() {
-    mixersListFuture = mixerDBService.retrieveMixers();
-  }
 
   Future<void> _initRetrieval() async {
     mixersListFuture = mixerDBService.retrieveMixers();
@@ -61,52 +58,24 @@ class _MixersListState extends State<MixersList> {
                           height: 10,
                         ),
                     itemBuilder: (_, index) {
-                      return Dismissible(
-                        onDismissed: ((direction) async {
-                          await mixerDBService.deleteMixer(
-                              retrievedMixersList![index].id.toString());
-                          _dismiss();
-                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                            content: Text("تم مسح الخلاطة"),
-                            backgroundColor: Colors.green,
-                          ));
-                        }),
-                        background: Container(
-                          decoration: BoxDecoration(
-                              color: Colors.red,
-                              borderRadius: BorderRadius.circular(8.0)),
-                          padding: const EdgeInsets.only(right: 28.0),
-                          alignment: AlignmentDirectional.centerEnd,
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Icon(
-                              Icons.delete,
-                              color: Colors.white,
-                            ),
-                          ),
+                      return Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(16.0),
                         ),
-                        direction: DismissDirection.endToStart,
-                        resizeDuration: const Duration(milliseconds: 200),
-                        key: UniqueKey(),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(16.0),
+                        child: ListTile(
+                          onTap: () {
+                            Navigator.pushNamed(context, '/mixer_details',
+                                arguments: retrievedMixersList![index]);
+                          },
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8.0),
+                            side: BorderSide(color: Colors.blue),
                           ),
-                          child: ListTile(
-                            onTap: () {
-                              Navigator.pushNamed(context, '/mixer_details',
-                                  arguments: retrievedMixersList![index]);
-                            },
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8.0),
-                              side: BorderSide(color: Colors.blue),
-                            ),
-                            title: Text(
-                              retrievedMixersList![index].name.toString(),
-                              style: Theme.of(context).textTheme.bodyText1,
-                            ),
-                            trailing: const Icon(Icons.arrow_right_sharp),
+                          title: Text(
+                            retrievedMixersList![index].name.toString(),
+                            style: Theme.of(context).textTheme.bodyText1,
                           ),
+                          trailing: const Icon(Icons.arrow_right_sharp),
                         ),
                       );
                     });
