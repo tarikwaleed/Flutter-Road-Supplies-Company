@@ -27,3 +27,30 @@ final tajawalTextTheme = TextTheme(
       color: Colors.white,
       fontWeight: FontWeight.bold,
     ));
+
+class MyInputDecorationTheme {
+  OutlineInputBorder _buildOutlineInputBorder(Color color) {
+    return OutlineInputBorder(
+      borderRadius: BorderRadius.all(Radius.circular(20)),
+      borderSide: BorderSide(
+        color: color,
+        width: 1,
+      ),
+    );
+  }
+
+  static TextStyle _buildTextStyle(Color color, {double size = 16.0}) {
+    return TextStyle(
+      color: color,
+      fontSize: size,
+    );
+  }
+
+  InputDecorationTheme myInputDecorationTheme() => InputDecorationTheme(
+        disabledBorder: _buildOutlineInputBorder(Colors.blueGrey),
+        enabledBorder: _buildOutlineInputBorder(Colors.grey),
+        focusedBorder: _buildOutlineInputBorder(Colors.blue),
+        errorBorder: _buildOutlineInputBorder(Colors.red),
+        focusedErrorBorder: _buildOutlineInputBorder(Colors.orangeAccent),
+      );
+}

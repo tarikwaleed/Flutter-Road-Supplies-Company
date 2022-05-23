@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:salah_construction/route_generator.dart';
-import 'package:salah_construction/screens/home_screen.dart';
-import 'package:salah_construction/screens/mixer_details.dart';
+import 'package:salah_construction/themes/input_decoration_theme.dart';
 import 'package:salah_construction/theme.dart';
 import 'package:firebase_core/firebase_core.dart';
 
@@ -39,6 +38,7 @@ class MyApp extends StatelessWidget {
       title: 'Salah Construction',
       theme: ThemeData(
         textTheme: tajawalTextTheme,
+        inputDecorationTheme: MyInputDecorationTheme().myInputDecorationTheme(),
       ),
       initialRoute: '/',
       onGenerateRoute: RouteGenerator.generateRoute,

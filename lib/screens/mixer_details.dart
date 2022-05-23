@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:salah_construction/models/shipment_model.dart';
 import '../services/shipment_db_service.dart';
 
@@ -129,9 +130,60 @@ class _MixerDetailsScreenState extends State<MixerDetailsScreen> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          _showAddShipmentPopup();
+        },
         child: Icon(Icons.add),
       ),
     );
+  }
+
+  _showAddShipmentPopup() {
+    final _formKey = GlobalKey<FormState>();
+    final carriagePriceController = TextEditingController();
+    final cartNumberController = TextEditingController();
+    // final clientController=TextEditingController();
+    // final dateController=TextEditingController();
+    // final materialIdController=TextEditingController();
+    final materialPriceController = TextEditingController();
+    // final mixerIdController=TextEditingController();
+    // final sourceIdController=TextEditingController();
+    final vehicleNumberController = TextEditingController();
+    final volumeController = TextEditingController();
+    Alert(
+        context: context,
+        title: "اضافة نقلة",
+        content: Form(
+          key: _formKey,
+          child: Column(
+            children: [
+              TextFormField(
+                decoration: InputDecoration(),
+              ),
+              SizedBox(height: 10),
+              TextFormField(
+                decoration: InputDecoration(),
+              ),
+              SizedBox(height: 10),
+              TextFormField(
+                decoration: InputDecoration(),
+              ),
+              SizedBox(height: 10),
+              TextFormField(
+                decoration: InputDecoration(),
+              ),
+              SizedBox(height: 10),
+              TextFormField(
+                decoration: InputDecoration(),
+              ),
+            ],
+          ),
+        ),
+        buttons: [
+          DialogButton(
+            onPressed: () {},
+            child: Text("اضافة", style: Theme.of(context).textTheme.button),
+          )
+        ]).show();
   }
 }

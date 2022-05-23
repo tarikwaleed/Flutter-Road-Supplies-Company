@@ -115,8 +115,6 @@ class _MixersListState extends State<MixersList> {
   _showAddMixerPopup(context) {
     final _formKey = GlobalKey<FormState>();
     final mixerNameController = TextEditingController();
-    bool mixerAddedSuccessfully = false;
-    final bool isLoading = false;
     Alert(
         context: context,
         title: "اضافة خلاطة",
