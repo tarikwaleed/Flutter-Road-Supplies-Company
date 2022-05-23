@@ -145,18 +145,19 @@ class _MixersListState extends State<MixersList> {
         buttons: [
           DialogButton(
             onPressed: () async {
-              if (_formKey.currentState!.validate()) {}
-              String mixerName = mixerNameController.text;
-              Mixer mixer = Mixer(
-                name: mixerName,
-              );
-              await mixerDBService.addMixer(mixer);
-              Navigator.pop(context);
-              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                content:
-                    Text("تمت اضافة الخلاطة بنجاح، قم باعادة تحميل الصفحة"),
-                backgroundColor: Colors.green,
-              ));
+              if (_formKey.currentState!.validate()) {
+                String mixerName = mixerNameController.text;
+                Mixer mixer = Mixer(
+                  name: mixerName,
+                );
+                await mixerDBService.addMixer(mixer);
+                Navigator.pop(context);
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  content:
+                      Text("تمت اضافة الخلاطة بنجاح، قم باعادة تحميل الصفحة"),
+                  backgroundColor: Colors.green,
+                ));
+              }
             },
             child: Text(
               "اضافة",

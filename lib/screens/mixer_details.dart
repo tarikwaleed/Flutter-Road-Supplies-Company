@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
+import 'package:salah_construction/components/add_shipment_form/shipment_date_text_form_field.dart';
 import 'package:salah_construction/models/shipment_model.dart';
 import '../services/shipment_db_service.dart';
 
@@ -157,31 +158,17 @@ class _MixerDetailsScreenState extends State<MixerDetailsScreen> {
           key: _formKey,
           child: Column(
             children: [
-              TextFormField(
-                decoration: InputDecoration(),
-              ),
-              SizedBox(height: 10),
-              TextFormField(
-                decoration: InputDecoration(),
-              ),
-              SizedBox(height: 10),
-              TextFormField(
-                decoration: InputDecoration(),
-              ),
-              SizedBox(height: 10),
-              TextFormField(
-                decoration: InputDecoration(),
-              ),
-              SizedBox(height: 10),
-              TextFormField(
-                decoration: InputDecoration(),
-              ),
+              ShipmentDateTextFormField(),
             ],
           ),
         ),
         buttons: [
           DialogButton(
-            onPressed: () {},
+            onPressed: () {
+              if (_formKey.currentState!.validate()) {
+                // Put your code here
+              }
+            },
             child: Text("اضافة", style: Theme.of(context).textTheme.button),
           )
         ]).show();
