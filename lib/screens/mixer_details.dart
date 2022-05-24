@@ -141,16 +141,6 @@ class _MixerDetailsScreenState extends State<MixerDetailsScreen> {
 
   _showAddShipmentPopup() {
     final _formKey = GlobalKey<FormState>();
-    final carriagePriceController = TextEditingController();
-    final cartNumberController = TextEditingController();
-    // final clientController=TextEditingController();
-    // final dateController=TextEditingController();
-    // final materialIdController=TextEditingController();
-    final materialPriceController = TextEditingController();
-    // final mixerIdController=TextEditingController();
-    // final sourceIdController=TextEditingController();
-    final vehicleNumberController = TextEditingController();
-    final volumeController = TextEditingController();
     Alert(
         context: context,
         title: "اضافة نقلة",

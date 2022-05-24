@@ -52,7 +52,7 @@ class _ShipmentDateTextFormFieldState extends State<ShipmentDateTextFormField> {
       setState(() {
         selectedDate = picked;
         shipmentDateController.text =
-            DateFormat('yyyy-MM-dd').format(selectedDate);
+            DateFormat('yyyy/MM/dd').format(selectedDate);
       });
     }
   }
