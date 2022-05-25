@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
-import 'package:salah_construction/components/add_shipment_form/shipment_date_text_form_field.dart';
+import 'package:salah_construction/components/drop_down_button_form_fields/material_type_drop_down_button_form_field.dart';
+import 'package:salah_construction/components/drop_down_button_form_fields/source_drop_down_button_form_field.dart';
+import 'package:salah_construction/components/text_form_fields/add_shipment_popup/cart_number_text_form_field.dart';
+import 'package:salah_construction/components/text_form_fields/add_shipment_popup/shipment_date_text_form_field.dart';
+import 'package:salah_construction/components/text_form_fields/add_shipment_popup/vehicle_number_text_form_field.dart';
 import 'package:salah_construction/models/shipment_model.dart';
 import '../services/shipment_db_service.dart';
 
@@ -149,6 +153,10 @@ class _MixerDetailsScreenState extends State<MixerDetailsScreen> {
           child: Column(
             children: [
               ShipmentDateTextFormField(),
+              VehicleNumberTextFormField(),
+              CartNumberTextFormField(),
+              MaterialTypeDropDownButtonFormField(),
+              SourceDropDownButtonFormField(),
             ],
           ),
         ),

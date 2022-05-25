@@ -21,23 +21,30 @@ class _ShipmentDateTextFormFieldState extends State<ShipmentDateTextFormField> {
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      validator: (value) {
-        if (value == null || value.isEmpty) {
-          return 'برجاء اختيار تاريخ النقلة';
-        }
-        return null;
-      },
-      controller: shipmentDateController,
-      decoration: InputDecoration(
-        label: Text("تاريخ النقلة"),
-        suffixIcon: IconButton(
-          icon: Icon(Icons.calendar_today),
-          onPressed: () {
-            _selectDate(context);
+    return Column(
+      children: [
+        TextFormField(
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return 'برجاء اختيار تاريخ النقلة';
+            }
+            return null;
           },
+          controller: shipmentDateController,
+          decoration: InputDecoration(
+            label: Text("تاريخ النقلة"),
+            suffixIcon: IconButton(
+              icon: Icon(Icons.calendar_today),
+              onPressed: () {
+                _selectDate(context);
+              },
+            ),
+          ),
         ),
-      ),
+        SizedBox(
+          height: 20,
+        )
+      ],
     );
   }
 
