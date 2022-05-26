@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
+import 'package:salah_construction/components/drop_down_button_form_fields/client_drop_down_button_form_field.dart';
 import 'package:salah_construction/components/drop_down_button_form_fields/material_type_drop_down_button_form_field.dart';
 import 'package:salah_construction/components/drop_down_button_form_fields/source_drop_down_button_form_field.dart';
+import 'package:salah_construction/components/text_form_fields/add_shipment_popup/carriage_price_text_form_field.dart';
 import 'package:salah_construction/components/text_form_fields/add_shipment_popup/cart_number_text_form_field.dart';
+import 'package:salah_construction/components/text_form_fields/add_shipment_popup/material_price_text_form_field.dart';
 import 'package:salah_construction/components/text_form_fields/add_shipment_popup/shipment_date_text_form_field.dart';
 import 'package:salah_construction/components/text_form_fields/add_shipment_popup/vehicle_number_text_form_field.dart';
 import 'package:salah_construction/models/shipment_model.dart';
@@ -41,6 +44,7 @@ class _MixerDetailsScreenState extends State<MixerDetailsScreen> {
         shipmentDBService.retrieveShipmentsByMixerId(widget.mixerData.id);
     retrievedShipmentsList =
         await shipmentDBService.retrieveShipmentsByMixerId(widget.mixerData.id);
+
     setState(() {});
     debugPrint(
         "retrieved shipment list is" + retrievedShipmentsList.toString());
@@ -157,6 +161,9 @@ class _MixerDetailsScreenState extends State<MixerDetailsScreen> {
               CartNumberTextFormField(),
               MaterialTypeDropDownButtonFormField(),
               SourceDropDownButtonFormField(),
+              MaterialPriceTextFormField(),
+              CarriagePriceTextFormField(),
+              ClientDropDownButtonFormField(),
             ],
           ),
         ),
