@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class MaterialPriceTextFormField extends StatefulWidget {
   const MaterialPriceTextFormField({Key? key}) : super(key: key);
@@ -21,6 +22,9 @@ class _MaterialPriceTextFormFieldState
             if (value == null || value.isEmpty) {
               return 'برجاء ادخال سعر الحجر';
             }
+            if (int.parse(value) <= 0) {
+              return "برجاء ادخال عدد صحيح موجب";
+            }
             return null;
           },
           controller: materialPriceController,
@@ -28,6 +32,9 @@ class _MaterialPriceTextFormFieldState
             label: Text("الحجر"),
           ),
           keyboardType: TextInputType.number,
+          inputFormatters: <TextInputFormatter>[
+            FilteringTextInputFormatter.digitsOnly
+          ],
         ),
         SizedBox(
           height: 20,
