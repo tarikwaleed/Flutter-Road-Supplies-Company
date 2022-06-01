@@ -13,26 +13,25 @@ class ClientDropDownButtonFormField extends StatefulWidget {
 
 class _ClientDropDownButtonFormFieldState
     extends State<ClientDropDownButtonFormField> {
-  ClientDBService clientDBService = ClientDBService();
-  List<Client>? retreivedClientsList;
-  List<String>? _clientsNamesList;
-  String? _clientValue;
+  ClientDBService _clientDBService = ClientDBService();
+  String? _selectedValue;
+  List<String>? _clientsNames;
+  List<String?>? _clientsIds;
 
-  Future<void> _initRetrieval() async {
-    retreivedClientsList = await clientDBService.retrieveClients();
-    _clientsNamesList =
-        retreivedClientsList!.map((client) => client.name).toList();
-    _clientValue = _clientsNamesList!.first;
+  getAllClients() async {
+    List<Client>? _clientsList = await _clientDBService.retrieveClients();
+    _clientsNames = _clientsList.map((client) => client.name).toList();
+    _clientsIds = _clientsList.map((client) => client.id).toList();
+    _selectedValue=_clientsNames!.first;
     setState(() {});
-    debugPrint("retrieved clients list is" + retreivedClientsList.toString());
-    debugPrint(_clientsNamesList!.first);
-    debugPrint(_clientsNamesList!.last);
+    debugPrint(_clientsNames!.join("|"));
+    debugPrint(_clientsIds!.join("|"));
   }
 
   @override
   void initState() {
     super.initState();
-    _initRetrieval();
+    getAllClients();
   }
 
   @override
@@ -40,20 +39,19 @@ class _ClientDropDownButtonFormFieldState
     return Column(
       children: [
         DropdownButtonFormField<String>(
-          value: _clientValue,
-          onChanged: (String? newValue) {
-            setState(() {
-              _clientValue = newValue!;
-            });
-          },
-          items:
-              _clientsNamesList!.map<DropdownMenuItem<String>>((String value) {
-            return DropdownMenuItem<String>(
-              value: value,
-              child: Text(value),
-            );
-          }).toList(),
-        ),
+            decoration: InputDecoration(label: Text("العميل")),
+            value: _selectedValue,
+            items: _clientsNames!
+                .map<DropdownMenuItem<String>>((clientName) => DropdownMenuItem(
+                      value: clientName,
+                      child: Text(clientName),
+                    ))
+                .toList(),
+            onChanged: (String? newValue) {
+              setState(() {
+                _selectedValue = newValue;
+              });
+            }),
         SizedBox(
           height: 20,
         ),
