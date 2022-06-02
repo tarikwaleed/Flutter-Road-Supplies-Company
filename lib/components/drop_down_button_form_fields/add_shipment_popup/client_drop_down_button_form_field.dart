@@ -13,17 +13,16 @@ class ClientDropDownButtonFormField extends StatefulWidget {
 
 class _ClientDropDownButtonFormFieldState
     extends State<ClientDropDownButtonFormField> {
-  ClientDBService _clientDBService = ClientDBService();
-  String? _selectedValue;
-  Future<List<Client>>? _clientsListFuture;
+  Client? _selectedClient;
+  final _clientDBService = ClientDBService();
+  Future<List<Client>>? _futureListOfClients;
 
   getAllClients() {
-    _clientsListFuture = _clientDBService.retrieveClients();
-    setState(() {});
+    _futureListOfClients = _clientDBService.retrieveClients();
   }
 
   @override
-  void initState() {
+  initState() {
     super.initState();
     getAllClients();
   }
@@ -32,32 +31,38 @@ class _ClientDropDownButtonFormFieldState
   Widget build(BuildContext context) {
     return Column(
       children: [
-        FutureBuilder(future: _clientsListFuture,
-          builder: (BuildContext context,
-              AsyncSnapshot<List<Client>> clientsList) {
-            List<DropdownMenuItem> clientsDropDownMenueItems = [];
-            for (int i = 0; i < clientsList.data!.length; i++) {
-              Client client = clientsList.data![i];
-              clientsDropDownMenueItems.add(
-                  DropdownMenuItem(value: client
-                    , child: Text(client.name),));
-            }
-          },)
-        // DropdownButtonFormField<String>(
-        //     decoration: InputDecoration(label: Text("العميل")),
-        //     value: _selectedValue,
-        //     items: _clientsNames!
-        //         .map<DropdownMenuItem<String>>((clientName) => DropdownMenuItem(
-        //               value: clientName,
-        //               child: Text(clientName),
-        //             ))
-        //         .toList(),
-        //     onChanged: (String? newValue) {
-        //       setState(() {
-        //         _selectedValue = newValue;
-        //       });
-        //     }),
-        SizedBox(
+        FutureBuilder(
+            future: _futureListOfClients,
+            builder: (BuildContext context,
+                AsyncSnapshot<List<Client>> listOfClients) {
+              if (listOfClients.connectionState == ConnectionState.waiting) {
+                return const Text("جار تحميل بيانات العملاء");
+              } else {
+                List<DropdownMenuItem<Client>> clientsDropDownMenuItems = [];
+                for (int i = 0; i < listOfClients.data!.length; i++) {
+                  Client client = listOfClients.data![i];
+                  clientsDropDownMenuItems.add(DropdownMenuItem<Client>(
+                    value: client,
+                    child: Text(client.name),
+                  ));
+                  debugPrint(
+                      "Added Client with name: ${client.name} and id: ${client.id}");
+                }
+                return DropdownButtonFormField(
+                  items: clientsDropDownMenuItems,
+                  onChanged: (Client? selectedClient) {
+                    setState(() {
+                      _selectedClient = selectedClient;
+                    });
+                    debugPrint(
+                        "The Selected DropdownButtonFormField value is of type ${selectedClient.runtimeType.toString()} , with name:${selectedClient!.name} , and id:${selectedClient!.id}");
+                  },
+                  hint: const Text("قم باختيار اسم العميل"),
+
+                );
+              }
+            }),
+        const SizedBox(
           height: 20,
         ),
       ],
