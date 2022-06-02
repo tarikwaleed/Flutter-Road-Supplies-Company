@@ -55,10 +55,11 @@ class _ClientDropDownButtonFormFieldState
                       _selectedClient = selectedClient;
                     });
                     debugPrint(
-                        "The Selected DropdownButtonFormField value is of type ${selectedClient.runtimeType.toString()} , with name:${selectedClient!.name} , and id:${selectedClient!.id}");
+                        "The Selected DropdownButtonFormField value is of type ${selectedClient.runtimeType.toString()} , with name:${selectedClient!.name} , and id:${selectedClient.id}");
                   },
-                  hint: const Text("قم باختيار اسم العميل"),
-
+                  hint: const Text("اسم العميل"),
+                  validator: (value) =>
+                      value == null ? "قم باختيار اسم العميل" : null,
                 );
               }
             }),
