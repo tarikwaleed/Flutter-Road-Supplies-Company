@@ -1,23 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
-class ShipmentDateTextFormField extends StatefulWidget {
-  const ShipmentDateTextFormField({Key? key}) : super(key: key);
+class ShipmentDateTextFormField extends StatelessWidget {
+  final TextEditingController shipmentDateController;
+  final DateTime selectedDate;
+  final Function selectShipmentDate;
 
-  @override
-  State<ShipmentDateTextFormField> createState() =>
-      _ShipmentDateTextFormFieldState();
-}
-
-class _ShipmentDateTextFormFieldState extends State<ShipmentDateTextFormField> {
-  DateTime selectedDate = DateTime.now();
-  final shipmentDateController = TextEditingController();
-
-  @override
-  void initState() {
-    shipmentDateController.text = DateFormat('yyyy/MM/dd').format(selectedDate);
-    super.initState();
-  }
+  ShipmentDateTextFormField({
+    Key? key,
+    required this.shipmentDateController,
+    required this.selectedDate,
+    required this.selectShipmentDate,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +29,7 @@ class _ShipmentDateTextFormFieldState extends State<ShipmentDateTextFormField> {
             suffixIcon: IconButton(
               icon: Icon(Icons.calendar_today),
               onPressed: () {
-                _selectDate(context);
+                selectShipmentDate(context);
               },
             ),
           ),
@@ -46,21 +39,5 @@ class _ShipmentDateTextFormFieldState extends State<ShipmentDateTextFormField> {
         )
       ],
     );
-  }
-
-  Future<void> _selectDate(BuildContext context) async {
-    final DateTime? picked = await showDatePicker(
-      context: context,
-      initialDate: selectedDate,
-      firstDate: DateTime(2015, 8),
-      lastDate: DateTime(2101),
-    );
-    if (picked != null && picked != selectedDate) {
-      setState(() {
-        selectedDate = picked;
-        shipmentDateController.text =
-            DateFormat('yyyy/MM/dd').format(selectedDate);
-      });
-    }
   }
 }
