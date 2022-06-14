@@ -24,6 +24,7 @@ class _MixerDetailsScreenState extends State<MixerDetailsScreen> {
   // State of ShipmentDateTextFormField
   DateTime selectedDate = DateTime.now();
   TextEditingController shipmentDateController = TextEditingController();
+  TextEditingController vehicleNumberController = TextEditingController();
 
   Future<void> _selectShipmentDate(BuildContext context) async {
     debugPrint("selectShipmentDate called");
@@ -82,6 +83,7 @@ class _MixerDetailsScreenState extends State<MixerDetailsScreen> {
           key: _formKey,
           child: Column(
             children: [
+              // Lifted up successfully
               ShipmentDateTextFormField(
                 shipmentDateController: shipmentDateController,
                 selectedDate: selectedDate,
@@ -89,7 +91,9 @@ class _MixerDetailsScreenState extends State<MixerDetailsScreen> {
                   _selectShipmentDate(context);
                 },
               ),
-              VehicleNumberTextFormField(),
+              VehicleNumberTextFormField(
+                vehicleNumberController: vehicleNumberController,
+              ),
               CartNumberTextFormField(),
               NumberTextFormField(fieldName: "التكعيب"),
               MaterialTypeDropDownButtonFormField(),

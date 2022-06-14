@@ -1,16 +1,9 @@
 import 'package:flutter/material.dart';
 
-class VehicleNumberTextFormField extends StatefulWidget {
-  const VehicleNumberTextFormField({Key? key}) : super(key: key);
-
-  @override
-  State<VehicleNumberTextFormField> createState() =>
-      _VehicleNumberTextFormFieldState();
-}
-
-class _VehicleNumberTextFormFieldState
-    extends State<VehicleNumberTextFormField> {
-  final vehicleNumberController = TextEditingController();
+class VehicleNumberTextFormField extends StatelessWidget {
+  VehicleNumberTextFormField({Key? key, required this.vehicleNumberController})
+      : super(key: key);
+  final vehicleNumberController;
 
   @override
   Widget build(BuildContext context) {
