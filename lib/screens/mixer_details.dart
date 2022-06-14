@@ -26,6 +26,22 @@ class _MixerDetailsScreenState extends State<MixerDetailsScreen> {
   TextEditingController shipmentDateController = TextEditingController();
   TextEditingController vehicleNumberController = TextEditingController();
 
+  @override
+  void initState() {
+    super.initState();
+    shipmentDateController.text = DateFormat('yyyy/MM/dd').format(selectedDate);
+    vehicleNumberController.addListener(() {
+      debugPrint('vehicle number is: ${vehicleNumberController.text}');
+    });
+  }
+
+  @override
+  void dispose() {
+    shipmentDateController.dispose();
+    vehicleNumberController.dispose();
+    super.dispose();
+  }
+
   Future<void> _selectShipmentDate(BuildContext context) async {
     debugPrint("selectShipmentDate called");
     final DateTime? picked = await showDatePicker(
@@ -42,12 +58,6 @@ class _MixerDetailsScreenState extends State<MixerDetailsScreen> {
       });
     }
     debugPrint("selected date is : $selectedDate");
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    shipmentDateController.text = DateFormat('yyyy/MM/dd').format(selectedDate);
   }
 
   @override
