@@ -21,12 +21,32 @@ class MixerDetailsScreen extends StatefulWidget {
 }
 
 class _MixerDetailsScreenState extends State<MixerDetailsScreen> {
-  final selectedDate = DateTime.now();
-  final shipmentDateController = TextEditingController();
+  // State of ShipmentDateTextFormField
+  DateTime selectedDate = DateTime.now();
+  TextEditingController shipmentDateController = TextEditingController();
+
+  Future<void> _selectShipmentDate(BuildContext context) async {
+    debugPrint("selectShipmentDate called");
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: selectedDate,
+      firstDate: DateTime(2015, 8),
+      lastDate: DateTime(2101),
+    );
+    if (picked != null && picked != selectedDate) {
+      setState(() {
+        selectedDate = picked;
+        shipmentDateController.text =
+            DateFormat('yyyy/MM/dd').format(selectedDate);
+      });
+    }
+    debugPrint("selected date is : $selectedDate");
+  }
 
   @override
   void initState() {
     super.initState();
+    shipmentDateController.text = DateFormat('yyyy/MM/dd').format(selectedDate);
   }
 
   @override
@@ -64,8 +84,10 @@ class _MixerDetailsScreenState extends State<MixerDetailsScreen> {
             children: [
               ShipmentDateTextFormField(
                 shipmentDateController: shipmentDateController,
-                selectedDate: _selectedDate,
-                selectShipmentDate: _selectShipmentDate(context),
+                selectedDate: selectedDate,
+                selectShipmentDate: () {
+                  _selectShipmentDate(context);
+                },
               ),
               VehicleNumberTextFormField(),
               CartNumberTextFormField(),
@@ -88,21 +110,5 @@ class _MixerDetailsScreenState extends State<MixerDetailsScreen> {
             child: Text("اضافة", style: Theme.of(context).textTheme.button),
           )
         ]).show();
-  }
-
-  Future<void> _selectShipmentDate(BuildContext context) async {
-    final DateTime? picked = await showDatePicker(
-      context: context,
-      initialDate: selectedDate,
-      firstDate: DateTime(2015, 8),
-      lastDate: DateTime(2101),
-    );
-    if (picked != null && picked != selectedDate) {
-      setState(() {
-        selectedDate = picked;
-        shipmentDateController.text =
-            DateFormat('yyyy/MM/dd').format(selectedDate);
-      });
-    }
   }
 }

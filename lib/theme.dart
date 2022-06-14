@@ -31,6 +31,16 @@ class MyTextTheme {
 }
 
 class MyInputDecorationTheme {
+  InputDecorationTheme myInputDecorationTheme() => InputDecorationTheme(
+        floatingLabelBehavior: FloatingLabelBehavior.always,
+        disabledBorder: _buildOutlineInputBorder(Colors.blueGrey),
+        enabledBorder: _buildOutlineInputBorder(Colors.grey),
+        focusedBorder: _buildOutlineInputBorder(Colors.blue),
+        errorBorder: _buildOutlineInputBorder(Colors.red),
+        focusedErrorBorder: _buildOutlineInputBorder(Colors.orangeAccent),
+        errorStyle: _buildTextStyle(Colors.red),
+      );
+
   OutlineInputBorder _buildOutlineInputBorder(Color color) {
     return OutlineInputBorder(
       borderRadius: BorderRadius.all(Radius.circular(20)),
@@ -47,15 +57,4 @@ class MyInputDecorationTheme {
       fontSize: size,
     );
   }
-
-  InputDecorationTheme myInputDecorationTheme() => InputDecorationTheme(
-        floatingLabelBehavior: FloatingLabelBehavior.always,
-        disabledBorder: _buildOutlineInputBorder(Colors.blueGrey),
-        enabledBorder: _buildOutlineInputBorder(Colors.grey),
-        focusedBorder: _buildOutlineInputBorder(Colors.blue),
-        errorBorder: _buildOutlineInputBorder(Colors.red),
-        focusedErrorBorder: _buildOutlineInputBorder(Colors.orangeAccent),
-    errorStyle: _buildTextStyle(Colors.red),
-
-      );
 }

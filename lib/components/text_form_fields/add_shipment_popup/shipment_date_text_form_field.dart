@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class ShipmentDateTextFormField extends StatelessWidget {
   final TextEditingController shipmentDateController;
   final DateTime selectedDate;
-  final Function selectShipmentDate;
+  final VoidCallback selectShipmentDate;
 
   ShipmentDateTextFormField({
     Key? key,
@@ -28,9 +28,7 @@ class ShipmentDateTextFormField extends StatelessWidget {
             label: Text("تاريخ النقلة"),
             suffixIcon: IconButton(
               icon: Icon(Icons.calendar_today),
-              onPressed: () {
-                selectShipmentDate(context);
-              },
+              onPressed: selectShipmentDate,
             ),
           ),
         ),
