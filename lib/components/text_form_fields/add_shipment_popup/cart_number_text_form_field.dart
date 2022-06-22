@@ -11,21 +11,10 @@ class CartNumberTextFormField extends StatefulWidget {
 }
 
 class _CartNumberTextFormFieldState extends State<CartNumberTextFormField> {
-  late final cartNumberProvider;
-
-  @override
-  void initState() {
-    super.initState();
-    cartNumberProvider = Provider.of<CartNumberProvider>(context);
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
+    CartNumberProvider cartNumberProvider =
+        Provider.of<CartNumberProvider>(context);
     return Column(
       children: [
         TextFormField(

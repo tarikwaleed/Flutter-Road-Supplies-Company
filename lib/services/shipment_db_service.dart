@@ -13,4 +13,8 @@ class ShipmentDBService {
         .map((docSnapshot) => Shipment.fromFirestore(docSnapshot))
         .toList();
   }
+
+  addShipment(Shipment shipment) async {
+    await _db.collection("shipments").add(shipment.toFirestore());
+  }
 }
