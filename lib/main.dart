@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:salah_construction/providers/cart_number_provider.dart';
+import 'package:salah_construction/providers/providers.dart';
 import 'package:salah_construction/route_generator.dart';
 import 'package:salah_construction/theme.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
-          create: (context) => CartNumberProvider(),
+          create: (context) => CarriagePriceProvider(),
         ),
       ],
       child: MaterialApp(

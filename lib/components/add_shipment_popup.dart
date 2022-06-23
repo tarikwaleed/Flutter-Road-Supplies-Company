@@ -13,6 +13,11 @@ class AddShipmentPopup {
     required this.mixerId,
   });
 
+  setCarriagePrice(context, value) {
+    Provider.of<CarriagePriceProvider>(context, listen: false)
+        .setCarriagePrice(value);
+  }
+
   show(BuildContext context) {
     final _formKey = GlobalKey<FormState>();
     // todo: don't use the external package
@@ -34,13 +39,13 @@ class AddShipmentPopup {
               // VehicleNumberTextFormField(
               //   vehicleNumberController: vehicleNumberController,
               // ),
-              CartNumberTextFormField(),
-              NumberTextFormField(fieldName: "التكعيب"),
-              MaterialTypeDropDownButtonFormField(),
-              SourceDropDownButtonFormField(),
-              NumberTextFormField(fieldName: "الحجر"),
-              NumberTextFormField(fieldName: "المشال"),
-              ClientDropDownButtonFormField(),
+              // CartNumberTextFormField(),
+              // NumberTextFormField(fieldName: "التكعيب"),
+              // MaterialTypeDropDownButtonFormField(),
+              // SourceDropDownButtonFormField(),
+              // NumberTextFormField(fieldName: "الحجر"),
+              NumberTextFormField(fieldName: "المشال",),
+              // ClientDropDownButtonFormField(),
             ],
           ),
         ),
@@ -48,20 +53,20 @@ class AddShipmentPopup {
           DialogButton(
             onPressed: () {
               if (_formKey.currentState!.validate()) {
-                Shipment shipment = Shipment(
-                  // materialPrice: 1,
-                  mixerId: mixerId,
-                  // carriagePrice: 1,
-                  // cartNumber: '1',
-                  // vehicleNumber: 'a',
-                  // // date: ,
-                  // materialId: '1',
-                  // sourceId: '1',
-                  // totalPrice: 1,
-                  // volume: 1,
-                );
-                ShipmentDBService db = ShipmentDBService();
-                db.addShipment(shipment);
+                // Shipment shipment = Shipment(
+                // materialPrice: 1,
+                // mixerId: mixerId,
+                // carriagePrice: 1,
+                // cartNumber: '1',
+                // vehicleNumber: 'a',
+                // // date: ,
+                // materialId: '1',
+                // sourceId: '1',
+                // totalPrice: 1,
+                // volume: 1,
+                // );
+                // ShipmentDBService db = ShipmentDBService();
+                // db.addShipment(shipment);
               }
             },
             child: Text("اضافة", style: Theme.of(context).textTheme.button),
