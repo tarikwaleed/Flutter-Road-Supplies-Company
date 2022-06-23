@@ -42,28 +42,30 @@ class _MixerDetailsScreenState extends State<MixerDetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<CartNumberProvider>(
-        builder: (context, cartNumberProvider, child) {
-      return Scaffold(
-        appBar: AppBar(
-          title: Text(
-            "خلاطة ${widget.mixerData.name}",
-            style: Theme.of(context).textTheme.headline6,
-          ),
-          backgroundColor: Colors.white,
-          leading: BackButton(
-            color: Colors.black,
-          ),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          "خلاطة ${widget.mixerData.name}",
+          style: Theme.of(context).textTheme.headline6,
         ),
-        body: ShipmentListFuture(mixerData: widget.mixerData),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            AddShipmentPopup(mixerId: widget.mixerData['id']).show(context);
-          },
-          child: Icon(Icons.add),
+        backgroundColor: Colors.white,
+        leading: BackButton(
+          color: Colors.black,
         ),
-      );
-    });
+      ),
+      body: ShipmentListFuture(mixerData: widget.mixerData),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          AddShipmentPopup(mixerId: widget.mixerData.id).show(context);
+        },
+        child: Icon(Icons.add),
+      ),
+    );
+  }
+
+  @override
+  void initState() {
+    debugPrint(widget.mixerData.id);
   }
 
 // todo: Move it to a separate class , don't use helper methods this way again

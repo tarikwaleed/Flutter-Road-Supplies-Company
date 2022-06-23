@@ -7,6 +7,7 @@ class NumberTextFormField extends StatefulWidget {
   const NumberTextFormField({
     Key? key,
     required this.fieldName,
+    required this.type,
   }) : super(key: key);
 
   @override
@@ -21,6 +22,7 @@ class _NumberTextFormFieldState extends State<NumberTextFormField> {
     return Column(
       children: [
         TextFormField(
+          onChanged:,
           validator: (value) {
             if (value == null || value.isEmpty) {
               return 'برجاء ادخال ${widget.fieldName}';
