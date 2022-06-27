@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
-import 'package:salah_construction/providers/cart_number_provider.dart';
 import 'package:salah_construction/providers/providers.dart';
 import 'package:salah_construction/route_generator.dart';
 import 'package:salah_construction/theme.dart';

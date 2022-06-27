@@ -1,40 +1,40 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
+import 'package:salah_construction/providers/carriage_price_provider.dart';
 
-class NumberTextFormField extends StatefulWidget {
-  final String fieldName;
-
-  const NumberTextFormField({
+class CarriagePriceTextFormField extends StatefulWidget {
+  const CarriagePriceTextFormField({
     Key? key,
-    required this.fieldName,
-    required this.type,
   }) : super(key: key);
 
   @override
-  State<NumberTextFormField> createState() => _NumberTextFormFieldState();
+  State<CarriagePriceTextFormField> createState() => _CarriagePriceTextFormFieldState();
 }
 
-class _NumberTextFormFieldState extends State<NumberTextFormField> {
-  final controller = TextEditingController();
-
+class _CarriagePriceTextFormFieldState extends State<CarriagePriceTextFormField> {
   @override
   Widget build(BuildContext context) {
+    CarriagePriceProvider carriagePriceProvider =
+        Provider.of<CarriagePriceProvider>(context, listen: false);
+
     return Column(
       children: [
         TextFormField(
-          onChanged:,
           validator: (value) {
             if (value == null || value.isEmpty) {
-              return 'برجاء ادخال ${widget.fieldName}';
+              return 'برجاء ادخال سعر المشال ';
             }
             if (int.parse(value) <= 0) {
               return "برجاء ادخال عدد صحيح موجب";
             }
             return null;
           },
-          controller: controller,
+          onChanged: (value) {
+            carriagePriceProvider.setCarriagePrice(int.parse(value));
+          },
           decoration: InputDecoration(
-            label: Text(widget.fieldName),
+            label: Text("سعر المشال"),
           ),
           keyboardType: TextInputType.number,
           // this won't allow any characters expect numbers to be entered

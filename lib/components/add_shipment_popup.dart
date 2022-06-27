@@ -6,20 +6,17 @@ import '../models/models.dart';
 import '../providers/providers.dart';
 import '../services/services.dart';
 
-class AddShipmentPopup {
+class AddShipmentPopup extends StatelessWidget {
   final String mixerId;
 
   AddShipmentPopup({
     required this.mixerId,
   });
 
-  setCarriagePrice(context, value) {
-    Provider.of<CarriagePriceProvider>(context, listen: false)
-        .setCarriagePrice(value);
-  }
-
   show(BuildContext context) {
     final _formKey = GlobalKey<FormState>();
+    CarriagePriceProvider carriagePriceProvider =
+        Provider.of<CarriagePriceProvider>(context);
     // todo: don't use the external package
     Alert(
         context: context,
@@ -28,24 +25,8 @@ class AddShipmentPopup {
           key: _formKey,
           child: Column(
             children: [
-              // Lifted up successfully
-              // ShipmentDateTextFormField(
-              //   shipmentDateController: shipmentDateController,
-              //   selectedDate: selectedDate,
-              //   selectShipmentDate: () {
-              //     _selectShipmentDate(context);
-              //   },
-              // ),
-              // VehicleNumberTextFormField(
-              //   vehicleNumberController: vehicleNumberController,
-              // ),
-              // CartNumberTextFormField(),
-              // NumberTextFormField(fieldName: "التكعيب"),
-              // MaterialTypeDropDownButtonFormField(),
-              // SourceDropDownButtonFormField(),
-              // NumberTextFormField(fieldName: "الحجر"),
-              NumberTextFormField(fieldName: "المشال",),
-              // ClientDropDownButtonFormField(),
+              CarriagePriceTextFormField(),
+              Text("Carriage Price is: ${carriagePriceProvider.carriagePrice}"),
             ],
           ),
         ),
@@ -72,5 +53,93 @@ class AddShipmentPopup {
             child: Text("اضافة", style: Theme.of(context).textTheme.button),
           )
         ]).show();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    throw UnimplementedError();
+  }
+}
+
+class StatefulDialog extends StatefulWidget {
+  @override
+  _StatefulDialogState createState() => _StatefulDialogState();
+}
+
+class _StatefulDialogState extends State<StatefulDialog> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  final TextEditingController _textEditingController = TextEditingController();
+
+  Future<void> showInformationDialog(BuildContext context) async {
+    return await showDialog(
+        context: context,
+        builder: (context) {
+          bool? isChecked = false;
+          return StatefulBuilder(builder: (context, setState) {
+            return AlertDialog(
+              content: Form(
+                  key: _formKey,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      TextFormField(
+                        controller: _textEditingController,
+                        validator: (value) {
+                          return value!.isNotEmpty ? null : "Enter any text";
+                        },
+                        decoration:
+                            InputDecoration(hintText: "Please Enter Text"),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text("Choice Box"),
+                          Checkbox(
+                              value: isChecked,
+                              onChanged: (checked) {
+                                setState(() {
+                                  isChecked = checked;
+                                });
+                              })
+                        ],
+                      )
+                    ],
+                  )),
+              title: Text('Stateful Dialog'),
+              actions: <Widget>[
+                InkWell(
+                  child: Text('OK   '),
+                  onTap: () {
+                    if (_formKey.currentState!.validate()) {
+                      // Do something like updating SharedPreferences or User Settings etc.
+                      Navigator.of(context).pop();
+                    }
+                  },
+                ),
+              ],
+            );
+          });
+        });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+  //   return Scaffold(
+  //     body: Container(
+  //       child: Center(
+  //         child: FlatButton(
+  //             color: Colors.deepOrange,
+  //             onPressed: () async {
+  //               await showInformationDialog(context);
+  //             },
+  //             child: Text(
+  //               "Stateful Dialog",
+  //               style: TextStyle(color: Colors.white, fontSize: 16),
+  //             )),
+  //       ),
+  //     ),
+  //   );
   }
 }
