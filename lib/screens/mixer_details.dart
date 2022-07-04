@@ -32,7 +32,7 @@ class _MixerDetailsScreenState extends State<MixerDetailsScreen> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.pushNamed(context, '/shipment_item_screen',
-              arguments: widget.mixerData.id);
+              arguments: widget.mixerData);
         },
         child: Icon(Icons.add),
       ),

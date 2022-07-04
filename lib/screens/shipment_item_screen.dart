@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:salah_construction/components/components.dart';
 import 'package:salah_construction/providers/shipment_date_provider.dart';
 
 class ShipmentItemScreen extends StatefulWidget {
-  final dynamic mixerId;
+  final dynamic mixerData;
 
   const ShipmentItemScreen({
     Key? key,
-    required this.mixerId,
+    required this.mixerData,
   }) : super(key: key);
 
   @override
@@ -20,13 +21,31 @@ class _ShipmentItemScreenState extends State<ShipmentItemScreen> {
     var shipmentDateProvider = Provider.of<ShipmentDateProvider>(context);
     return Scaffold(
       appBar: AppBar(
+        title: Text(
+          shipmentDateProvider.shipmentDate.toString(),
+          style: Theme.of(context).textTheme.headline6,
+        ),
+        backgroundColor: Colors.white,
+        leading: BackButton(
+          color: Colors.black,
+        ),
         actions: [
           IconButton(
-            icon: Icon(Icons.check),
+            icon: Icon(
+              Icons.check,
+              color: Colors.black,
+            ),
             onPressed: () {},
           ),
-          Text(shipmentDateProvider.shipmentDate.toString())
         ],
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          children: [
+            ShipmentDateTextFormField(),
+          ],
+        ),
       ),
     );
   }

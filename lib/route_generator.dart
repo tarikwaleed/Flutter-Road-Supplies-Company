@@ -17,7 +17,7 @@ class RouteGenerator {
                 ));
       case '/shipment_item_screen':
         return MaterialPageRoute(
-            builder: (context) => ShipmentItemScreen(mixerId: args));
+            builder: (context) => ShipmentItemScreen(mixerData: args));
       default:
         return _errorRoute();
     }
