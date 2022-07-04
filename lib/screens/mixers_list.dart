@@ -104,9 +104,8 @@ class _MixersListState extends State<MixersList> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          _showAddMixerPopup(context);
-        },
+        //todo: navigate to shipmentItemScreen
+        onPressed: () {},
         child: Icon(Icons.add),
       ),
     );

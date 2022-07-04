@@ -1,19 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
+import 'package:salah_construction/providers/shipment_date_provider.dart';
 
-class ShipmentDateTextFormField extends StatelessWidget {
-  final TextEditingController shipmentDateController;
-  final DateTime selectedDate;
-  final VoidCallback selectShipmentDate;
-
+class ShipmentDateTextFormField extends StatefulWidget {
   ShipmentDateTextFormField({
     Key? key,
-    required this.shipmentDateController,
-    required this.selectedDate,
-    required this.selectShipmentDate,
   }) : super(key: key);
 
   @override
+  State<ShipmentDateTextFormField> createState() =>
+      _ShipmentDateTextFormFieldState();
+}
+
+class _ShipmentDateTextFormFieldState extends State<ShipmentDateTextFormField> {
+  var shipmentDateController = TextEditingController();
+
+  @override
+  void initState() {}
+
+  @override
   Widget build(BuildContext context) {
+    var shipmentDateProvider = Provider.of<ShipmentDateProvider>(context);
+    shipmentDateController.text = shipmentDateProvider.shipmentDate.toString();
+    DateTime selectedDate = shipmentDateProvider.shipmentDate;
     return Column(
       children: [
         TextFormField(
@@ -28,7 +38,20 @@ class ShipmentDateTextFormField extends StatelessWidget {
             label: Text("تاريخ النقلة"),
             suffixIcon: IconButton(
               icon: Icon(Icons.calendar_today),
-              onPressed: selectShipmentDate,
+              onPressed: () async {
+                final DateTime? picked = await showDatePicker(
+                  context: context,
+                  initialDate: selectedDate,
+                  firstDate: DateTime(2015, 8),
+                  lastDate: DateTime(2100),
+                );
+                if (picked != null && picked != selectedDate) {
+                  shipmentDateProvider.setShipmentDate(picked);
+                  // todo: i think it would be the same as .format(picked) !!
+                  shipmentDateController.text =
+                      DateFormat('yyyy/MM/dd').format(shipmentDateProvider.shipmentDate);
+                }
+              },
             ),
           ),
         ),

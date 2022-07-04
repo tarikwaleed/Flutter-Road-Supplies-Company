@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:salah_construction/screens/home_screen.dart';
 import 'package:salah_construction/screens/mixer_details.dart';
+import 'package:salah_construction/screens/shipment_item_screen.dart';
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -14,6 +15,9 @@ class RouteGenerator {
             builder: (context) => MixerDetailsScreen(
                   mixerData: args,
                 ));
+      case '/shipment_item_screen':
+        return MaterialPageRoute(
+            builder: (context) => ShipmentItemScreen(mixerId: args));
       default:
         return _errorRoute();
     }
