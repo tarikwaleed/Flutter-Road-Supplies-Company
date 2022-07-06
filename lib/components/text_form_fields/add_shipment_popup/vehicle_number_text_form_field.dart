@@ -1,12 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:salah_construction/providers/vehicle_number_provider.dart';
 
-class VehicleNumberTextFormField extends StatelessWidget {
-  VehicleNumberTextFormField({Key? key, required this.vehicleNumberController})
-      : super(key: key);
-  final vehicleNumberController;
+class VehicleNumberTextFormField extends StatefulWidget {
+  VehicleNumberTextFormField({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  State<VehicleNumberTextFormField> createState() =>
+      _VehicleNumberTextFormFieldState();
+}
+
+class _VehicleNumberTextFormFieldState
+    extends State<VehicleNumberTextFormField> {
+  var vehicleNumberController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    var vehicleNumberProvider = Provider.of<VehicleNumberProvider>(context);
+    vehicleNumberController.text = vehicleNumberProvider.vehicleNumber;
+
     return Column(
       children: [
         TextFormField(

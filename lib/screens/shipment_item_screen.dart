@@ -44,6 +44,7 @@ class _ShipmentItemScreenState extends State<ShipmentItemScreen> {
         child: Column(
           children: [
             ShipmentDateTextFormField(),
+            VehicleNumberTextFormField(),
           ],
         ),
       ),
