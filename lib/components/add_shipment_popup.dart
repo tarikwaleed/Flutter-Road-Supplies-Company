@@ -17,7 +17,6 @@ class AddShipmentPopup extends StatelessWidget {
     final _formKey = GlobalKey<FormState>();
     CarriagePriceProvider carriagePriceProvider =
         Provider.of<CarriagePriceProvider>(context);
-    // todo: don't use the external package
     Alert(
         context: context,
         title: "اضافة نقلة",
@@ -57,7 +56,6 @@ class AddShipmentPopup extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     throw UnimplementedError();
   }
 }

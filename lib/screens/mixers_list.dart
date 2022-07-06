@@ -104,7 +104,6 @@ class _MixersListState extends State<MixersList> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        //todo: navigate to shipmentItemScreen
         onPressed: () {},
         child: Icon(Icons.add),
       ),

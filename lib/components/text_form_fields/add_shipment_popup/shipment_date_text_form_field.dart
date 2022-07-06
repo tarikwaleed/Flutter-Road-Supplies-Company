@@ -48,7 +48,6 @@ class _ShipmentDateTextFormFieldState extends State<ShipmentDateTextFormField> {
                 );
                 if (picked != null && picked != selectedDate) {
                   shipmentDateProvider.setShipmentDate(picked);
-                  // todo: i think it would be the same as .format(picked) !!
                   shipmentDateController.text = DateFormat('yyyy/MM/dd')
                       .format(shipmentDateProvider.shipmentDate);
                 }

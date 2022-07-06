@@ -44,5 +44,4 @@ class _MixerDetailsScreenState extends State<MixerDetailsScreen> {
     debugPrint(widget.mixerData.id);
   }
 
-// todo: Move it to a separate class , don't use helper methods this way again
 }
