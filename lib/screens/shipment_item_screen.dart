@@ -22,7 +22,7 @@ class _ShipmentItemScreenState extends State<ShipmentItemScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          shipmentDateProvider.shipmentDate.toString(),
+          widget.mixerData.name,
           style: Theme.of(context).textTheme.headline6,
         ),
         backgroundColor: Colors.white,

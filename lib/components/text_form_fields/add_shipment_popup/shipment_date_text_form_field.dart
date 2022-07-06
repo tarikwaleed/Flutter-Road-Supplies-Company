@@ -22,7 +22,8 @@ class _ShipmentDateTextFormFieldState extends State<ShipmentDateTextFormField> {
   @override
   Widget build(BuildContext context) {
     var shipmentDateProvider = Provider.of<ShipmentDateProvider>(context);
-    shipmentDateController.text = shipmentDateProvider.shipmentDate.toString();
+    shipmentDateController.text =
+        DateFormat('yyyy/MM/dd').format(shipmentDateProvider.shipmentDate);
     DateTime selectedDate = shipmentDateProvider.shipmentDate;
     return Column(
       children: [
@@ -48,8 +49,8 @@ class _ShipmentDateTextFormFieldState extends State<ShipmentDateTextFormField> {
                 if (picked != null && picked != selectedDate) {
                   shipmentDateProvider.setShipmentDate(picked);
                   // todo: i think it would be the same as .format(picked) !!
-                  shipmentDateController.text =
-                      DateFormat('yyyy/MM/dd').format(shipmentDateProvider.shipmentDate);
+                  shipmentDateController.text = DateFormat('yyyy/MM/dd')
+                      .format(shipmentDateProvider.shipmentDate);
                 }
               },
             ),
