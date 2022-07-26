@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:salah_construction/components/components.dart';
 import 'package:salah_construction/providers/shipment_date_provider.dart';
+import 'package:salah_construction/providers/vehicle_number_provider.dart';
 
 class ShipmentItemScreen extends StatefulWidget {
   final dynamic mixerData;
@@ -18,7 +19,11 @@ class ShipmentItemScreen extends StatefulWidget {
 class _ShipmentItemScreenState extends State<ShipmentItemScreen> {
   @override
   Widget build(BuildContext context) {
+    // Those are the providers for each component of the screen
+    // they're gonna be used to complete the addShipment process
+    // they're gonna be accessed in the check button in the appBar
     var shipmentDateProvider = Provider.of<ShipmentDateProvider>(context);
+    var vehicleNumberProvider = Provider.of<VehicleNumberProvider>(context);
     return Scaffold(
       appBar: AppBar(
         title: Text(

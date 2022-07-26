@@ -14,25 +14,48 @@ class VehicleNumberTextFormField extends StatefulWidget {
 
 class _VehicleNumberTextFormFieldState
     extends State<VehicleNumberTextFormField> {
-  var vehicleNumberController = TextEditingController();
-
-  //todo tomorrow: add lister to the controller
+  // late final TextEditingController _vehicleNumberController;
+  //
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   final VehicleNumberProvider vehicleNumberProvider =
+  //       Provider.of<VehicleNumberProvider>(context, listen: false);
+  //   _vehicleNumberController =
+  //       TextEditingController(text: vehicleNumberProvider.vehicleNumber);
+  // }
+  //
+  // void updateVehicleNumber(String value) {
+  //   var vehicleNumberProvider =
+  //       Provider.of<VehicleNumberProvider>(context, listen: false);
+  //   vehicleNumberProvider.setVehicleNumber(value);
+  // }
+  //
+  // @override
+  // void dispose() {
+  //   _vehicleNumberController.dispose();
+  //   super.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) {
-    var vehicleNumberProvider = Provider.of<VehicleNumberProvider>(context);
-    vehicleNumberController.text = vehicleNumberProvider.vehicleNumber;
+    final vehicleNumberProvider = Provider.of<VehicleNumberProvider>(context);
+    // _vehicleNumberController.text = vehicleNumberProvider.vehicleNumber;
 
     return Column(
       children: [
         TextFormField(
+          initialValue: vehicleNumberProvider.vehicleNumber,
+          onChanged: (value) {
+            vehicleNumberProvider.setVehicleNumber(value);
+          },
+          // controller: _vehicleNumberController,
           validator: (value) {
             if (value == null || value.isEmpty) {
               return 'برجاء ادخال رقم العربية';
             }
             return null;
           },
-          controller: vehicleNumberController,
           decoration: InputDecoration(
             label: Text("رقم العربية"),
           ),
