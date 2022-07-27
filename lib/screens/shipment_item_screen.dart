@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:salah_construction/components/components.dart';
+import 'package:salah_construction/providers/cart_number_provider.dart';
 import 'package:salah_construction/providers/shipment_date_provider.dart';
 import 'package:salah_construction/providers/vehicle_number_provider.dart';
 
@@ -24,6 +25,7 @@ class _ShipmentItemScreenState extends State<ShipmentItemScreen> {
     // they're gonna be accessed in the check button in the appBar
     var shipmentDateProvider = Provider.of<ShipmentDateProvider>(context);
     var vehicleNumberProvider = Provider.of<VehicleNumberProvider>(context);
+    final cartNumberProvider = Provider.of<CartNumberProvider>(context);
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -50,6 +52,7 @@ class _ShipmentItemScreenState extends State<ShipmentItemScreen> {
           children: [
             ShipmentDateTextFormField(),
             VehicleNumberTextFormField(),
+            CartNumberTextFormField(),
           ],
         ),
       ),

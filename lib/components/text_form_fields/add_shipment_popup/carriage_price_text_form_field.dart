@@ -39,7 +39,7 @@ class _CarriagePriceTextFormFieldState extends State<CarriagePriceTextFormField>
           keyboardType: TextInputType.number,
           // this won't allow any characters expect numbers to be entered
           inputFormatters: <TextInputFormatter>[
-            FilteringTextInputFormatter.digitsOnly
+            FilteringTextInputFormatter.digitsOnly,
           ],
         ),
         SizedBox(

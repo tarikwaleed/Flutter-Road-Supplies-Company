@@ -27,8 +27,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (context) => VehicleNumberProvider(),
         ),
-
-
+        ChangeNotifierProvider(
+          create: (context) => CartNumberProvider(),
+        ),
       ],
       child: MaterialApp(
         localizationsDelegates: const [
