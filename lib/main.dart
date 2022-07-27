@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:salah_construction/providers/providers.dart';
-import 'package:salah_construction/providers/shipment_date_provider.dart';
-import 'package:salah_construction/providers/vehicle_number_provider.dart';
 import 'package:salah_construction/route_generator.dart';
 import 'package:salah_construction/theme.dart';
 
@@ -29,6 +27,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (context) => CartNumberProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => MaterialProvier(),
         ),
       ],
       child: MaterialApp(

@@ -53,6 +53,7 @@ class _ShipmentItemScreenState extends State<ShipmentItemScreen> {
             ShipmentDateTextFormField(),
             VehicleNumberTextFormField(),
             CartNumberTextFormField(),
+            MaterialDropDownButtonFormField(),
           ],
         ),
       ),

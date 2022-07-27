@@ -17,14 +17,14 @@ class _ClientDropDownButtonFormFieldState
   final _clientDBService = ClientDBService();
   Future<List<Client>>? _futureListOfClients;
 
-  getAllClients() {
+  _getAllClients() {
     _futureListOfClients = _clientDBService.retrieveClients();
   }
 
   @override
   initState() {
     super.initState();
-    getAllClients();
+    _getAllClients();
   }
 
   @override

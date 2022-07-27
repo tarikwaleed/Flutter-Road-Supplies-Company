@@ -1,13 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Shipment {
-  final String? id;
-  final String mixerId;
-  final int carriagePrice;
-  final String cartNumber;
-  final String vehicleNumber;
-  final Timestamp date;
-  final String materialId;
+  final String? id;//Done
+  final String mixerId;//Done
+  final int carriagePrice;//
+  final String cartNumber;//Done
+  final String vehicleNumber;//Dene
+  final Timestamp date;//Done
+  final String materialId;// In Progress
   final int materialPrice;
   final String sourceId;
   final int totalPrice;
