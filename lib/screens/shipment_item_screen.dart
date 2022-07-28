@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:salah_construction/components/components.dart';
 import 'package:salah_construction/providers/cart_number_provider.dart';
+import 'package:salah_construction/providers/material_provider.dart';
 import 'package:salah_construction/providers/shipment_date_provider.dart';
 import 'package:salah_construction/providers/vehicle_number_provider.dart';
 
@@ -26,6 +27,7 @@ class _ShipmentItemScreenState extends State<ShipmentItemScreen> {
     var shipmentDateProvider = Provider.of<ShipmentDateProvider>(context);
     var vehicleNumberProvider = Provider.of<VehicleNumberProvider>(context);
     final cartNumberProvider = Provider.of<CartNumberProvider>(context);
+    final materialProvider = Provider.of<MaterialProvier>(context);
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -54,6 +56,10 @@ class _ShipmentItemScreenState extends State<ShipmentItemScreen> {
             VehicleNumberTextFormField(),
             CartNumberTextFormField(),
             MaterialDropDownButtonFormField(),
+            Text(
+              "${materialProvider.materialId}",
+              style: Theme.of(context).textTheme.bodyLarge,
+            )
           ],
         ),
       ),

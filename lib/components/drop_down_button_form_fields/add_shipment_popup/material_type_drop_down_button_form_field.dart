@@ -31,6 +31,7 @@ class _MaterialDropDownButtonFormFieldState
 
   @override
   Widget build(BuildContext context) {
+    debugPrint("${this.runtimeType} Build Method Called");
     final materialProvider =
         Provider.of<MaterialProvier>(context, listen: false);
 
@@ -41,7 +42,7 @@ class _MaterialDropDownButtonFormFieldState
             builder: (BuildContext context,
                 AsyncSnapshot<List<materialmodel.Material>> listOfMaterials) {
               if (listOfMaterials.connectionState == ConnectionState.waiting) {
-                return const Text("جار تحميل بيانات العملاء");
+                return const Text("جار تحميل بيانات المواد");
               } else {
                 List<DropdownMenuItem<materialmodel.Material>>
                     materialsDropDownMenuItems = [];
@@ -63,11 +64,11 @@ class _MaterialDropDownButtonFormFieldState
                     });
                     materialProvider.setMaterialId(selectedMaterial!.id);
                     debugPrint(
-                        "The Selected DropdownButtonFormField value is of type ${selectedMaterial.runtimeType.toString()} , with name:${selectedMaterial!.name} , and id:${selectedMaterial.id}");
+                        "The Selected DropdownButtonFormField value is of type ${selectedMaterial.runtimeType.toString()} , with name:${selectedMaterial.name} , and id:${selectedMaterial.id}");
                   },
-                  hint: const Text("اسم العميل"),
+                  hint: const Text("نوع المادة"),
                   validator: (value) =>
-                      value == null ? "قم باختيار اسم العميل" : null,
+                      value == null ? "قم باختيار نوع المادة" : null,
                 );
               }
             }),
