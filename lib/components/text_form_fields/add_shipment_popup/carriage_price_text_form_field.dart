@@ -15,7 +15,7 @@ class CarriagePriceTextFormField extends StatefulWidget {
 class _CarriagePriceTextFormFieldState extends State<CarriagePriceTextFormField> {
   @override
   Widget build(BuildContext context) {
-    CarriagePriceProvider carriagePriceProvider =
+    final  carriagePriceProvider =
         Provider.of<CarriagePriceProvider>(context, listen: false);
 
     return Column(

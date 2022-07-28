@@ -31,6 +31,7 @@ class _ShipmentItemScreenState extends State<ShipmentItemScreen> {
     final cartNumberProvider = Provider.of<CartNumberProvider>(context);
     final materialProvider = Provider.of<MaterialProvier>(context);
     final materialPriceProvider = Provider.of<MaterialPriceProvider>(context);
+    final carriagePriceProvider = Provider.of<CarriagePriceProvider>(context);
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -60,10 +61,7 @@ class _ShipmentItemScreenState extends State<ShipmentItemScreen> {
             CartNumberTextFormField(),
             MaterialDropDownButtonFormField(),
             MaterialPriceTextFormField(),
-            Text(
-              "${materialPriceProvider.materialPrice}",
-              style: Theme.of(context).textTheme.bodyLarge,
-            ),
+            CarriagePriceTextFormField(),
           ],
         ),
       ),
