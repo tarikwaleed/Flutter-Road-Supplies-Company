@@ -7,8 +7,8 @@ class Shipment {
   final String cartNumber;//Done
   final String vehicleNumber;//Dene
   final Timestamp date;//Done
-  final String materialId;// In Progress
-  final int materialPrice;
+  final String materialId;// Done
+  final int materialPrice;// In Progress
   final String sourceId;
   final int totalPrice;
   final int volume;

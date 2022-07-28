@@ -31,6 +31,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (context) => MaterialProvier(),
         ),
+        ChangeNotifierProvider(
+          create: (context) => MaterialPriceProvider(),
+        ),
       ],
       child: MaterialApp(
         localizationsDelegates: const [
