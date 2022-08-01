@@ -41,6 +41,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (context) => SourceIDProvider(),
         ),
+        ChangeNotifierProvider(
+          create: (context) => VolumeProvider(),
+        ),
       ],
       child: MaterialApp(
         localizationsDelegates: const [

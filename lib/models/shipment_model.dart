@@ -9,9 +9,9 @@ class Shipment {
   final Timestamp date; //Done
   final String materialId; // Done
   final int materialPrice; // Done
-  final String sourceId; // In Progress
+  final String sourceId; // Done
   final int totalPrice;
-  final int volume;
+  final int volume; // In Progress
 
   Shipment({
     this.id,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:salah_construction/components/components.dart';
+import 'package:salah_construction/components/text_form_fields/add_shipment_popup/volume_text_form_field.dart';
 import 'package:salah_construction/providers/providers.dart';
 
 class ShipmentItemScreen extends StatefulWidget {
@@ -50,7 +51,7 @@ class _ShipmentItemScreenState extends State<ShipmentItemScreen> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
+        child: ListView(
           children: [
             ShipmentDateTextFormField(),
             VehicleNumberTextFormField(),
@@ -59,10 +60,7 @@ class _ShipmentItemScreenState extends State<ShipmentItemScreen> {
             MaterialPriceTextFormField(),
             CarriagePriceTextFormField(),
             SourceDropDownButtonFormField(),
-            Text(
-              "${sourceIDProvider.sourceId}",
-              style: Theme.of(context).textTheme.bodyLarge,
-            ),
+            VolumeTextFormField(),
           ],
         ),
       ),

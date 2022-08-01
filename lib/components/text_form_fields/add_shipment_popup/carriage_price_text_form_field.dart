@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-import 'package:salah_construction/providers/carriage_price_provider.dart';
+import '../../../providers/providers.dart';
 
 class CarriagePriceTextFormField extends StatefulWidget {
   const CarriagePriceTextFormField({
@@ -9,13 +9,15 @@ class CarriagePriceTextFormField extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<CarriagePriceTextFormField> createState() => _CarriagePriceTextFormFieldState();
+  State<CarriagePriceTextFormField> createState() =>
+      _CarriagePriceTextFormFieldState();
 }
 
-class _CarriagePriceTextFormFieldState extends State<CarriagePriceTextFormField> {
+class _CarriagePriceTextFormFieldState
+    extends State<CarriagePriceTextFormField> {
   @override
   Widget build(BuildContext context) {
-    final  carriagePriceProvider =
+    final carriagePriceProvider =
         Provider.of<CarriagePriceProvider>(context, listen: false);
 
     return Column(
@@ -40,6 +42,7 @@ class _CarriagePriceTextFormFieldState extends State<CarriagePriceTextFormField>
           // this won't allow any characters expect numbers to be entered
           inputFormatters: <TextInputFormatter>[
             FilteringTextInputFormatter.digitsOnly,
+            FilteringTextInputFormatter.deny(RegExp(r'^0+')),
           ],
         ),
         SizedBox(
