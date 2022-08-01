@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:salah_construction/services/client_db_service.dart';
+import 'package:provider/provider.dart';
+import 'package:salah_construction/services/services.dart';
+import 'package:salah_construction/providers/providers.dart';
+
 
 import '../../../models/client_model.dart';
 
@@ -29,6 +32,8 @@ class _ClientDropDownButtonFormFieldState
 
   @override
   Widget build(BuildContext context) {
+    final clientIDProvider =
+        Provider.of<ClientIDProvider>(context, listen: false);
     return Column(
       children: [
         FutureBuilder(
@@ -54,8 +59,12 @@ class _ClientDropDownButtonFormFieldState
                     setState(() {
                       _selectedClient = selectedClient;
                     });
+                    clientIDProvider.setClientId(_selectedClient!.id);
                     debugPrint(
-                        "The Selected DropdownButtonFormField value is of type ${selectedClient.runtimeType.toString()} , with name:${selectedClient!.name} , and id:${selectedClient.id}");
+                        "The Selected DropdownButtonFormField value is of type "
+                        "${selectedClient.runtimeType.toString()} , "
+                        "with name:${selectedClient!.name} , "
+                        "and id:${selectedClient.id}");
                   },
                   hint: const Text("اسم العميل"),
                   validator: (value) =>

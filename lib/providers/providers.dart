@@ -6,3 +6,4 @@ export 'material_id_provider.dart';
 export '../providers/material_price_provider.dart';
 export '../providers/source_id_provider.dart';
 export '../providers/volume_provider.dart';
+export '../providers/client_id_provider.dart';

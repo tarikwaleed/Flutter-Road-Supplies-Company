@@ -11,7 +11,8 @@ class Shipment {
   final int materialPrice; // Done
   final String sourceId; // Done
   final int totalPrice;
-  final int volume; // In Progress
+  final int volume; // Done
+  final String clientId; // In Progress
 
   Shipment({
     this.id,
@@ -25,6 +26,7 @@ class Shipment {
     required this.sourceId,
     required this.totalPrice,
     required this.volume,
+    required this.clientId,
   });
 
   Shipment.fromFirestore(
@@ -39,7 +41,8 @@ class Shipment {
         materialId = snapshot.data()?["material_id"],
         sourceId = snapshot.data()?["source_id"],
         totalPrice = snapshot.data()?["total_price"],
-        volume = snapshot.data()?['volume'];
+        volume = snapshot.data()?['volume'],
+        clientId = snapshot.data()?['client_id'];
 
   Map<String, dynamic> toFirestore() {
     return {
@@ -53,6 +56,7 @@ class Shipment {
       "source_id": sourceId,
       "total_price": totalPrice,
       "volume": volume,
+      "client_id": clientId,
     };
   }
 }

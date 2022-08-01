@@ -29,6 +29,7 @@ class _ShipmentItemScreenState extends State<ShipmentItemScreen> {
     final materialPriceProvider = Provider.of<MaterialPriceProvider>(context);
     final carriagePriceProvider = Provider.of<CarriagePriceProvider>(context);
     final sourceIDProvider = Provider.of<SourceIDProvider>(context);
+    final clientIDProvider = Provider.of<ClientIDProvider>(context);
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -50,9 +51,13 @@ class _ShipmentItemScreenState extends State<ShipmentItemScreen> {
         ],
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.fromLTRB(16, 25, 16, 25),
         child: ListView(
           children: [
+            // Adding this sized box is a stupid, lazy fix but it works!
+            SizedBox(
+              height: 10,
+            ),
             ShipmentDateTextFormField(),
             VehicleNumberTextFormField(),
             CartNumberTextFormField(),
@@ -61,6 +66,7 @@ class _ShipmentItemScreenState extends State<ShipmentItemScreen> {
             CarriagePriceTextFormField(),
             SourceDropDownButtonFormField(),
             VolumeTextFormField(),
+            ClientDropDownButtonFormField(),
           ],
         ),
       ),
