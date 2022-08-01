@@ -5,4 +5,5 @@ export '../components/text_form_fields/add_shipment_popup/cart_number_text_form_
 export '../components/text_form_fields/add_shipment_popup/carriage_price_text_form_field.dart';
 export '../components/text_form_fields/add_shipment_popup/shipment_date_text_form_field.dart';
 export '../components/text_form_fields/add_shipment_popup/vehicle_number_text_form_field.dart';
+export '../components/text_form_fields/add_shipment_popup/material_price_text_form_field.dart';
 export 'futures/shipment_list_future.dart';

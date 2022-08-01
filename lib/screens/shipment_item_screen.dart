@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:salah_construction/components/components.dart';
-import 'package:salah_construction/components/text_form_fields/add_shipment_popup/material_price_text_form_field.dart';
-import 'package:salah_construction/providers/cart_number_provider.dart';
-import 'package:salah_construction/providers/material_id_provider.dart';
 import 'package:salah_construction/providers/providers.dart';
-import 'package:salah_construction/providers/shipment_date_provider.dart';
-import 'package:salah_construction/providers/vehicle_number_provider.dart';
 
 class ShipmentItemScreen extends StatefulWidget {
   final dynamic mixerData;
@@ -32,6 +27,7 @@ class _ShipmentItemScreenState extends State<ShipmentItemScreen> {
     final materialProvider = Provider.of<MaterialProvier>(context);
     final materialPriceProvider = Provider.of<MaterialPriceProvider>(context);
     final carriagePriceProvider = Provider.of<CarriagePriceProvider>(context);
+    final sourceIDProvider = Provider.of<SourceIDProvider>(context);
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -62,6 +58,11 @@ class _ShipmentItemScreenState extends State<ShipmentItemScreen> {
             MaterialDropDownButtonFormField(),
             MaterialPriceTextFormField(),
             CarriagePriceTextFormField(),
+            SourceDropDownButtonFormField(),
+            Text(
+              "${sourceIDProvider.sourceId}",
+              style: Theme.of(context).textTheme.bodyLarge,
+            ),
           ],
         ),
       ),

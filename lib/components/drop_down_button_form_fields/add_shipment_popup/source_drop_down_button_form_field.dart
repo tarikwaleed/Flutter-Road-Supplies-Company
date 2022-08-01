@@ -61,13 +61,16 @@ class _SourceDropDownButtonFormFieldState
                     setState(() {
                       _selectedSource = selectedSource;
                     });
-                    sourceProvider.setSourceId(selectedSource!.id);
+                    sourceProvider.setSourceId(_selectedSource!.id);
                     debugPrint(
-                        "The Selected DropdownButtonFormField value is of type ${selectedSource.runtimeType.toString()} , with name:${_selectedSource.name} , and id:${selectedMaterial.id}");
+                        "The Selected DropdownButtonFormField value is of type"
+                        " ${selectedSource.runtimeType.toString()}"
+                        " , with name:${_selectedSource?.name} ,"
+                        " and id:${_selectedSource!.id}");
                   },
-                  hint: const Text("نوع المادة"),
+                  hint: const Text("الكسارة"),
                   validator: (value) =>
-                      value == null ? "قم باختيار نوع المادة" : null,
+                      value == null ? "قم باختيار الكسارة" : null,
                 );
               }
             }),
