@@ -28,6 +28,7 @@ class _ShipmentDateTextFormFieldState extends State<ShipmentDateTextFormField> {
     return Column(
       children: [
         TextFormField(
+          readOnly: true,
           validator: (value) {
             if (value == null || value.isEmpty) {
               return 'برجاء اختيار تاريخ النقلة';

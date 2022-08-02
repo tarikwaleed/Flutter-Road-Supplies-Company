@@ -24,22 +24,22 @@ class _VolumeTextFormFieldState extends State<VolumeTextFormField> {
             if (value == null || value.isEmpty) {
               return 'برجاء ادخال التكعيب';
             }
-            if (int.parse(value) <= 0) {
+            if (num.parse(value) <= 0) {
               return "برجاء ادخال عدد صحيح موجب";
             }
             return null;
           },
           onChanged: (value) {
-            volumeProvider.setVolume(int.parse(value));
+            volumeProvider.setVolume(num.parse(value));
             debugPrint("volume ${value}");
           },
           decoration: InputDecoration(
             label: Text("التكعيب"),
           ),
-          keyboardType: TextInputType.number,
+          keyboardType: TextInputType.numberWithOptions(decimal: true),
           // this won't allow any characters expect numbers to be entered
           inputFormatters: <TextInputFormatter>[
-            FilteringTextInputFormatter.digitsOnly,
+            // FilteringTextInputFormatter.digitsOnly,
             FilteringTextInputFormatter.deny(RegExp(r'^0+')),
           ],
         ),

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 class MaterialPriceProvider extends ChangeNotifier {
-  int _materialPrice = 0;
+  num _materialPrice = 0;
 
-  int get materialPrice => _materialPrice;
+  num get materialPrice => _materialPrice;
 
-  setMaterialPrice(int value) {
+  setMaterialPrice(num value) {
     _materialPrice = value;
     notifyListeners();
   }

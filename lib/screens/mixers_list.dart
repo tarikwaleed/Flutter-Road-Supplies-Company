@@ -103,10 +103,6 @@ class _MixersListState extends State<MixersList> {
           ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: Icon(Icons.add),
-      ),
     );
   }
 

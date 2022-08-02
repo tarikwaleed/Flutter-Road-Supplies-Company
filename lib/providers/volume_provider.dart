@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 class VolumeProvider extends ChangeNotifier {
-  int _volume = 0;
+  num _volume = 0;
 
-  int get volume => _volume;
+  num get volume => _volume;
 
-  setVolume(int value) {
+  setVolume(num value) {
     _volume = value;
     notifyListeners();
   }

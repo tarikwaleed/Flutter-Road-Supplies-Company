@@ -27,21 +27,21 @@ class _MaterialPriceTextFormFieldState
             if (value == null || value.isEmpty) {
               return 'برجاء ادخال سعر الحجر ';
             }
-            if (int.parse(value) <= 0) {
+            if (num.parse(value) <= 0) {
               return "برجاء ادخال عدد صحيح موجب";
             }
             return null;
           },
           onChanged: (value) {
-            materialPriceProvider.setMaterialPrice(int.parse(value));
+            materialPriceProvider.setMaterialPrice(num.parse(value));
           },
           decoration: InputDecoration(
             label: Text("سعر الحجر"),
           ),
-          keyboardType: TextInputType.number,
+          keyboardType: TextInputType.numberWithOptions(decimal: true),
           // this won't allow any characters expect numbers to be entered
           inputFormatters: <TextInputFormatter>[
-            FilteringTextInputFormatter.digitsOnly,
+            // FilteringTextInputFormatter.digitsOnly,
             FilteringTextInputFormatter.deny(RegExp(r'^0+')),
           ],
         ),
