@@ -28,7 +28,7 @@ class _CarriagePriceTextFormFieldState
               return 'برجاء ادخال سعر المشال ';
             }
             if (num.parse(value) <= 0) {
-              return "برجاء ادخال عدد صحيح موجب";
+              return "برجاء ادخال عدد موجب";
             }
             return null;
           },
