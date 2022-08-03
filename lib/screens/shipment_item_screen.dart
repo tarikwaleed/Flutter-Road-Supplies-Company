@@ -54,21 +54,64 @@ class _ShipmentItemScreenState extends State<ShipmentItemScreen> {
             ),
             onPressed: () async {
               if (_formKey.currentState!.validate()) {
-                final shipment = Shipment(
-                  mixerId: widget.mixerData.id,
-                  carriagePrice: carriagePriceProvider.carriagePrice,
-                  cartNumber: cartNumberProvider.cartNumber,
-                  clientId: clientIDProvider.clientId,
-                  date: Timestamp.fromDate(shipmentDateProvider.shipmentDate),
-                  materialId: materialProvider.materialId,
-                  materialPrice: materialPriceProvider.materialPrice,
-                  sourceId: sourceIDProvider.sourceId,
-                  vehicleNumber: vehicleNumberProvider.vehicleNumber,
-                  volume: volumeProvider.volume,
-                  totalPrice: materialPriceProvider.materialPrice +
-                      carriagePriceProvider.carriagePrice,
+                return showDialog<void>(
+                  context: context,
+                  barrierDismissible: false, // user must tap button!
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: const Text('تأكيد اضافة نقلة'),
+                      content: SingleChildScrollView(
+                        child: ListBody(
+                          children: <Widget>[
+                            Text(
+                              'تأكيد اضافة نقلة الى الخلاطة\n ${widget.mixerData.name}',
+                              style: Theme.of(context).textTheme.bodyLarge,
+                            ),
+                          ],
+                        ),
+                      ),
+                      actions: <Widget>[
+                        TextButton(
+                          child: const Text('تأكيد'),
+                          onPressed: () async {
+                            final shipment = Shipment(
+                              mixerId: widget.mixerData.id,
+                              carriagePrice:
+                                  carriagePriceProvider.carriagePrice,
+                              cartNumber: cartNumberProvider.cartNumber,
+                              clientId: clientIDProvider.clientId,
+                              date: Timestamp.fromDate(
+                                  shipmentDateProvider.shipmentDate),
+                              materialId: materialProvider.materialId,
+                              materialPrice:
+                                  materialPriceProvider.materialPrice,
+                              sourceId: sourceIDProvider.sourceId,
+                              vehicleNumber:
+                                  vehicleNumberProvider.vehicleNumber,
+                              volume: volumeProvider.volume,
+                              totalPrice: materialPriceProvider.materialPrice +
+                                  carriagePriceProvider.carriagePrice,
+                            );
+                            shipmentDBService.addShipment(shipment);
+                            Navigator.of(context).pop();
+                            // todo: Show snackbar
+                          },
+                        ),
+                        TextButton(
+                          child: const Text(
+                            'الغاء',
+                            style: TextStyle(
+                              color: Colors.red,
+                            ),
+                          ),
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                        ),
+                      ],
+                    );
+                  },
                 );
-                await shipmentDBService.addShipment(shipment);
               }
             },
           ),
