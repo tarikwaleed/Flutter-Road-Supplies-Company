@@ -10,7 +10,10 @@ class MixersList extends StatelessWidget {
   Widget build(BuildContext context) {
     final List<Mixer> listOfMixers =
         context.select<List<Mixer>, List<Mixer>>((mixers) => mixers);
-    debugPrint(listOfMixers.toString());
+    final List<int> listOfInts =
+        context.select<List<int>?, List<int>>((ints) => ints);
+    debugPrint("list of Integers is${listOfInts.toString()}");
+    debugPrint("list of Mixers is${listOfMixers.toString()}");
     return Scaffold(
       appBar: AppBar(
         title: Text(

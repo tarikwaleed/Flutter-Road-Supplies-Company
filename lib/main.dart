@@ -27,6 +27,16 @@ class MyApp extends StatelessWidget {
         FutureProvider(
             create: (_) => mixerdbService.retrieveMixers(),
             initialData: <Mixer>[]),
+        ProxyProvider<List<Mixer>, List<int>>(update: (_, mixers, __) {
+          final List<int>? ints = [];
+
+          for (var mixer in mixers) {
+            shipmentdbService
+                .retrieveNumberOfShipmentsByMixerId(mixer.id)
+                .then((value) => ints?.add(value));
+          }
+          return ints;
+        }),
         ChangeNotifierProvider(
           create: (context) => ShipmentDateProvider(),
         ),

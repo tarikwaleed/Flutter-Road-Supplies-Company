@@ -14,6 +14,14 @@ class ShipmentDBService {
         .toList();
   }
 
+  Future<int> retrieveNumberOfShipmentsByMixerId(String? mixerId) async {
+    QuerySnapshot<Map<String, dynamic>> snapshot = await _db
+        .collection("shipments")
+        .where("mixer_id", isEqualTo: mixerId)
+        .get();
+    return snapshot.docs.length;
+  }
+
   addShipment(Shipment shipment) async {
     await _db.collection("shipments").add(shipment.toFirestore());
   }
