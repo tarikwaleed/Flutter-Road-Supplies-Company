@@ -1,28 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-import '../../../providers/providers.dart';
+import '../../../../providers/providers.dart';
 
-class VolumeTextFormField extends StatefulWidget {
-  const VolumeTextFormField({
+class MaterialPriceTextFormField extends StatefulWidget {
+  const MaterialPriceTextFormField({
     Key? key,
   }) : super(key: key);
 
   @override
-  State<VolumeTextFormField> createState() => _VolumeTextFormFieldState();
+  State<MaterialPriceTextFormField> createState() =>
+      _MaterialPriceTextFormFieldState();
 }
 
-class _VolumeTextFormFieldState extends State<VolumeTextFormField> {
+class _MaterialPriceTextFormFieldState
+    extends State<MaterialPriceTextFormField> {
   @override
   Widget build(BuildContext context) {
-    final volumeProvider = Provider.of<VolumeProvider>(context, listen: false);
+    MaterialPriceProvider materialPriceProvider =
+        Provider.of<MaterialPriceProvider>(context, listen: false);
 
     return Column(
       children: [
         TextFormField(
           validator: (value) {
             if (value == null || value.isEmpty) {
-              return 'برجاء ادخال التكعيب';
+              return 'برجاء ادخال سعر الحجر ';
             }
             if (num.parse(value) <= 0) {
               return "برجاء ادخال عدد موجب";
@@ -30,11 +33,10 @@ class _VolumeTextFormFieldState extends State<VolumeTextFormField> {
             return null;
           },
           onChanged: (value) {
-            volumeProvider.setVolume(num.parse(value));
-            debugPrint("volume ${value}");
+            materialPriceProvider.setMaterialPrice(num.parse(value));
           },
           decoration: InputDecoration(
-            label: Text("التكعيب"),
+            label: Text("سعر الحجر"),
           ),
           keyboardType: TextInputType.numberWithOptions(decimal: true),
           // this won't allow any characters expect numbers to be entered

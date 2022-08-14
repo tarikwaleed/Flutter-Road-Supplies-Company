@@ -4,20 +4,24 @@ import 'package:google_fonts/google_fonts.dart';
 class MyTextTheme {
   TextTheme tajawalTextTheme() => TextTheme(
       headline6: GoogleFonts.tajawal(
-          fontSize: 23,
+          fontSize: 30,
           fontWeight: FontWeight.w500,
           letterSpacing: 0.15,
           color: Colors.black),
+
+      /// used for number in MixerCard
       bodyText1: GoogleFonts.tajawal(
-          fontSize: 19,
-          fontWeight: FontWeight.w400,
-          letterSpacing: 0.5,
-          color: Colors.blueGrey),
+          fontSize: 50,
+          fontWeight: FontWeight.bold,
+          letterSpacing: 5,
+          color: Colors.blue),
       bodyText2: GoogleFonts.tajawal(
-          fontSize: 16,
+          fontSize: 20,
           fontWeight: FontWeight.w400,
           letterSpacing: 0.5,
           color: Colors.blueGrey),
+
+      /// used for number in MixerCard
       button: GoogleFonts.tajawal(
         fontSize: 16,
         color: Colors.white,

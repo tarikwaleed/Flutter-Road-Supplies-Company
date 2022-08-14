@@ -1,31 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-import '../../../providers/providers.dart';
+import '../../../../providers/providers.dart';
 
-class MaterialPriceTextFormField extends StatefulWidget {
-  const MaterialPriceTextFormField({
+class CarriagePriceTextFormField extends StatefulWidget {
+  const CarriagePriceTextFormField({
     Key? key,
   }) : super(key: key);
 
   @override
-  State<MaterialPriceTextFormField> createState() =>
-      _MaterialPriceTextFormFieldState();
+  State<CarriagePriceTextFormField> createState() =>
+      _CarriagePriceTextFormFieldState();
 }
 
-class _MaterialPriceTextFormFieldState
-    extends State<MaterialPriceTextFormField> {
+class _CarriagePriceTextFormFieldState
+    extends State<CarriagePriceTextFormField> {
   @override
   Widget build(BuildContext context) {
-    MaterialPriceProvider materialPriceProvider =
-        Provider.of<MaterialPriceProvider>(context, listen: false);
+    final carriagePriceProvider =
+        Provider.of<CarriagePriceProvider>(context, listen: false);
 
     return Column(
       children: [
         TextFormField(
           validator: (value) {
             if (value == null || value.isEmpty) {
-              return 'برجاء ادخال سعر الحجر ';
+              return 'برجاء ادخال سعر المشال ';
             }
             if (num.parse(value) <= 0) {
               return "برجاء ادخال عدد موجب";
@@ -33,10 +33,10 @@ class _MaterialPriceTextFormFieldState
             return null;
           },
           onChanged: (value) {
-            materialPriceProvider.setMaterialPrice(num.parse(value));
+            carriagePriceProvider.setCarriagePrice(num.parse(value));
           },
           decoration: InputDecoration(
-            label: Text("سعر الحجر"),
+            label: Text("سعر المشال"),
           ),
           keyboardType: TextInputType.numberWithOptions(decimal: true),
           // this won't allow any characters expect numbers to be entered

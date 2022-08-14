@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'components.dart';
-import '../models/models.dart';
-import '../providers/providers.dart';
-import '../services/services.dart';
+import 'package:salah_construction/models/models.dart';
+import 'package:salah_construction/services/services.dart';
+import 'package:salah_construction/providers/providers.dart';
 
 class AddShipmentPopup extends StatelessWidget {
   final String mixerId;

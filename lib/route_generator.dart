@@ -1,8 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:salah_construction/screens/home_screen.dart';
-import 'package:salah_construction/screens/mixer_details.dart';
-import 'package:salah_construction/screens/shipment_item_screen.dart';
+import 'package:salah_construction/ui/screens/screens.dart';
 
 class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {

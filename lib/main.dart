@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:salah_construction/providers/providers.dart';
-import 'package:salah_construction/providers/source_id_provider.dart';
 import 'package:salah_construction/route_generator.dart';
+import 'package:salah_construction/services/services.dart';
 import 'package:salah_construction/theme.dart';
+
+import 'models/mixer_model.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,8 +20,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final mixerdbService = MixerDBService();
+    final shipmentdbService = ShipmentDBService();
     return MultiProvider(
       providers: [
+        FutureProvider(
+            create: (_) => mixerdbService.retrieveMixers(),
+            initialData: <Mixer>[]),
         ChangeNotifierProvider(
           create: (context) => ShipmentDateProvider(),
         ),

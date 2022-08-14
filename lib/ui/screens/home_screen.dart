@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:salah_construction/constants.dart';
-import 'package:salah_construction/screens/mixers_list.dart';
+import 'package:salah_construction/ui/screens/mixers_list_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({

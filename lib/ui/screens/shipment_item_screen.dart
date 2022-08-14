@@ -1,10 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:salah_construction/components/components.dart';
+import 'package:salah_construction/ui/components/components.dart';
 import 'package:salah_construction/models/models.dart';
 import 'package:salah_construction/providers/providers.dart';
-import '../services/services.dart';
+import 'package:salah_construction/services/services.dart';
 
 class ShipmentItemScreen extends StatefulWidget {
   final dynamic mixerData;

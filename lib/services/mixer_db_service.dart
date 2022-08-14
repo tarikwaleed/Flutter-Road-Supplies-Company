@@ -5,6 +5,7 @@ class MixerDBService {
   final FirebaseFirestore _db = FirebaseFirestore.instance;
 
   Future<List<Mixer>> retrieveMixers() async {
+
     QuerySnapshot<Map<String, dynamic>> snapshot =
         await _db.collection("mixers").get();
     return snapshot.docs
