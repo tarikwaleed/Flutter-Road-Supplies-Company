@@ -59,9 +59,9 @@ class MixerCard extends StatelessWidget {
                       ),
                       Center(
                         child: const CircleAvatar(
-                          radius: 40,
+                          radius: 50,
                           backgroundColor: Colors.lightBlueAccent,
-                          backgroundImage: AssetImage("assets/images/logo.png"),
+                          backgroundImage: AssetImage("assets/images/53aLRGxRuKWMzrDWYPjL.png"),
                         ),
                       )
                     ],
