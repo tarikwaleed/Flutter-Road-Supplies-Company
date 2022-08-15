@@ -24,16 +24,17 @@ class MyApp extends StatelessWidget {
     final shipmentdbService = ShipmentDBService();
     return MultiProvider(
       providers: [
-        FutureProvider(
+        FutureProvider<List<Mixer>>(
             create: (_) => mixerdbService.retrieveMixers(),
             initialData: <Mixer>[]),
-        ProxyProvider<List<Mixer>, List<int>>(update: (_, mixers, __) {
-          final List<int>? ints = [];
+        ProxyProvider<List<Mixer>, Future<List<int>>>(
+            update: (_, mixers, __) async {
+          final List<int> ints = [];
 
           for (var mixer in mixers) {
-            shipmentdbService
-                .retrieveNumberOfShipmentsByMixerId(mixer.id)
-                .then((value) => ints?.add(value));
+            final value = await shipmentdbService
+                .retrieveNumberOfShipmentsByMixerId(mixer.id);
+            ints.add(value);
           }
           return ints;
         }),

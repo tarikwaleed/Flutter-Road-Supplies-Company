@@ -5,8 +5,10 @@ class MixerCard extends StatelessWidget {
   const MixerCard({
     Key? key,
     required this.mixer,
+    required this.numberOfShipments,
   }) : super(key: key);
   final Mixer mixer;
+  final int? numberOfShipments;
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +48,7 @@ class MixerCard extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            "15",
+                            '${numberOfShipments}',
                             style: Theme.of(context).textTheme.bodyText1,
                           ),
                           Text(
