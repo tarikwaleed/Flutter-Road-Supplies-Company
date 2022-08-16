@@ -41,7 +41,6 @@ class _MixerDetailsScreenState extends State<MixerDetailsScreen> {
 
   @override
   void initState() {
-    debugPrint(widget.mixerData.id);
   }
 
 }
