@@ -11,7 +11,7 @@ class RouteGenerator {
       case '/mixer_details':
         return MaterialPageRoute(
             builder: (context) => MixerDetailsScreen(
-                  mixerData: args,
+                  mixer: args,
                 ));
       case '/shipment_item_screen':
         return MaterialPageRoute(

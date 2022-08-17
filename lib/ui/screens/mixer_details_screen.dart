@@ -1,46 +1,43 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:salah_construction/models/models.dart';
+import 'package:salah_construction/providers/providers.dart';
+import 'package:salah_construction/services/services.dart';
+import 'package:salah_construction/ui/components/components.dart';
+import 'package:salah_construction/ui/components/lists/shipment_list.dart';
 
-import '../components/components.dart';
+class MixerDetailsScreen extends StatelessWidget {
+  final dynamic mixer;
 
-class MixerDetailsScreen extends StatefulWidget {
-  final dynamic mixerData;
-
-  const MixerDetailsScreen({Key? key, required this.mixerData})
-      : super(key: key);
-
-  @override
-  State<MixerDetailsScreen> createState() => _MixerDetailsScreenState();
-}
-
-class _MixerDetailsScreenState extends State<MixerDetailsScreen> {
-
+  const MixerDetailsScreen({Key? key, required this.mixer}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          "خلاطة ${widget.mixerData.name}",
-          style: Theme.of(context).textTheme.headline6,
+    final shipmentDBService = ShipmentDBService();
+    final mixerId = context.read<MixerIDProvider>().mixerId;
+    return FutureProvider<List<Shipment>>(
+      create: (_) => shipmentDBService.retrieveShipmentsByMixerId(mixerId),
+      initialData: <Shipment>[],
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(
+            "خلاطة ${mixer.name}",
+            style: Theme.of(context).textTheme.headline6,
+          ),
+          backgroundColor: Colors.white,
+          leading: BackButton(
+            color: Colors.black,
+          ),
         ),
-        backgroundColor: Colors.white,
-        leading: BackButton (
-          color: Colors.black,
+        body: ShipmentsList(),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            Navigator.pushNamed(context, '/shipment_item_screen',
+                arguments: mixer);
+          },
+          child: Icon(Icons.add),
         ),
-      ),
-      body: ShipmentListFuture(mixerData: widget.mixerData),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.pushNamed(context, '/shipment_item_screen',
-              arguments: widget.mixerData);
-        },
-        child: Icon(Icons.add),
       ),
     );
   }
-
-  @override
-  void initState() {
-  }
-
 }

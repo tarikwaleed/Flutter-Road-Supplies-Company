@@ -3,10 +3,9 @@ import 'package:salah_construction/models/models.dart';
 import 'package:salah_construction/services/services.dart';
 
 class ShipmentListFuture extends StatefulWidget {
-  final dynamic mixerData;
+  final dynamic mixer;
 
-  const ShipmentListFuture({Key? key, required this.mixerData})
-      : super(key: key);
+  const ShipmentListFuture({Key? key, required this.mixer}) : super(key: key);
 
   @override
   State<ShipmentListFuture> createState() => _ShipmentListFutureState();
@@ -18,23 +17,23 @@ class _ShipmentListFutureState extends State<ShipmentListFuture> {
   List<Shipment>? retrievedShipmentsList;
 
   Future<void> _refresh() async {
-    shipmentsListFuture =
-        shipmentDBService.retrieveShipmentsByMixerId(widget.mixerData.id);
-    retrievedShipmentsList =
-        await shipmentDBService.retrieveShipmentsByMixerId(widget.mixerData.id);
+    shipmentsListFuture = shipmentDBService
+        .retrieveShipmentsByMixerId(widget.mixer.id.toString());
+    retrievedShipmentsList = await shipmentDBService
+        .retrieveShipmentsByMixerId(widget.mixer.id.toString());
     setState(() {});
   }
 
   // void _dismiss() {
   //   shipmentsListFuture =
-  //       shipmentDBService.retrieveShipmentsByMixerId(widget.mixerData.id);
+  //       shipmentDBService.retrieveShipmentsByMixerId(widget.mixer.id);
   // }
 
   Future<void> _initRetrieval() async {
-    shipmentsListFuture =
-        shipmentDBService.retrieveShipmentsByMixerId(widget.mixerData.id);
-    retrievedShipmentsList =
-        await shipmentDBService.retrieveShipmentsByMixerId(widget.mixerData.id);
+    shipmentsListFuture = shipmentDBService
+        .retrieveShipmentsByMixerId(widget.mixer.id.toString());
+    retrievedShipmentsList = await shipmentDBService
+        .retrieveShipmentsByMixerId(widget.mixer.id.toString());
 
     setState(() {});
     debugPrint(

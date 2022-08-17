@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:salah_construction/models/models.dart';
+import 'package:salah_construction/providers/providers.dart';
 
 class MixerCard extends StatelessWidget {
   const MixerCard({
@@ -13,61 +15,73 @@ class MixerCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // todo: wrap with gesture dedector and navigate to /mixer_details
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Card(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16),
-        ),
-        elevation: 2,
-        child: Container(
-          height: 200,
-          width: double.maxFinite,
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 25.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "خلاطة ${mixer.name}",
-                      style: Theme.of(context).textTheme.headline6,
-                    ),
-                  ],
-                ),
-              ),
-              Expanded(
-                  child: Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Column(
+    final mixerIdProvider = context.read<MixerIDProvider>();
+
+    return GestureDetector(
+      onTap: () {
+        mixerIdProvider.setMixerId(mixer.id.toString());
+
+        Navigator.pushNamed(context, '/mixer_details', arguments: mixer);
+      },
+      child: InkWell(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Card(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(16),
+            ),
+            elevation: 2,
+            child: Container(
+              height: 200,
+              width: double.maxFinite,
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(top: 25.0),
+                    child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          '${numberOfShipments}',
-                          style: Theme.of(context).textTheme.bodyText1,
-                        ),
-                        Text(
-                          "نقلة",
-                          style: Theme.of(context).textTheme.bodyText2,
+                          "خلاطة ${mixer.name}",
+                          style: Theme.of(context).textTheme.headline6,
                         ),
                       ],
                     ),
-                    Center(
-                      child: CircleAvatar(
-                        radius: 50,
-                        backgroundColor: Colors.lightBlueAccent,
-                        backgroundImage: AssetImage("assets/images/mixer1.png"),
-                      ),
+                  ),
+                  Expanded(
+                      child: Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              '${numberOfShipments}',
+                              style: Theme.of(context).textTheme.bodyText1,
+                            ),
+                            Text(
+                              "نقلة",
+                              style: Theme.of(context).textTheme.bodyText2,
+                            ),
+                          ],
+                        ),
+                        Center(
+                          child: CircleAvatar(
+                            radius: 50,
+                            backgroundColor: Colors.lightBlueAccent,
+                            backgroundImage:
+                                AssetImage("assets/images/mixer1.png"),
+                          ),
+                        ),
+                      ],
                     ),
-                  ],
-                ),
-              ))
-            ],
+                  ))
+                ],
+              ),
+            ),
           ),
         ),
       ),
