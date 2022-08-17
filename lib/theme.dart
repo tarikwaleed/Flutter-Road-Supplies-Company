@@ -16,10 +16,10 @@ class MyTextTheme {
           letterSpacing: 5,
           color: Colors.blue),
       bodyText2: GoogleFonts.tajawal(
-          fontSize: 20,
+          fontSize: 30,
           fontWeight: FontWeight.w400,
           letterSpacing: 0.5,
-          color: Colors.blueGrey),
+          color: Colors.black),
 
       /// used for number in MixerCard
       button: GoogleFonts.tajawal(
@@ -32,6 +32,13 @@ class MyTextTheme {
         color: Colors.white,
         fontWeight: FontWeight.bold,
       ));
+}
+
+class MyIconTheme {
+  IconThemeData shipmentCardIconTheme() => IconThemeData(
+        color: Colors.blue,
+        size: 40,
+      );
 }
 
 class MyInputDecorationTheme {

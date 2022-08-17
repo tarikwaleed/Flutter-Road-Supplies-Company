@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:salah_construction/models/models.dart';
 import 'package:salah_construction/providers/mixer_id_provider.dart';
-import 'package:salah_construction/ui/components/cards/shipment_card.dart';
+import 'package:salah_construction/ui/components/components.dart';
 
 class ShipmentsList extends StatelessWidget {
   const ShipmentsList({Key? key}) : super(key: key);
@@ -17,7 +17,7 @@ class ShipmentsList extends StatelessWidget {
         height: 10,
       ),
       itemBuilder: (_, index) {
-          return ShipmentCard(shipment: listOfShipments[index]);
+        return ShipmentCard(shipment: listOfShipments[index]);
       },
     );
   }

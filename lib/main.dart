@@ -91,6 +91,7 @@ class MyApp extends StatelessWidget {
           textTheme: MyTextTheme().tajawalTextTheme(),
           inputDecorationTheme:
               MyInputDecorationTheme().myInputDecorationTheme(),
+          iconTheme: MyIconTheme().shipmentCardIconTheme(),
         ),
         initialRoute: '/',
         onGenerateRoute: RouteGenerator.generateRoute,
