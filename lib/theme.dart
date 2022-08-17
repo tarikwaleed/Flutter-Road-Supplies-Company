@@ -15,6 +15,7 @@ class MyTextTheme {
           fontWeight: FontWeight.bold,
           letterSpacing: 5,
           color: Colors.blue),
+      // used in ShipmentCardRow
       bodyText2: GoogleFonts.tajawal(
           fontSize: 30,
           fontWeight: FontWeight.w400,

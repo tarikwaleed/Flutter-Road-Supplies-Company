@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:salah_construction/models/models.dart';
+import 'package:salah_construction/ui/components/components.dart';
 
 class ShipmentCard extends StatelessWidget {
   const ShipmentCard({
@@ -27,53 +28,20 @@ class ShipmentCard extends StatelessWidget {
               padding: const EdgeInsets.fromLTRB(0, 20, 20, 0),
               child: Column(
                 children: [
-                  Row(
-                    children: [
-                      Icon(Icons.calendar_month),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Expanded(
-                          child: Text(
-                        "17/08/2022",
-                        // shipment.date.toString(),
-                        style: Theme.of(context).textTheme.bodyText2,
-                      ))
-                    ],
-                  ),
+                  // Date Row 📅
+                  ShipmentCardRow(
+                      icon: Icon(Icons.calendar_month), text: "17/08/2020"),
                   SizedBox(
                     height: 10,
                   ),
-                  Row(
-                    children: [
-                      Icon(Icons.fire_truck),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Expanded(
-                          child: Text(
-                        // "9060",
-                        shipment.vehicleNumber.toString(),
-                        style: Theme.of(context).textTheme.bodyText2,
-                      ))
-                    ],
-                  ),
+                  // VehicleNumber Row 🚛🔢
+                  ShipmentCardRow(icon: Icon(Icons.fire_truck), text: "6070"),
                   SizedBox(
                     height: 10,
                   ),
-                  Row(
-                    children: [
-                      Icon(Icons.person),
-                      SizedBox(
-                        width: 10,
-                      ),
-                      Expanded(
-                          child: Text(
-                        "الحاج العربي",
-                        style: Theme.of(context).textTheme.bodyText2,
-                      ))
-                    ],
-                  ),
+                  // ClientName Row 🧔
+                  ShipmentCardRow(
+                      icon: Icon(Icons.person), text: "الحاج العربي"),
                 ],
               ),
             ),
