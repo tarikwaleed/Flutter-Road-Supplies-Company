@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:salah_construction/ui/components/components.dart';
 import 'package:salah_construction/dtos/dtos.dart';
+import 'package:salah_construction/ui/screens/screens.dart';
 
 class ShipmentsList extends StatelessWidget {
   const ShipmentsList({Key? key}) : super(key: key);
@@ -17,11 +18,16 @@ class ShipmentsList extends StatelessWidget {
           height: 10,
         ),
         itemBuilder: (_, index) {
-          return ShipmentCard(shipment: listOfShipments[index]);
+          return Padding(
+            padding: const EdgeInsets.only(left: 20,right: 20),
+            child: ShipmentCard(shipment: listOfShipments[index]),
+          );
         },
       );
-    } else if(listOfShipments.isEmpty){
-      return Center(child: CircularProgressIndicator());
     }
+    if (listOfShipments.isEmpty) {
+      return EmptyShipmentList();
+    }
+    return Center(child: CircularProgressIndicator());
   }
 }

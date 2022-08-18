@@ -27,10 +27,10 @@ class MyTextTheme {
         fontSize: 16,
         color: Colors.white,
       ),
-      // for Cards
+      // for errors
       caption: GoogleFonts.tajawal(
         fontSize: 30,
-        color: Colors.white,
+        color: Colors.redAccent,
         fontWeight: FontWeight.bold,
       ));
 }
