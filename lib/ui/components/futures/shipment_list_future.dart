@@ -12,7 +12,7 @@ class ShipmentListFuture extends StatefulWidget {
 }
 
 class _ShipmentListFutureState extends State<ShipmentListFuture> {
-  ShipmentDBService shipmentDBService = ShipmentDBService();
+  ShipmentFirestoreService shipmentDBService = ShipmentFirestoreService();
   Future<List<Shipment>>? shipmentsListFuture;
   List<Shipment>? retrievedShipmentsList;
 

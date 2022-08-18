@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:salah_construction/datarepos/datarepos.dart';
 import 'package:salah_construction/ui/components/components.dart';
 import 'package:salah_construction/providers/providers.dart';
-import 'package:salah_construction/services/services.dart';
 import 'package:salah_construction/dtos/dtos.dart';
 
 class ShipmentItemScreen extends StatefulWidget {
@@ -20,7 +20,7 @@ class ShipmentItemScreen extends StatefulWidget {
 
 class _ShipmentItemScreenState extends State<ShipmentItemScreen> {
   final _formKey = GlobalKey<FormState>();
-  final shipmentDBService = ShipmentDBService();
+  final shipmentDBService = ShipmentDataRepository();
 
   @override
   Widget build(BuildContext context) {

@@ -13,7 +13,7 @@ class MixerDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final shipmentDBService = ShipmentDBService();
+    final shipmentDBService = ShipmentFirestoreService();
     final mixerId = context.read<MixerIDProvider>().mixerId;
     return FutureProvider<List<Shipment>>(
       create: (_) => shipmentDBService.retrieveShipmentsByMixerId(mixerId),
