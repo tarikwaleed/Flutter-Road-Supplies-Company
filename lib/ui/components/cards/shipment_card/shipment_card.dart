@@ -33,13 +33,16 @@ class ShipmentCard extends StatelessWidget {
                   // Date  📅
                   //todo: ShipmentDate
                   ShipmentCardRow(
-                      icon: Icon(Icons.calendar_month), text: "17/08/2020"),
+                      icon: Icon(Icons.calendar_month),
+                      text: shipmentCardViewmodel.shipmentDate(shipment.date)),
                   SizedBox(
                     height: 10,
                   ),
                   // VehicleNumber 🚛🔢
                   //todo: VehicleNumber
-                  ShipmentCardRow(icon: Icon(Icons.fire_truck), text: "6070"),
+                  ShipmentCardRow(
+                      icon: Icon(Icons.fire_truck),
+                      text: shipment.vehicleNumber.toString()),
                   SizedBox(
                     height: 10,
                   ),
