@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../../../../models/source_model.dart' as sourcemodel;
-import '../../../../services/services.dart';
-import '../../../../providers/providers.dart';
+import 'package:salah_construction/dtos/source.dart' as sourcedto;
+import 'package:salah_construction/services/services.dart';
+import 'package:salah_construction/providers/providers.dart';
 
 class SourceDropDownButtonFormField extends StatefulWidget {
   const SourceDropDownButtonFormField({Key? key}) : super(key: key);
@@ -14,9 +14,9 @@ class SourceDropDownButtonFormField extends StatefulWidget {
 
 class _SourceDropDownButtonFormFieldState
     extends State<SourceDropDownButtonFormField> {
-  sourcemodel.Source? _selectedSource;
+  sourcedto.Source? _selectedSource;
   final _sourceDBService = SourceDBService();
-  Future<List<sourcemodel.Source>>? _futureListOfSources;
+  Future<List<sourcedto.Source>>? _futureListOfSources;
 
   _getAllSources() {
     _futureListOfSources = _sourceDBService.retrieveSources();
@@ -37,16 +37,16 @@ class _SourceDropDownButtonFormFieldState
         FutureBuilder(
             future: _futureListOfSources,
             builder: (BuildContext context,
-                AsyncSnapshot<List<sourcemodel.Source>> listOfSources) {
+                AsyncSnapshot<List<sourcedto.Source>> listOfSources) {
               if (listOfSources.connectionState == ConnectionState.waiting) {
                 return const Text("جار تحميل بيانات المواد");
               } else {
-                List<DropdownMenuItem<sourcemodel.Source>>
+                List<DropdownMenuItem<sourcedto.Source>>
                     sourcesDropDownMenuItems = [];
                 for (int i = 0; i < listOfSources.data!.length; i++) {
-                  sourcemodel.Source source = listOfSources.data![i];
+                  sourcedto.Source source = listOfSources.data![i];
                   sourcesDropDownMenuItems
-                      .add(DropdownMenuItem<sourcemodel.Source>(
+                      .add(DropdownMenuItem<sourcedto.Source>(
                     value: source,
                     child: Text(source.name),
                   ));
@@ -55,7 +55,7 @@ class _SourceDropDownButtonFormFieldState
                 }
                 return DropdownButtonFormField(
                   items: sourcesDropDownMenuItems,
-                  onChanged: (sourcemodel.Source? selectedSource) {
+                  onChanged: (sourcedto.Source? selectedSource) {
                     setState(() {
                       _selectedSource = selectedSource;
                     });

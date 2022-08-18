@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 
-import '../models/models.dart';
-class ClientDBService {
+import 'package:salah_construction/dtos/dtos.dart';
+class ClientFirestoreService {
   final FirebaseFirestore _db = FirebaseFirestore.instance;
 
   Future<List<Client>> retrieveClients() async {

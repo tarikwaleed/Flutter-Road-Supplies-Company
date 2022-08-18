@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:salah_construction/models/models.dart';
 import 'package:salah_construction/ui/components/components.dart';
+import 'package:salah_construction/dtos/dtos.dart';
 
 class ShipmentsList extends StatelessWidget {
   const ShipmentsList({Key? key}) : super(key: key);

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:salah_construction/models/models.dart';
 import 'package:salah_construction/providers/providers.dart';
 import 'package:salah_construction/services/services.dart';
 import 'package:salah_construction/ui/components/components.dart';
 import 'package:salah_construction/ui/components/lists/shipment_list.dart';
+import 'package:salah_construction/dtos/dtos.dart';
 
 class MixerDetailsScreen extends StatelessWidget {
   final dynamic mixer;

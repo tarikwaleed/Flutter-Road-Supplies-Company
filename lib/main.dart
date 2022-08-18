@@ -6,8 +6,8 @@ import 'package:salah_construction/providers/providers.dart';
 import 'package:salah_construction/route_generator.dart';
 import 'package:salah_construction/services/services.dart';
 import 'package:salah_construction/theme.dart';
+import 'package:salah_construction/dtos/dtos.dart';
 
-import 'models/mixer_model.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

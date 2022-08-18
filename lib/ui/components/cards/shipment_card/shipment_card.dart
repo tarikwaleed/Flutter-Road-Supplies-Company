@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:salah_construction/models/models.dart';
 import 'package:salah_construction/ui/components/components.dart';
+import 'package:salah_construction/dtos/dtos.dart';
+
 
 class ShipmentCard extends StatelessWidget {
   const ShipmentCard({

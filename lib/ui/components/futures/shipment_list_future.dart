@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:salah_construction/models/models.dart';
 import 'package:salah_construction/services/services.dart';
+import 'package:salah_construction/dtos/dtos.dart';
 
 class ShipmentListFuture extends StatefulWidget {
   final dynamic mixer;

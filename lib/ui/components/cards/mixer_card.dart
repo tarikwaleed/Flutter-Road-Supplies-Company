@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:salah_construction/models/models.dart';
 import 'package:salah_construction/providers/providers.dart';
+import 'package:salah_construction/dtos/dtos.dart';
 
 class MixerCard extends StatelessWidget {
   const MixerCard({

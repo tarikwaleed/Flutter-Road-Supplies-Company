@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:salah_construction/models/mixer_model.dart';
+import 'package:salah_construction/dtos/dtos.dart';
 
 class MixerDBService {
   final FirebaseFirestore _db = FirebaseFirestore.instance;

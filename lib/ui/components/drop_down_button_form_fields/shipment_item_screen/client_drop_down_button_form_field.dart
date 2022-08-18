@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:salah_construction/services/services.dart';
 import 'package:salah_construction/providers/providers.dart';
-import 'package:salah_construction/models/models.dart';
+import 'package:salah_construction/dtos/dtos.dart';
 
 
 
@@ -17,7 +17,7 @@ class ClientDropDownButtonFormField extends StatefulWidget {
 class _ClientDropDownButtonFormFieldState
     extends State<ClientDropDownButtonFormField> {
   Client? _selectedClient;
-  final _clientDBService = ClientDBService();
+  final _clientDBService = ClientFirestoreService();
   Future<List<Client>>? _futureListOfClients;
 
   _getAllClients() {

@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:salah_construction/models/shipment_model.dart';
+import 'package:salah_construction/dtos/dtos.dart';
 
 class ShipmentDBService {
   final FirebaseFirestore _db = FirebaseFirestore.instance;

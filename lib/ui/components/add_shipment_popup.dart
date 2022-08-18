@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'components.dart';
-import 'package:salah_construction/models/models.dart';
-import 'package:salah_construction/services/services.dart';
 import 'package:salah_construction/providers/providers.dart';
 
 class AddShipmentPopup extends StatelessWidget {

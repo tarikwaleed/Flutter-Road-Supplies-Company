@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:salah_construction/providers/material_id_provider.dart';
 import 'package:salah_construction/services/services.dart';
-import '../../../../models/material_model.dart' as materialmodel;
+import 'package:salah_construction/dtos/material.dart'as materialdto;
 
 class MaterialDropDownButtonFormField extends StatefulWidget {
   const MaterialDropDownButtonFormField({Key? key}) : super(key: key);
@@ -14,9 +14,9 @@ class MaterialDropDownButtonFormField extends StatefulWidget {
 
 class _MaterialDropDownButtonFormFieldState
     extends State<MaterialDropDownButtonFormField> {
-  materialmodel.Material? _selectedMaterial;
+  materialdto.Material? _selectedMaterial;
   final _materialDBService = MaterialDBService();
-  Future<List<materialmodel.Material>>? _futureListOfMaterials;
+  Future<List<materialdto.Material>>? _futureListOfMaterials;
 
   _getAllMaterials() {
     _futureListOfMaterials = _materialDBService.retrieveMaterials();
@@ -39,16 +39,16 @@ class _MaterialDropDownButtonFormFieldState
         FutureBuilder(
             future: _futureListOfMaterials,
             builder: (BuildContext context,
-                AsyncSnapshot<List<materialmodel.Material>> listOfMaterials) {
+                AsyncSnapshot<List<materialdto.Material>> listOfMaterials) {
               if (listOfMaterials.connectionState == ConnectionState.waiting) {
                 return const Text("جار تحميل بيانات المواد");
               } else {
-                List<DropdownMenuItem<materialmodel.Material>>
+                List<DropdownMenuItem<materialdto.Material>>
                     materialsDropDownMenuItems = [];
                 for (int i = 0; i < listOfMaterials.data!.length; i++) {
-                  materialmodel.Material material = listOfMaterials.data![i];
+                  materialdto.Material material = listOfMaterials.data![i];
                   materialsDropDownMenuItems
-                      .add(DropdownMenuItem<materialmodel.Material>(
+                      .add(DropdownMenuItem<materialdto.Material>(
                     value: material,
                     child: Text(material.name),
                   ));
@@ -57,7 +57,7 @@ class _MaterialDropDownButtonFormFieldState
                 }
                 return DropdownButtonFormField(
                   items: materialsDropDownMenuItems,
-                  onChanged: (materialmodel.Material? selectedMaterial) {
+                  onChanged: (materialdto.Material? selectedMaterial) {
                     setState(() {
                       _selectedMaterial = selectedMaterial;
                     });
