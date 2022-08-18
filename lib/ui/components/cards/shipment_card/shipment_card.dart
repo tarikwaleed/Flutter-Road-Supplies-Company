@@ -27,19 +27,22 @@ class ShipmentCard extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.fromLTRB(0, 20, 20, 0),
               child: Column(
-                children: [
+                children: const [
                   // Date Row 📅
+                  //todo: ShipmentDate
                   ShipmentCardRow(
                       icon: Icon(Icons.calendar_month), text: "17/08/2020"),
                   SizedBox(
                     height: 10,
                   ),
                   // VehicleNumber Row 🚛🔢
+                  //todo: VehicleNumber
                   ShipmentCardRow(icon: Icon(Icons.fire_truck), text: "6070"),
                   SizedBox(
                     height: 10,
                   ),
                   // ClientName Row 🧔
+                  //todo:ClientName
                   ShipmentCardRow(
                       icon: Icon(Icons.person), text: "الحاج العربي"),
                 ],
