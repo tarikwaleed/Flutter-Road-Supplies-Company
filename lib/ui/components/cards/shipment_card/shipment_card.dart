@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:salah_construction/ui/components/components.dart';
 import 'package:salah_construction/dtos/dtos.dart';
-
+import 'package:salah_construction/viewmodels/shipment_card_viewmodel.dart';
 
 class ShipmentCard extends StatelessWidget {
   const ShipmentCard({
@@ -12,6 +12,7 @@ class ShipmentCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final shipmentCardViewmodel = ShipmentCardViewmodel();
     return GestureDetector(
       // onTap: () {
       //   Navigator.pushNamed(context, '/shipment_item_screen');
@@ -28,7 +29,7 @@ class ShipmentCard extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.fromLTRB(0, 20, 20, 0),
               child: Column(
-                children: const [
+                children: [
                   // Date  📅
                   //todo: ShipmentDate
                   ShipmentCardRow(
@@ -44,8 +45,18 @@ class ShipmentCard extends StatelessWidget {
                   ),
                   // ClientName  🧔
                   //todo:ClientName
-                  ShipmentCardRow(
-                      icon: Icon(Icons.person), text: "الحاج العربي"),
+                  FutureBuilder(
+                    future: shipmentCardViewmodel.clientName(shipment.clientId),
+                    builder: (_, snapshot) {
+                      if (snapshot.hasData &&
+                          snapshot.connectionState == ConnectionState.done) {
+                        return ShipmentCardRow(
+                            icon: Icon(Icons.person),
+                            text: snapshot.data.toString());
+                      }
+                      return CircularProgressIndicator();
+                    },
+                  ),
                 ],
               ),
             ),
