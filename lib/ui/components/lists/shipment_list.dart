@@ -9,8 +9,11 @@ class ShipmentsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // final listOfShipments = context
+    //     .select<List<Shipment>, List<Shipment>>((shipments) => shipments);
     final listOfShipments = context
-        .select<List<Shipment>, List<Shipment>>((shipments) => shipments);
+        .watch<List<Shipment>>();
+
     if (listOfShipments.isNotEmpty) {
       return ListView.separated(
         itemCount: listOfShipments.length,
@@ -19,7 +22,7 @@ class ShipmentsList extends StatelessWidget {
         ),
         itemBuilder: (_, index) {
           return Padding(
-            padding: const EdgeInsets.only(left: 20,right: 20),
+            padding: const EdgeInsets.only(left: 20, right: 20),
             child: ShipmentCard(shipment: listOfShipments[index]),
           );
         },

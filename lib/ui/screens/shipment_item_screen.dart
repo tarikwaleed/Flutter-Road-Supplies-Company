@@ -40,7 +40,7 @@ class _ShipmentItemScreenState extends State<ShipmentItemScreen> {
       appBar: AppBar(
         title: Text(
           widget.mixerData.name,
-          style: Theme.of(context).textTheme.headline6,
+          style: Theme.of(context).textTheme.subtitle1,
         ),
         backgroundColor: Colors.white,
         leading: BackButton(
@@ -65,7 +65,7 @@ class _ShipmentItemScreenState extends State<ShipmentItemScreen> {
                           children: <Widget>[
                             Text(
                               'تأكيد اضافة نقلة الى الخلاطة\n ${widget.mixerData.name}',
-                              style: Theme.of(context).textTheme.bodyLarge,
+                              style: Theme.of(context).textTheme.bodyText2,
                             ),
                           ],
                         ),
@@ -94,7 +94,10 @@ class _ShipmentItemScreenState extends State<ShipmentItemScreen> {
                             );
                             shipmentDBService.addShipment(shipment);
                             Navigator.of(context).pop();
-                            // todo: Show snackbar
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                              content: const Text("تم اضافة النقلة بنجاح"),
+                              backgroundColor: Colors.green,
+                            ));
                           },
                         ),
                         TextButton(

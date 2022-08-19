@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 class MyTextTheme {
   TextTheme tajawalTextTheme() => TextTheme(
+    // used for title in MixerCard
       headline6: GoogleFonts.tajawal(
           fontSize: 30,
           fontWeight: FontWeight.w500,
@@ -32,7 +33,14 @@ class MyTextTheme {
         fontSize: 30,
         color: Colors.redAccent,
         fontWeight: FontWeight.bold,
-      ));
+      ),
+      //used for title in AppBar
+      subtitle1: GoogleFonts.tajawal(
+        fontSize: 20,
+        color: Colors.black,
+        fontWeight: FontWeight.w600,
+      ),
+  );
 }
 
 class MyIconTheme {

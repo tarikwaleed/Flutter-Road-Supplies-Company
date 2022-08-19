@@ -22,7 +22,7 @@ class MixerDetailsScreen extends StatelessWidget {
         appBar: AppBar(
           title: Text(
             "خلاطة ${mixer.name}",
-            style: Theme.of(context).textTheme.headline6,
+            style: Theme.of(context).textTheme.subtitle1,
           ),
           backgroundColor: Colors.white,
           leading: BackButton(

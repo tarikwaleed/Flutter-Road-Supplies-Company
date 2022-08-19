@@ -94,7 +94,7 @@ class MyApp extends StatelessWidget {
               MyInputDecorationTheme().myInputDecorationTheme(),
           iconTheme: MyIconTheme().shipmentCardIconTheme(),
         ),
-        initialRoute: '/',
+        initialRoute: '/login',
         onGenerateRoute: RouteGenerator.generateRoute,
       ),
     );

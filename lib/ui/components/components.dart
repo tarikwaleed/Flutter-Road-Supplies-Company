@@ -1,6 +1,5 @@
 //GENERATED BARREL FILE 
-export 'add_shipment_popup.dart'; 
-export './cards/mixer_card.dart'; 
+export './cards/mixer_card.dart';
 export './cards/shipment_card/components/shipment_card_row.dart';
 export './cards/shipment_card/shipment_card.dart';
 export './lists/shipment_list.dart';

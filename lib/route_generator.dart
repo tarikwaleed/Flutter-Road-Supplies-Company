@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:salah_construction/ui/screens/login_screen.dart';
 import 'package:salah_construction/ui/screens/screens.dart';
 
 class RouteGenerator {
@@ -16,6 +17,9 @@ class RouteGenerator {
       case '/shipment_item_screen':
         return MaterialPageRoute(
             builder: (context) => ShipmentItemScreen(mixerData: args));
+      case '/login':
+        return MaterialPageRoute(builder: (_) => LoginScreen());
+
       default:
         return _errorRoute();
     }

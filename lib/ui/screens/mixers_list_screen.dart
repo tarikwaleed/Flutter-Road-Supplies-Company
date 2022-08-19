@@ -15,7 +15,7 @@ class MixersList extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           "الخلاطات",
-          style: Theme.of(context).textTheme.headline6,
+          style: Theme.of(context).textTheme.subtitle1,
         ),
         backgroundColor: Colors.white,
       ),
