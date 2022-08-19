@@ -8,8 +8,14 @@ class ClientsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MyAppBar(title: "العملاء",),
+      appBar: MyAppBar(
+        title: "العملاء",
+      ),
       body: ClientsList(),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: Icon(Icons.add),
+      ),
     );
   }
 }

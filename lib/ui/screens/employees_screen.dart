@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:salah_construction/ui/screens/errors/under_construction.dart';
 
 class EmployeesScreen extends StatelessWidget {
   const EmployeesScreen({Key? key}) : super(key: key);
@@ -6,9 +7,7 @@ class EmployeesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Text("الموظفين"),
-      ),
+      body: UnderConstruction(),
     );
   }
 }
