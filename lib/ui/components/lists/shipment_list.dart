@@ -28,9 +28,9 @@ class ShipmentsList extends StatelessWidget {
         },
       );
     }
-    if (listOfShipments.isEmpty) {
-      return EmptyShipmentList();
-    }
+    // if (listOfShipments.isEmpty) {
+    //   return EmptyShipmentList();
+    // }
     return Center(child: CircularProgressIndicator());
   }
 }
