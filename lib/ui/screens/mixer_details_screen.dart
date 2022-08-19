@@ -19,15 +19,8 @@ class MixerDetailsScreen extends StatelessWidget {
       create: (_) => shipmentDBService.retrieveShipmentsByMixerId(mixerId),
       initialData: <Shipment>[],
       child: Scaffold(
-        appBar: AppBar(
-          title: Text(
-            "خلاطة ${mixer.name}",
-            style: Theme.of(context).textTheme.subtitle1,
-          ),
-          backgroundColor: Colors.white,
-          leading: BackButton(
-            color: Colors.black,
-          ),
+        appBar: MyAppBar(
+          title: "خلاطة ${mixer.name}",
         ),
         body: ShipmentsList(),
         floatingActionButton: FloatingActionButton(

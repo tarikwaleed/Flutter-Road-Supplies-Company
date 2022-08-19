@@ -38,19 +38,13 @@ class _ShipmentItemScreenState extends State<ShipmentItemScreen> {
     final volumeProvider = Provider.of<VolumeProvider>(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          widget.mixerData.name,
-          style: Theme.of(context).textTheme.subtitle1,
-        ),
-        backgroundColor: Colors.white,
-        leading: BackButton(
-          color: Colors.black,
-        ),
+        title: Text("${widget.mixerData.name}",style: Theme.of(context).textTheme.subtitle2,),
+        // backgroundColor: Colors.white,
         actions: [
           IconButton(
             icon: Icon(
               Icons.check,
-              color: Colors.black,
+              // color: Colors.black,
             ),
             onPressed: () async {
               if (_formKey.currentState!.validate()) {

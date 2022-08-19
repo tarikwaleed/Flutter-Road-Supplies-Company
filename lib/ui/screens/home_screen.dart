@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:salah_construction/constants.dart';
-import 'package:salah_construction/ui/screens/mixers_list_screen.dart';
+import 'package:salah_construction/ui/screens/employees_screen.dart';
+import 'package:salah_construction/ui/screens/screens.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({
     Key? key,
   }) : super(key: key);
-  static const routeName='/';
+  static const routeName = '/';
 
   @override
   _HomeScreenState createState() => _HomeScreenState();
@@ -18,8 +18,8 @@ class _HomeScreenState extends State<HomeScreen> {
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> _widgetOptions = <Widget>[
     MixersList(),
-    MixersList(),
-    MixersList(),
+    ClientsScreen(),
+    EmployeesScreen(),
   ];
 
   void _onItemTapped(int index) {
