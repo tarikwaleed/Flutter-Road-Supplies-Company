@@ -12,7 +12,8 @@ class MixersList extends StatelessWidget {
         context.select<List<Mixer>, List<Mixer>>((mixers) => mixers);
     debugPrint("list of Mixers is${listOfMixers.toString()}");
     return Scaffold(
-      appBar: MyAppBar(title: "الخلاطات"),
+      appBar: SalahConstructionAppBar(title: "الخلاطات"),
+      drawer: SalahConstructionDrawer(),
       body: FutureBuilder<List<int>>(
         future: context.read<Future<List<int>>>(),
         builder: (_, snapshot) {

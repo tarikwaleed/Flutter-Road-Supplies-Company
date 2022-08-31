@@ -19,7 +19,7 @@ class MixerDetailsScreen extends StatelessWidget {
       create: (_) => shipmentDBService.retrieveShipmentsByMixerId(mixerId),
       initialData: <Shipment>[],
       child: Scaffold(
-        appBar: MyAppBar(
+        appBar: SalahConstructionAppBar(
           title: "خلاطة ${mixer.name}",
         ),
         body: ShipmentsList(),

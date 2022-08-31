@@ -8,7 +8,8 @@ class ClientsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MyAppBar(
+      drawer: SalahConstructionDrawer(),
+      appBar: SalahConstructionAppBar(
         title: "العملاء",
       ),
       body: ClientsList(),

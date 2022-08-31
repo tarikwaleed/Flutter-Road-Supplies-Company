@@ -2,6 +2,8 @@ import 'package:salah_construction/dtos/dtos.dart';
 import 'package:salah_construction/services/services.dart';
 
 abstract class ClientDataRepository {
+  // here we used factory constructor to return the concrete implementation
+  // of the interface, service locators and dependency injection are another options
   factory ClientDataRepository() => ClientFirestoreService();
 
   Future<List<Client>> retrieveClients();
