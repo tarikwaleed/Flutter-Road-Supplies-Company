@@ -1,7 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:salah_construction/datarepos/source_data_repository.dart';
 import 'package:salah_construction/dtos/source.dart' as sourcedto;
 
-class SourceDBService {
+class SourceFirestoreService implements SourceDataRepository {
   final FirebaseFirestore _db = FirebaseFirestore.instance;
 
   Future<List<sourcedto.Source>> retrieveSources() async {

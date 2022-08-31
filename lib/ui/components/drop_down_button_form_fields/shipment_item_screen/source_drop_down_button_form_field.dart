@@ -15,7 +15,7 @@ class SourceDropDownButtonFormField extends StatefulWidget {
 class _SourceDropDownButtonFormFieldState
     extends State<SourceDropDownButtonFormField> {
   sourcedto.Source? _selectedSource;
-  final _sourceDBService = SourceDBService();
+  final _sourceDBService = SourceFirestoreService();
   Future<List<sourcedto.Source>>? _futureListOfSources;
 
   _getAllSources() {
