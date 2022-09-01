@@ -5,4 +5,6 @@ abstract class SourceDataRepository {
   factory SourceDataRepository() => SourceFirestoreService();
 
   Future<List<Source>> retrieveSources();
+
+  void addSource(Source source);
 }

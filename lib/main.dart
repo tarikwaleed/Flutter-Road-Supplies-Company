@@ -3,14 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:salah_construction/datarepos/datarepos.dart';
-import 'package:salah_construction/datarepos/source_data_repository.dart';
 import 'package:salah_construction/providers/providers.dart';
 import 'package:salah_construction/route_generator.dart';
 import 'package:salah_construction/services/services.dart';
 import 'package:salah_construction/theme.dart';
 import 'package:salah_construction/dtos/dtos.dart';
-import 'package:salah_construction/dtos/source.dart'as sourcedto;
-
+import 'package:salah_construction/dtos/source.dart' as sourcedto;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -30,10 +28,10 @@ class MyApp extends StatelessWidget {
       providers: [
         FutureProvider<List<sourcedto.Source>>(
             create: (_) => sourceDataRepository.retrieveSources(),
-            initialData: <sourcedto.Source>[]),
+            initialData: const <sourcedto.Source>[]),
         FutureProvider<List<Mixer>>(
             create: (_) => mixerdbService.retrieveMixers(),
-            initialData: <Mixer>[]),
+            initialData: const <Mixer>[]),
         ProxyProvider<List<Mixer>, Future<List<int>>>(
             update: (_, mixers, __) async {
           final List<int> ints = [];
@@ -45,6 +43,9 @@ class MyApp extends StatelessWidget {
           }
           return ints;
         }),
+        ChangeNotifierProvider(
+          create: (_) => SourceNameProvider(),
+        ),
         ChangeNotifierProvider(
           create: (_) => MixerIDProvider(),
         ),

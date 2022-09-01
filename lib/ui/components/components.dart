@@ -1,6 +1,5 @@
 //GENERATED BARREL FILE 
 export 'salah_construction_drawer.dart'; 
-export 'salah_construction_app_bar.dart'; 
 export './cards/mixer_card.dart'; 
 export './cards/source_card.dart'; 
 export './cards/client_card/client_card.dart'; 
@@ -9,6 +8,8 @@ export './cards/shipment_card/components/shipment_card_row.dart';
 export './lists/clients_list.dart'; 
 export './lists/sources_list.dart'; 
 export './lists/shipment_list.dart'; 
+export './app_bars/entity_adder_app_bar.dart'; 
+export './app_bars/salah_construction_app_bar.dart'; 
 export './text_form_fields/shipment_item_screen/volume_text_form_field.dart'; 
 export './text_form_fields/shipment_item_screen/cart_number_text_form_field.dart'; 
 export './text_form_fields/shipment_item_screen/shipment_date_text_form_field.dart'; 
