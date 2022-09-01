@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+typedef AdderCallback = void Function(dynamic entity);
+
 class EntityAdderAppBar extends StatelessWidget with PreferredSizeWidget {
   @override
   final Size preferredSize;
@@ -18,7 +20,7 @@ class EntityAdderAppBar extends StatelessWidget with PreferredSizeWidget {
   final GlobalKey<FormState> formkey;
   final String entityArabicName;
   final String alertDialogConfirmationText;
-  final Function(dynamic) adder;
+  final AdderCallback adder;
   final dynamic entity;
 
   @override
