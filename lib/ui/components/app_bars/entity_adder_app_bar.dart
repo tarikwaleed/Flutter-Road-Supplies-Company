@@ -11,13 +11,15 @@ class EntityAdderAppBar extends StatelessWidget with PreferredSizeWidget {
     required this.formkey,
     required this.entityArabicName,
     required this.alertDialogConfirmationText,
-    required this.onAdd,
+    required this.adder,
+    required this.entity,
   })  : preferredSize = const Size.fromHeight(56),
         super(key: key);
   final GlobalKey<FormState> formkey;
   final String entityArabicName;
   final String alertDialogConfirmationText;
-  final VoidCallback onAdd;
+  final Function(dynamic) adder;
+  final dynamic entity;
 
   @override
   Widget build(BuildContext context) {
@@ -55,8 +57,7 @@ class EntityAdderAppBar extends StatelessWidget with PreferredSizeWidget {
                       TextButton(
                         child: const Text('تأكيد'),
                         onPressed: () async {
-                          onAdd;
-
+                          adder(entity);
                           Navigator.of(context).pop();
                           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                             content:

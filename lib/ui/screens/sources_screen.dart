@@ -17,7 +17,9 @@ class SourcesScreen extends StatelessWidget {
         child: SourcesList(),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pushNamed(context, '/source_item_screen');
+        },
         child: Icon(Icons.add),
       ),
     );

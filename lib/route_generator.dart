@@ -27,6 +27,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => EmployeesScreen());
       case '/sources':
         return MaterialPageRoute(builder: (_) => SourcesScreen());
+      case '/source_item_screen':
+        return MaterialPageRoute(builder: (_) => SourceItemScreen());
 
       default:
         return _errorRoute();
