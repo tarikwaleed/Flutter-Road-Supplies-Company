@@ -6,5 +6,5 @@ abstract class SourceDataRepository {
 
   Future<List<Source>> retrieveSources();
 
-  void addSource(Source source);
+  void addSource(dynamic source);
 }

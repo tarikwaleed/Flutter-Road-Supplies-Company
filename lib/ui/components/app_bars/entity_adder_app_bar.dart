@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:salah_construction/typedefs.dart';
 
-typedef AdderCallback = void Function(dynamic entity);
 
 class EntityAdderAppBar extends StatelessWidget with PreferredSizeWidget {
   @override

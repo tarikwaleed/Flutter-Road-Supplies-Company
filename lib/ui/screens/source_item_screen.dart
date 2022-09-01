@@ -23,7 +23,7 @@ class SourceItemScreen extends StatelessWidget {
         entityArabicName: "كسارة",
         alertDialogConfirmationText: "تأكيد اضافة كسارة",
         entity: source,
-        adder: (sourceDataRepo.addSource) as void Function(dynamic),
+        adder: sourceDataRepo.addSource,
       ),
       body: Padding(
         padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),

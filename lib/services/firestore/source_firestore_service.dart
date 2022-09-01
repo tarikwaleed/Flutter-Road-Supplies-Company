@@ -15,7 +15,7 @@ class SourceFirestoreService implements SourceDataRepository {
   }
 
   @override
-  void addSource(sourcedto.Source source) async {
+  void addSource(dynamic source) async {
     await _db.collection("sources").add(source.toFirestore());
   }
 }
