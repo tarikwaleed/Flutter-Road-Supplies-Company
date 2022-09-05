@@ -8,11 +8,13 @@ import 'package:salah_construction/providers/providers.dart';
 import 'package:salah_construction/dtos/dtos.dart';
 
 class ShipmentItemScreen extends StatefulWidget {
-  final dynamic mixerData;
+  final dynamic mixer;
+  final bool isUpdating;
 
   const ShipmentItemScreen({
     Key? key,
-    required this.mixerData,
+    required this.mixer,
+    required this.isUpdating,
   }) : super(key: key);
 
   @override
@@ -38,7 +40,7 @@ class _ShipmentItemScreenState extends State<ShipmentItemScreen> {
     final clientIDProvider = Provider.of<ClientIDProvider>(context);
     final volumeProvider = Provider.of<VolumeProvider>(context);
     final shipment = Shipment(
-      mixerId: widget.mixerData.id,
+      mixerId: widget.mixer.id,
       carriagePrice: carriagePriceProvider.carriagePrice,
       cartNumber: cartNumberProvider.cartNumber,
       clientId: clientIDProvider.clientId,
@@ -58,7 +60,7 @@ class _ShipmentItemScreenState extends State<ShipmentItemScreen> {
         adder: shipmentDataRepo.addShipment,
         entity: shipment,
         alertDialogConfirmationText:
-            "تأكيد اضافة نقلة الى الخلاطة ${widget.mixerData.name}",
+        "تأكيد اضافة نقلة الى الخلاطة ${widget.mixer.name}",
         formkey: _formKey,
       ),
       body: Padding(
@@ -71,6 +73,14 @@ class _ShipmentItemScreenState extends State<ShipmentItemScreen> {
               SizedBox(
                 height: 10,
               ),
+              Text(widget.isUpdating.toString(), style: Theme
+                  .of(context)
+                  .textTheme
+                  .headline6,),
+              Text(widget.mixer.name.toString(), style: Theme
+                  .of(context)
+                  .textTheme
+                  .headline6,),
               ShipmentDateTextFormField(),
               VehicleNumberTextFormField(),
               CartNumberTextFormField(),

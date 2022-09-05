@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:salah_construction/navigation/shipment_item_screen_arguments.dart';
 import 'package:salah_construction/providers/providers.dart';
 import 'package:salah_construction/services/services.dart';
 import 'package:salah_construction/ui/components/components.dart';
@@ -26,7 +27,8 @@ class MixerDetailsScreen extends StatelessWidget {
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             Navigator.pushNamed(context, '/shipment_item_screen',
-                arguments: mixer);
+                arguments: ShipmentItemScreenArguments(
+                    mixer: mixer, isUpdating: false));
           },
           child: Icon(Icons.add),
         ),

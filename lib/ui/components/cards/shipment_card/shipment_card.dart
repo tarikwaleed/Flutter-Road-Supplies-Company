@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:salah_construction/navigation/shipment_item_screen_arguments.dart';
 import 'package:salah_construction/services/services.dart';
 import 'package:salah_construction/ui/components/components.dart';
 import 'package:salah_construction/dtos/dtos.dart';
@@ -24,9 +25,9 @@ class _ShipmentCardState extends State<ShipmentCard> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      // onTap: () {
-      //   Navigator.pushNamed(context, '/shipment_item_screen');
-      // },
+      onTap: () {
+        Navigator.pushNamed(context, '/shipment_item_screen',arguments: ShipmentItemScreenArguments(mixer: mixer, isUpdating: isUpdating));
+      },
       child: InkWell(
         child: Card(
           shape: RoundedRectangleBorder(

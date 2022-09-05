@@ -4,7 +4,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:salah_construction/datarepos/datarepos.dart';
 import 'package:salah_construction/providers/providers.dart';
-import 'package:salah_construction/route_generator.dart';
+import 'package:salah_construction/navigation/navigation.dart';
 import 'package:salah_construction/services/services.dart';
 import 'package:salah_construction/theme.dart';
 import 'package:salah_construction/dtos/dtos.dart';
@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final mixerdbService = MixerDBService();
+    final mixerdbService = MixerFirestoreService();
     final shipmentdbService = serviceLocator<ShipmentDataRepository>();
     final sourceDataRepository = serviceLocator<SourceDataRepository>();
     return MultiProvider(

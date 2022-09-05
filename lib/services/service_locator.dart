@@ -13,6 +13,8 @@ void setupServiceLocator() {
       () => ClientFirestoreService());
   serviceLocator.registerLazySingleton<SourceDataRepository>(
       () => SourceFirestoreService());
+  serviceLocator.registerLazySingleton<MixerDataRepository>(
+      () => MixerFirestoreService());
 
   // ViewModels
   serviceLocator
