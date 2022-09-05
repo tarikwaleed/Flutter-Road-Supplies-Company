@@ -8,7 +8,8 @@ abstract class ShipmentDataRepository {
 
   Future<int> retrieveNumberOfShipmentsByMixerId(String? mixerId);
 
-  addShipment(Shipment shipment);
+  void addShipment(dynamic shipment);
 
   removeShipment(Shipment shipment);
+
 }

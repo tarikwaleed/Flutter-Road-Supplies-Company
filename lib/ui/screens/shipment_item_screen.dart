@@ -36,83 +36,29 @@ class _ShipmentItemScreenState extends State<ShipmentItemScreen> {
     final sourceIDProvider = Provider.of<SourceIDProvider>(context);
     final clientIDProvider = Provider.of<ClientIDProvider>(context);
     final volumeProvider = Provider.of<VolumeProvider>(context);
+    final shipment = Shipment(
+      mixerId: widget.mixerData.id,
+      carriagePrice: carriagePriceProvider.carriagePrice,
+      cartNumber: cartNumberProvider.cartNumber,
+      clientId: clientIDProvider.clientId,
+      date: Timestamp.fromDate(shipmentDateProvider.shipmentDate),
+      materialId: materialProvider.materialId,
+      materialPrice: materialPriceProvider.materialPrice,
+      sourceId: sourceIDProvider.sourceId,
+      vehicleNumber: vehicleNumberProvider.vehicleNumber,
+      volume: volumeProvider.volume,
+      totalPrice: materialPriceProvider.materialPrice +
+          carriagePriceProvider.carriagePrice,
+    );
     return Scaffold(
-      appBar: AppBar(
-        title: Text("${widget.mixerData.name}",style: Theme.of(context).textTheme.subtitle2,),
-        // backgroundColor: Colors.white,
-        actions: [
-          IconButton(
-            icon: Icon(
-              Icons.check,
-              // color: Colors.black,
-            ),
-            onPressed: () async {
-              if (_formKey.currentState!.validate()) {
-                return showDialog<void>(
-                  context: context,
-                  barrierDismissible: false, // user must tap button!
-                  builder: (BuildContext context) {
-                    return AlertDialog(
-                      title: const Text('تأكيد اضافة نقلة'),
-                      content: SingleChildScrollView(
-                        child: ListBody(
-                          children: <Widget>[
-                            Text(
-                              'تأكيد اضافة نقلة الى الخلاطة\n ${widget.mixerData.name}',
-                              style: Theme.of(context).textTheme.bodyText2,
-                            ),
-                          ],
-                        ),
-                      ),
-                      actions: <Widget>[
-                        TextButton(
-                          child: const Text('تأكيد'),
-                          onPressed: () async {
-                            final shipment = Shipment(
-                              mixerId: widget.mixerData.id,
-                              carriagePrice:
-                                  carriagePriceProvider.carriagePrice,
-                              cartNumber: cartNumberProvider.cartNumber,
-                              clientId: clientIDProvider.clientId,
-                              date: Timestamp.fromDate(
-                                  shipmentDateProvider.shipmentDate),
-                              materialId: materialProvider.materialId,
-                              materialPrice:
-                                  materialPriceProvider.materialPrice,
-                              sourceId: sourceIDProvider.sourceId,
-                              vehicleNumber:
-                                  vehicleNumberProvider.vehicleNumber,
-                              volume: volumeProvider.volume,
-                              totalPrice: materialPriceProvider.materialPrice +
-                                  carriagePriceProvider.carriagePrice,
-                            );
-                            shipmentDBService.addShipment(shipment);
-                            Navigator.of(context).pop();
-                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                              content: const Text("تم اضافة النقلة بنجاح"),
-                              backgroundColor: Colors.green,
-                            ));
-                          },
-                        ),
-                        TextButton(
-                          child: const Text(
-                            'الغاء',
-                            style: TextStyle(
-                              color: Colors.red,
-                            ),
-                          ),
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                          },
-                        ),
-                      ],
-                    );
-                  },
-                );
-              }
-            },
-          ),
-        ],
+      appBar: EntityAdderAppBar(
+        entityArabicName: "نقلة",
+        title: "اضافة نقلة",
+        adder: shipmentDBService.addShipment,
+        entity: shipment,
+        alertDialogConfirmationText:
+            "تأكيد اضافة نقلة الى الخلاطة ${widget.mixerData.name}",
+        formkey: _formKey,
       ),
       body: Padding(
         padding: const EdgeInsets.fromLTRB(16, 25, 16, 25),

@@ -26,7 +26,7 @@ class ShipmentFirestoreService implements ShipmentDataRepository {
   }
 
   @override
-  addShipment(Shipment shipment) async {
+  void addShipment(dynamic shipment) async {
     await _db.collection("shipments").add(shipment.toFirestore());
   }
 
