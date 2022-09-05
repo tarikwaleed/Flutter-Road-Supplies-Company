@@ -7,14 +7,19 @@ import 'package:salah_construction/ui/components/text_form_fields/source_item_sc
 
 import '../../dtos/source.dart' as sourcedto;
 
-class SourceItemScreen extends StatelessWidget {
+class SourceItemScreen extends StatefulWidget {
   const SourceItemScreen({Key? key}) : super(key: key);
 
   @override
+  State<SourceItemScreen> createState() => _SourceItemScreenState();
+}
+
+class _SourceItemScreenState extends State<SourceItemScreen> {
+  final formKey = GlobalKey<FormState>();
+  final sourceDataRepo = SourceDataRepository();
+  @override
   Widget build(BuildContext context) {
-    final sourceDataRepo = SourceDataRepository();
     final sourceNameProvider = Provider.of<SourceNameProvider>(context);
-    final formKey = GlobalKey<FormState>();
     final source = sourcedto.Source(name: sourceNameProvider.sourceName);
     return Scaffold(
       appBar: EntityAdderAppBar(
