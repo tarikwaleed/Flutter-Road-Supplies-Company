@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:salah_construction/services/services.dart';
 import 'package:salah_construction/ui/components/components.dart';
 import 'package:salah_construction/dtos/dtos.dart';
 import 'package:salah_construction/viewmodels/shipment_card_viewmodel.dart';
 
-class ShipmentCard extends StatelessWidget {
+class ShipmentCard extends StatefulWidget {
   const ShipmentCard({
     Key? key,
     required this.shipment,
@@ -11,8 +12,17 @@ class ShipmentCard extends StatelessWidget {
   final Shipment shipment;
 
   @override
+  State<ShipmentCard> createState() => _ShipmentCardState();
+}
+
+class _ShipmentCardState extends State<ShipmentCard> {
+  final shipmentCardViewmodel = serviceLocator<ShipmentCardViewmodel>();
+
+  @override
+  void initState() {}
+
+  @override
   Widget build(BuildContext context) {
-    final shipmentCardViewmodel = ShipmentCardViewmodel();
     return GestureDetector(
       // onTap: () {
       //   Navigator.pushNamed(context, '/shipment_item_screen');
@@ -34,7 +44,8 @@ class ShipmentCard extends StatelessWidget {
                   //todo: ShipmentDate
                   ShipmentCardRow(
                       icon: Icon(Icons.calendar_month),
-                      text: shipmentCardViewmodel.shipmentDate(shipment.date)),
+                      text: shipmentCardViewmodel
+                          .shipmentDate(widget.shipment.date)),
                   SizedBox(
                     height: 10,
                   ),
@@ -42,14 +53,15 @@ class ShipmentCard extends StatelessWidget {
                   //todo: VehicleNumber
                   ShipmentCardRow(
                       icon: Icon(Icons.fire_truck),
-                      text: shipment.vehicleNumber.toString()),
+                      text: widget.shipment.vehicleNumber.toString()),
                   SizedBox(
                     height: 10,
                   ),
                   // ClientName  🧔
                   //todo:ClientName
                   FutureBuilder(
-                    future: shipmentCardViewmodel.clientName(shipment.clientId),
+                    future: shipmentCardViewmodel
+                        .clientName(widget.shipment.clientId),
                     builder: (_, snapshot) {
                       if (snapshot.hasData &&
                           snapshot.connectionState == ConnectionState.done) {

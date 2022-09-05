@@ -20,6 +20,7 @@ dependencies:
   rflutter_alert: ^2.0.4
   intl: ^0.17.0
   provider: ^6.0.3
+  get_it: ^7.2.0
 
 dev_dependencies:
   flutter_test:

@@ -11,6 +11,7 @@ import 'package:salah_construction/dtos/dtos.dart';
 import 'package:salah_construction/dtos/source.dart' as sourcedto;
 
 Future<void> main() async {
+  setupServiceLocator();
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(const MyApp());
@@ -22,8 +23,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final mixerdbService = MixerDBService();
-    final shipmentdbService = ShipmentDataRepository();
-    final sourceDataRepository = SourceDataRepository();
+    final shipmentdbService = serviceLocator<ShipmentDataRepository>();
+    final sourceDataRepository = serviceLocator<SourceDataRepository>();
     return MultiProvider(
       providers: [
         FutureProvider<List<sourcedto.Source>>(

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:salah_construction/datarepos/datarepos.dart';
 import 'package:salah_construction/providers/providers.dart';
+import 'package:salah_construction/services/services.dart';
 import 'package:salah_construction/ui/components/components.dart';
 import 'package:salah_construction/ui/components/text_form_fields/source_item_screen/source_name_text_form_field.dart';
 
@@ -16,7 +17,8 @@ class SourceItemScreen extends StatefulWidget {
 
 class _SourceItemScreenState extends State<SourceItemScreen> {
   final formKey = GlobalKey<FormState>();
-  final sourceDataRepo = SourceDataRepository();
+  final sourceDataRepo = serviceLocator<SourceDataRepository>();
+
   @override
   Widget build(BuildContext context) {
     final sourceNameProvider = Provider.of<SourceNameProvider>(context);
