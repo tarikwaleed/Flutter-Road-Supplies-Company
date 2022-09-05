@@ -27,9 +27,7 @@ class _ShipmentItemScreenState extends State<ShipmentItemScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // Those are the providers for each component of the screen
-    // they're gonna be used to complete the addShipment process
-    // they're gonna be accessed in the ch ck button in the appBar
+    //todo: All this shit needs to be refactored
     final shipmentDateProvider = Provider.of<ShipmentDateProvider>(context);
     final vehicleNumberProvider = Provider.of<VehicleNumberProvider>(context);
     final cartNumberProvider = Provider.of<CartNumberProvider>(context);
@@ -56,11 +54,14 @@ class _ShipmentItemScreenState extends State<ShipmentItemScreen> {
     return Scaffold(
       appBar: EntityAdderAppBar(
         entityArabicName: "نقلة",
-        title: "اضافة نقلة",
-        adder: shipmentDataRepo.addShipment,
+        title: widget.isUpdating ? "تعديل بيانات النقلة" : "اضافة نقلة",
+        adder: widget.isUpdating
+            ? shipmentDataRepo.updateShipment()
+            : shipmentDataRepo.addShipment(shipment),
         entity: shipment,
-        alertDialogConfirmationText:
-        "تأكيد اضافة نقلة الى الخلاطة ${widget.mixer.name}",
+        alertDialogConfirmationText: widget.isUpdating
+            ? "تأكيد تعديل بيانات النقلة${widget.mixer.name}"
+            : "تأكيد اضافة نقلة الى الخلاطة ${widget.mixer.name}",
         formkey: _formKey,
       ),
       body: Padding(
@@ -70,26 +71,18 @@ class _ShipmentItemScreenState extends State<ShipmentItemScreen> {
           child: ListView(
             children: [
               // Adding this sized box is a stupid, lazy fix but it works!
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
-              Text(widget.isUpdating.toString(), style: Theme
-                  .of(context)
-                  .textTheme
-                  .headline6,),
-              Text(widget.mixer.name.toString(), style: Theme
-                  .of(context)
-                  .textTheme
-                  .headline6,),
               ShipmentDateTextFormField(),
               VehicleNumberTextFormField(),
-              CartNumberTextFormField(),
-              MaterialDropDownButtonFormField(),
-              MaterialPriceTextFormField(),
-              CarriagePriceTextFormField(),
-              SourceDropDownButtonFormField(),
-              VolumeTextFormField(),
-              ClientDropDownButtonFormField(),
+              const CartNumberTextFormField(),
+              const MaterialDropDownButtonFormField(),
+              const MaterialPriceTextFormField(),
+              const CarriagePriceTextFormField(),
+              const SourceDropDownButtonFormField(),
+              const VolumeTextFormField(),
+              const ClientDropDownButtonFormField(),
             ],
           ),
         ),

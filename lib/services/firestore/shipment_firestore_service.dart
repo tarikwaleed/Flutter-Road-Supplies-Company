@@ -31,6 +31,14 @@ class ShipmentFirestoreService implements ShipmentDataRepository {
   }
 
   @override
+  void updateShipment(String? shipmentId, dynamic shipment) async {
+    await _db
+        .collection("shipments")
+        .doc(shipmentId)
+        .update(shipment.toFirestore());
+  }
+
+  @override
   removeShipment(Shipment shipment) {
     // TODO: implement removeShipment
     throw UnimplementedError();

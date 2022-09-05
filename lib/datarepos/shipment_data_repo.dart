@@ -8,5 +8,7 @@ abstract class ShipmentDataRepository {
 
   void addShipment(dynamic shipment);
 
+  void updateShipment(String? shipmentId,dynamic shipment);
+
   removeShipment(Shipment shipment);
 }
