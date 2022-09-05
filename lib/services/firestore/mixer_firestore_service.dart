@@ -13,7 +13,7 @@ class MixerFirestoreService implements MixerDataRepository {
         .toList();
   }
 
-  Future<Mixer> getOne(String mixerId) async {
+  Future<Mixer> getOne(String? mixerId) async {
     final docSnapshot = await _db.collection("mixers").doc(mixerId).get();
     DocumentSnapshot<Map<String, dynamic>>? data = docSnapshot;
     Mixer mixer = Mixer.fromFirestore(data);

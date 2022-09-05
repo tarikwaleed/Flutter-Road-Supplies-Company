@@ -9,17 +9,21 @@ import 'package:salah_construction/services/services.dart';
 class ShipmentCardViewmodel extends ChangeNotifier {
   final _clientDataRepo = serviceLocator<ClientDataRepository>();
   final _mixerDataRepo = serviceLocator<MixerDataRepository>();
-  late Mixer _mixer;
+  Mixer _mixer = Mixer(name: "");
+  String _clientName = '';
+
+  String get clientName => _clientName;
 
   Mixer get mixer => _mixer;
 
-  loadMixer(String mixerId) async {
+  loadMixer(String? mixerId) async {
     _mixer = await _mixerDataRepo.getOne(mixerId);
     notifyListeners();
   }
 
-  Future<String> clientName(String? clientId) async {
-    return await _clientDataRepo.getClientName(clientId);
+  loadClientName(String? clientId) async {
+    _clientName = await _clientDataRepo.getClientName(clientId);
+    notifyListeners();
   }
 
   String shipmentDate(Timestamp timestamp) {
