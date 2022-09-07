@@ -27,7 +27,6 @@ class _ShipmentItemScreenState extends State<ShipmentItemScreen> {
 
   @override
   Widget build(BuildContext context) {
-    //todo: All this shit needs to be refactored
     final shipmentDateProvider = Provider.of<ShipmentDateProvider>(context);
     final vehicleNumberProvider = Provider.of<VehicleNumberProvider>(context);
     final cartNumberProvider = Provider.of<CartNumberProvider>(context);
@@ -52,12 +51,14 @@ class _ShipmentItemScreenState extends State<ShipmentItemScreen> {
           carriagePriceProvider.carriagePrice,
     );
     return Scaffold(
+      // todo:8 pass onUpdate if isUpdating in true
       appBar: EntityAdderAppBar(
         entityArabicName: "نقلة",
         title: widget.isUpdating ? "تعديل بيانات النقلة" : "اضافة نقلة",
-        adder: widget.isUpdating
-            ? shipmentDataRepo.updateShipment()
-            : shipmentDataRepo.addShipment(shipment),
+        // adder: widget.isUpdating
+        //     ? shipmentDataRepo.updateShipment()
+        //     : shipmentDataRepo.addShipment(shipment),
+        adder: shipmentDataRepo.addShipment,
         entity: shipment,
         alertDialogConfirmationText: widget.isUpdating
             ? "تأكيد تعديل بيانات النقلة${widget.mixer.name}"

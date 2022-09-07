@@ -9,7 +9,6 @@ class SourcesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //todo: Refresh Screen
     return Scaffold(
       appBar: SalahConstructionAppBar(title: "الكسارات"),
       body: Padding(

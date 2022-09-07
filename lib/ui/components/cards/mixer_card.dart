@@ -14,7 +14,6 @@ class MixerCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // todo: wrap with gesture dedector and navigate to /mixer_details
     final mixerIdProvider = context.read<MixerIDProvider>();
 
     return GestureDetector(

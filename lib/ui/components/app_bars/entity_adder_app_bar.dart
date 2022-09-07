@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:salah_construction/typedefs.dart';
 
-
 class EntityAdderAppBar extends StatelessWidget with PreferredSizeWidget {
   @override
   final Size preferredSize;
@@ -17,10 +16,12 @@ class EntityAdderAppBar extends StatelessWidget with PreferredSizeWidget {
     required this.entity,
   })  : preferredSize = const Size.fromHeight(56),
         super(key: key);
+
+  /// todo:8 define new field with type EntityUpdaterCallback onUpdate
   final GlobalKey<FormState> formkey;
   final String entityArabicName;
   final String alertDialogConfirmationText;
-  final AdderCallback adder;
+  final EntityAdderCallback adder;
   final dynamic entity;
 
   @override

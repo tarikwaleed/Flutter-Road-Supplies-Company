@@ -20,8 +20,11 @@ class ShipmentCard extends StatefulWidget {
 class _ShipmentCardState extends State<ShipmentCard> {
   final shipmentCardViewmodel = serviceLocator<ShipmentCardViewmodel>();
 
+  //todo:4 inject ShipmentItemViewmodel
+
   @override
   void initState() {
+    //todo:5 shipmentItemViewmodel.shipment(this.shipment)
     shipmentCardViewmodel.loadClientName(widget.shipment.clientId);
     shipmentCardViewmodel.loadMixer(widget.shipment.mixerId);
   }
@@ -51,7 +54,6 @@ class _ShipmentCardState extends State<ShipmentCard> {
                   child: Column(
                     children: [
                       // Date  📅
-                      //todo: ShipmentDate
                       ShipmentCardRow(
                           icon: Icon(Icons.calendar_month),
                           text: shipmentCardViewmodel
@@ -60,7 +62,6 @@ class _ShipmentCardState extends State<ShipmentCard> {
                         height: 10,
                       ),
                       // VehicleNumber 🚛🔢
-                      //todo: VehicleNumber
                       ShipmentCardRow(
                           icon: Icon(Icons.fire_truck),
                           text: widget.shipment.vehicleNumber.toString()),
@@ -68,7 +69,6 @@ class _ShipmentCardState extends State<ShipmentCard> {
                         height: 10,
                       ),
                       // ClientName  🧔
-                      //todo:ClientName
                       ShipmentCardRow(
                           icon: Icon(Icons.person),
                           text: shipmentCardViewmodel.clientName),

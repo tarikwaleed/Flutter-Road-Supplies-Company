@@ -1,18 +1,18 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Shipment {
-  final String? id; //Done
-  final String? mixerId; //Done
-  final num carriagePrice; // Done
-  final String? cartNumber; //Done
-  final String? vehicleNumber; //Dene
-  final Timestamp date; //Done
-  final String? materialId; // Done
-  final num materialPrice; // Done
-  final String? sourceId; // Done
+  final String? id;
+  final String? mixerId;
+  final num carriagePrice;
+  final String? cartNumber;
+  final String? vehicleNumber;
+  final Timestamp date;
+  final String? materialId;
+  final num materialPrice;
+  final String? sourceId;
   final num totalPrice;
-  final num volume; // Done
-  final String? clientId; // Done
+  final num volume;
+  final String? clientId;
 
   Shipment({
     this.id,
@@ -28,6 +28,21 @@ class Shipment {
     required this.volume,
     required this.clientId,
   });
+
+  // todo:1 implement factory named method Shipment.default
+  factory Shipment.empty() => Shipment(
+        materialPrice: 0,
+        mixerId: "",
+        carriagePrice: 0,
+        cartNumber: "",
+        vehicleNumber: "",
+        date: Timestamp.fromDate(DateTime.now()),
+        materialId: "",
+        sourceId: "",
+        totalPrice: 0,
+        volume: 0,
+        clientId: "",
+      );
 
   Shipment.fromFirestore(
     DocumentSnapshot<Map<String, dynamic>> snapshot,

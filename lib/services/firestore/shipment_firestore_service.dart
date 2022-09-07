@@ -40,7 +40,6 @@ class ShipmentFirestoreService implements ShipmentDataRepository {
 
   @override
   removeShipment(Shipment shipment) {
-    // TODO: implement removeShipment
     throw UnimplementedError();
   }
 }
