@@ -6,22 +6,25 @@ class EntityAdderAppBar extends StatelessWidget with PreferredSizeWidget {
   final Size preferredSize;
   final String title;
 
-  const EntityAdderAppBar({
+  EntityAdderAppBar({
     Key? key,
     required this.title,
     required this.formkey,
     required this.entityArabicName,
     required this.alertDialogConfirmationText,
-    required this.adder,
+    this.onAdd,
+    this.onUpdate,
     required this.entity,
-  })  : preferredSize = const Size.fromHeight(56),
+  })
+      : preferredSize = const Size.fromHeight(56),
         super(key: key);
 
   /// todo:8 define new field with type EntityUpdaterCallback onUpdate
   final GlobalKey<FormState> formkey;
   final String entityArabicName;
   final String alertDialogConfirmationText;
-  final EntityAdderCallback adder;
+  EntityAdderCallback? onAdd;
+  EntityUpdaterCallback? onUpdate;
   final dynamic entity;
 
   @override
@@ -29,7 +32,10 @@ class EntityAdderAppBar extends StatelessWidget with PreferredSizeWidget {
     return AppBar(
       title: Text(
         "${title}",
-        style: Theme.of(context).textTheme.subtitle2,
+        style: Theme
+            .of(context)
+            .textTheme
+            .subtitle2,
       ),
       // backgroundColor: Colors.white,
       actions: [
@@ -51,7 +57,10 @@ class EntityAdderAppBar extends StatelessWidget with PreferredSizeWidget {
                         children: <Widget>[
                           Text(
                             "${alertDialogConfirmationText}\n",
-                            style: Theme.of(context).textTheme.bodyText2,
+                            style: Theme
+                                .of(context)
+                                .textTheme
+                                .bodyText2,
                           ),
                         ],
                       ),
@@ -59,12 +68,11 @@ class EntityAdderAppBar extends StatelessWidget with PreferredSizeWidget {
                     actions: <Widget>[
                       TextButton(
                         child: const Text('تأكيد'),
-                        onPressed: () async {
-                          adder(entity);
+                        onPressed: () {
                           Navigator.of(context).pop();
                           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                             content:
-                                Text("تم اضافة ال${entityArabicName}بنجاح"),
+                            Text("تم اضافة ال${entityArabicName}بنجاح"),
                             backgroundColor: Colors.green,
                           ));
                         },

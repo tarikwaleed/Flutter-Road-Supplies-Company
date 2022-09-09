@@ -21,6 +21,14 @@ class ShipmentItemScreenViewmodel extends ChangeNotifier {
   num _volume = 0;
   String? _clientId = '';
   List<Client> _clients = <Client>[];
+  bool _isUpdating=false;
+
+  bool get isUpdating => _isUpdating;
+
+  setIsUpdating(bool value) {
+    _isUpdating = value;
+    notifyListeners();
+  }
 
   List<Client> get clients => _clients;
 

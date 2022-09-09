@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:salah_construction/navigation/shipment_item_screen_arguments.dart';
 import 'package:salah_construction/ui/screens/clients_screen.dart';
 import 'package:salah_construction/ui/screens/employees_screen.dart';
 import 'package:salah_construction/ui/screens/login_screen.dart';
@@ -18,14 +17,13 @@ class RouteGenerator {
                   mixer: args,
                 ));
       case '/shipment_item_screen':
-        return MaterialPageRoute(builder: (context) {
-          ShipmentItemScreenArguments arguments =
-              settings.arguments as ShipmentItemScreenArguments;
-          return ShipmentItemScreen(
-            mixer: arguments.mixer,
-            isUpdating: arguments.isUpdating,
-          );
-        });
+        return MaterialPageRoute(
+            builder: (context) =>
+                // ShipmentItemScreenArguments arguments =
+                //     settings.arguments as ShipmentItemScreenArguments;
+                ShipmentItemScreen(
+                  mixer: args,
+                ));
       case '/login':
         return MaterialPageRoute(builder: (_) => LoginScreen());
       case '/clients':

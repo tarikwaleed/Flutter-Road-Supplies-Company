@@ -9,6 +9,7 @@ import 'package:salah_construction/services/services.dart';
 import 'package:salah_construction/theme.dart';
 import 'package:salah_construction/dtos/dtos.dart';
 import 'package:salah_construction/dtos/source.dart' as sourcedto;
+import 'package:salah_construction/viewmodels/viewmodels.dart';
 
 Future<void> main() async {
   setupServiceLocator();
@@ -22,17 +23,20 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final mixerdbService = MixerFirestoreService();
+    final mixerDataRepository = serviceLocator<MixerDataRepository>();
     final shipmentdbService = serviceLocator<ShipmentDataRepository>();
     final sourceDataRepository = serviceLocator<SourceDataRepository>();
+    final shipmentItemScreenViewmodel =
+        serviceLocator<ShipmentItemScreenViewmodel>();
+    final shipmentCardViewmodel = serviceLocator<ShipmentCardViewmodel>();
     return MultiProvider(
       providers: [
         FutureProvider<List<sourcedto.Source>>(
-            create: (_) => sourceDataRepository.retrieveSources(),
-            initialData: const <sourcedto.Source>[],),
-
+          create: (_) => sourceDataRepository.retrieveSources(),
+          initialData: const <sourcedto.Source>[],
+        ),
         FutureProvider<List<Mixer>>(
-            create: (_) => mixerdbService.retrieveMixers(),
+            create: (_) => mixerDataRepository.retrieveMixers(),
             initialData: const <Mixer>[]),
         ProxyProvider<List<Mixer>, Future<List<int>>>(
             update: (_, mixers, __) async {
@@ -46,37 +50,16 @@ class MyApp extends StatelessWidget {
           return ints;
         }),
         ChangeNotifierProvider(
+          create: (_) => shipmentItemScreenViewmodel,
+        ),
+        ChangeNotifierProvider(
+          create: (_) => shipmentCardViewmodel,
+        ),
+        ChangeNotifierProvider(
           create: (_) => SourceNameProvider(),
         ),
         ChangeNotifierProvider(
           create: (_) => MixerIDProvider(),
-        ),
-        ChangeNotifierProvider(
-          create: (context) => ShipmentDateProvider(),
-        ),
-        ChangeNotifierProvider(
-          create: (context) => VehicleNumberProvider(),
-        ),
-        ChangeNotifierProvider(
-          create: (context) => CartNumberProvider(),
-        ),
-        ChangeNotifierProvider(
-          create: (context) => MaterialProvier(),
-        ),
-        ChangeNotifierProvider(
-          create: (context) => MaterialPriceProvider(),
-        ),
-        ChangeNotifierProvider(
-          create: (context) => CarriagePriceProvider(),
-        ),
-        ChangeNotifierProvider(
-          create: (context) => SourceIDProvider(),
-        ),
-        ChangeNotifierProvider(
-          create: (context) => VolumeProvider(),
-        ),
-        ChangeNotifierProvider(
-          create: (context) => ClientIDProvider(),
         ),
       ],
       child: MaterialApp(
