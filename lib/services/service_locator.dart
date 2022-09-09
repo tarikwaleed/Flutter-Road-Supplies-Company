@@ -20,4 +20,6 @@ void setupServiceLocator() {
   serviceLocator
       .registerFactory<ShipmentCardViewmodel>(() => ShipmentCardViewmodel());
   //todo:3 register ShipmentItemViewModel
+  serviceLocator.registerFactory<ShipmentItemScreenViewmodel>(
+      () => ShipmentItemScreenViewmodel());
 }

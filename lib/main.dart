@@ -29,7 +29,8 @@ class MyApp extends StatelessWidget {
       providers: [
         FutureProvider<List<sourcedto.Source>>(
             create: (_) => sourceDataRepository.retrieveSources(),
-            initialData: const <sourcedto.Source>[]),
+            initialData: const <sourcedto.Source>[],),
+
         FutureProvider<List<Mixer>>(
             create: (_) => mixerdbService.retrieveMixers(),
             initialData: const <Mixer>[]),

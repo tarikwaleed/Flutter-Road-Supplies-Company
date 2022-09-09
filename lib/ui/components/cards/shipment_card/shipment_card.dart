@@ -5,6 +5,7 @@ import 'package:salah_construction/services/services.dart';
 import 'package:salah_construction/ui/components/components.dart';
 import 'package:salah_construction/dtos/dtos.dart';
 import 'package:salah_construction/viewmodels/shipment_card_viewmodel.dart';
+import 'package:salah_construction/viewmodels/shipment_item_screen_viewmodel.dart';
 
 class ShipmentCard extends StatefulWidget {
   const ShipmentCard({
@@ -19,6 +20,8 @@ class ShipmentCard extends StatefulWidget {
 
 class _ShipmentCardState extends State<ShipmentCard> {
   final shipmentCardViewmodel = serviceLocator<ShipmentCardViewmodel>();
+  final shipmentItemScreenViewmodel =
+      serviceLocator<ShipmentItemScreenViewmodel>();
 
   //todo:4 inject ShipmentItemViewmodel
 
@@ -27,6 +30,7 @@ class _ShipmentCardState extends State<ShipmentCard> {
     //todo:5 shipmentItemViewmodel.shipment(this.shipment)
     shipmentCardViewmodel.loadClientName(widget.shipment.clientId);
     shipmentCardViewmodel.loadMixer(widget.shipment.mixerId);
+    shipmentItemScreenViewmodel.setShipment(widget.shipment);
   }
 
   @override

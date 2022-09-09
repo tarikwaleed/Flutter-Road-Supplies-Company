@@ -83,7 +83,7 @@ class _ShipmentItemScreenState extends State<ShipmentItemScreen> {
               const CarriagePriceTextFormField(),
               const SourceDropDownButtonFormField(),
               const VolumeTextFormField(),
-              const ClientDropDownButtonFormField(),
+              const ClientDropdownButtonFormField(),
             ],
           ),
         ),
