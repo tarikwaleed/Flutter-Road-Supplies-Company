@@ -8,20 +8,48 @@ import 'package:salah_construction/services/services.dart';
 
 class ShipmentItemScreenViewmodel extends ChangeNotifier {
   final _clientDataRepo = serviceLocator<ClientDataRepository>();
+
+  ///Gonna be set from when shipment card or FloatingActionButton in MixerDetailsScreen are clicked
   Shipment _shipment = Shipment.empty();
+
+  ///Gonna be set when manually when creating a new Shipment objcet on ShipmentItemScreen
   String _mixerId = '';
+
+  /// Gonna be set from CarriagePriceTextFormField onChange callback
   num _carriagePrice = 0;
+
+  /// Gonna be set from CartNumberTextFormField onChange callback
   String _cartNumber = '';
+
+  /// Gonna be set from VehicleNumberTextFormField onChange callback
   String _vehicleNumber = '';
+
+  /// Gonna be set from ShpmentDateTextFormField
   Timestamp _date = Timestamp.fromDate(DateTime.now());
+
+  ///Gonna be set from MaterialDropdownButtonFormField
   String _materialId = '';
+
+  /// Gonna be set from MaterialPriceTextFormField
   num _materialPrice = 0;
+
+  /// Gonna be set form SourceDropdownButtonFormField
   String _sourceId = '';
+
+  ///Gonna be set when manually when creating a new Shipment objcet on ShipmentItemScreen
   num _totalPrice = 0;
+
+  /// Gonna be set from VolumeTextFormField
   num _volume = 0;
+
+  /// Gonna be set from ClientDropdownButtonFormField
   String? _clientId = '';
+
+  /// Gonna be loaded from ShipmentItemScreen initState
   List<Client> _clients = <Client>[];
-  bool _isUpdating=false;
+
+  /// Gonna be set form ShipmentCard and FloatingActionButton in MixerDetailsScreen
+  bool _isUpdating = false;
 
   bool get isUpdating => _isUpdating;
 

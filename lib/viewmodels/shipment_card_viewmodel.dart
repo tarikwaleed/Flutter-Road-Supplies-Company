@@ -9,7 +9,8 @@ import 'package:salah_construction/services/services.dart';
 class ShipmentCardViewmodel extends ChangeNotifier {
   final _clientDataRepo = serviceLocator<ClientDataRepository>();
   final _mixerDataRepo = serviceLocator<MixerDataRepository>();
-  Mixer _mixer = Mixer(name: "");
+  /// Gonna be loaded when f
+  Mixer _mixer = Mixer.empty();
   String _clientName = '';
 
   String get clientName => _clientName;

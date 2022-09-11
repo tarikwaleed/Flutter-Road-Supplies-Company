@@ -9,10 +9,14 @@ class Mixer {
     required this.name,
   });
 
+  //Named Generative
   Mixer.fromFirestore(
     DocumentSnapshot<Map<String, dynamic>> snapshot,
   )   : name = snapshot.data()?["name"],
         id = snapshot.id;
+
+  //Named Factory
+  factory Mixer.empty() => Mixer(name: "");
 
   Map<String, dynamic> toFirestore() {
     return {

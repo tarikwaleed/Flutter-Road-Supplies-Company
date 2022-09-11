@@ -1,16 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:salah_construction/navigation/shipment_item_screen_arguments.dart';
 import 'package:salah_construction/providers/providers.dart';
 import 'package:salah_construction/services/services.dart';
 import 'package:salah_construction/ui/components/components.dart';
-import 'package:salah_construction/ui/components/lists/shipment_list.dart';
 import 'package:salah_construction/dtos/dtos.dart';
+import 'package:salah_construction/viewmodels/viewmodels.dart';
 
-class MixerDetailsScreen extends StatelessWidget {
+class MixerDetailsScreen extends StatefulWidget {
   final dynamic mixer;
 
   const MixerDetailsScreen({Key? key, required this.mixer}) : super(key: key);
+
+  @override
+  State<MixerDetailsScreen> createState() => _MixerDetailsScreenState();
+}
+
+class _MixerDetailsScreenState extends State<MixerDetailsScreen> {
+  final shipmentCardViewmodel = serviceLocator<ShipmentCardViewmodel>();
+  final shipmentItemScreenViewmodel =
+      serviceLocator<ShipmentItemScreenViewmodel>();
+
+
+  @override
+  void initState() {
+
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,14 +36,13 @@ class MixerDetailsScreen extends StatelessWidget {
       initialData: <Shipment>[],
       child: Scaffold(
         appBar: SalahConstructionAppBar(
-          title: "خلاطة ${mixer.name}",
+          title: "خلاطة ${widget.mixer.name}",
         ),
         body: ShipmentsList(),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
             Navigator.pushNamed(context, '/shipment_item_screen',
-                arguments: ShipmentItemScreenArguments(
-                    mixer: mixer, isUpdating: false));
+                arguments: widget.mixer);
           },
           child: Icon(Icons.add),
         ),

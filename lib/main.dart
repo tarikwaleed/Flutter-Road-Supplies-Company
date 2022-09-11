@@ -26,9 +26,6 @@ class MyApp extends StatelessWidget {
     final mixerDataRepository = serviceLocator<MixerDataRepository>();
     final shipmentdbService = serviceLocator<ShipmentDataRepository>();
     final sourceDataRepository = serviceLocator<SourceDataRepository>();
-    final shipmentItemScreenViewmodel =
-        serviceLocator<ShipmentItemScreenViewmodel>();
-    final shipmentCardViewmodel = serviceLocator<ShipmentCardViewmodel>();
     return MultiProvider(
       providers: [
         FutureProvider<List<sourcedto.Source>>(
@@ -49,12 +46,6 @@ class MyApp extends StatelessWidget {
           }
           return ints;
         }),
-        ChangeNotifierProvider(
-          create: (_) => shipmentItemScreenViewmodel,
-        ),
-        ChangeNotifierProvider(
-          create: (_) => shipmentCardViewmodel,
-        ),
         ChangeNotifierProvider(
           create: (_) => SourceNameProvider(),
         ),

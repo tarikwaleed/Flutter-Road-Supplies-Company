@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:salah_construction/navigation/shipment_item_screen_arguments.dart';
 import 'package:salah_construction/services/services.dart';
 import 'package:salah_construction/ui/components/components.dart';
 import 'package:salah_construction/dtos/dtos.dart';
-import 'package:salah_construction/viewmodels/shipment_card_viewmodel.dart';
-import 'package:salah_construction/viewmodels/shipment_item_screen_viewmodel.dart';
+import 'package:salah_construction/viewmodels/viewmodels.dart';
 
 class ShipmentCard extends StatefulWidget {
   const ShipmentCard({
@@ -30,14 +28,14 @@ class _ShipmentCardState extends State<ShipmentCard> {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<ShipmentItemScreenViewmodel>(
-      builder: (_, shipmentItemScreenViewmodel, __) => GestureDetector(
+    return Consumer2<ShipmentItemScreenViewmodel, ShipmentCardViewmodel>(
+      builder: (_, shipmentItemScreenViewmodel, shipmentCardViewmodel, __) =>
+          GestureDetector(
         onTap: () {
           shipmentItemScreenViewmodel.setShipment(widget.shipment);
 
           Navigator.pushNamed(context, '/shipment_item_screen',
-              arguments: ShipmentItemScreenArguments(
-                  mixer:shipmentItemScreenViewmodel.mixer, isUpdating: true));
+              arguments: shipmentCardViewmodel.mixer);
         },
         child: InkWell(
           child: Card(
