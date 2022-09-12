@@ -2,13 +2,10 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
-import 'package:salah_construction/datarepos/datarepos.dart';
 import 'package:salah_construction/providers/providers.dart';
 import 'package:salah_construction/navigation/navigation.dart';
 import 'package:salah_construction/services/services.dart';
 import 'package:salah_construction/theme.dart';
-import 'package:salah_construction/dtos/dtos.dart';
-import 'package:salah_construction/dtos/source.dart' as sourcedto;
 import 'package:salah_construction/viewmodels/viewmodels.dart';
 
 Future<void> main() async {
@@ -18,40 +15,26 @@ Future<void> main() async {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
 
   @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  final mixersLisScreenViewmodel = serviceLocator<MixersListScreenViewmodel>();
+
+  @override
+  void initState() {
+    mixersLisScreenViewmodel.loadMixers();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final mixerDataRepository = serviceLocator<MixerDataRepository>();
-    final shipmentdbService = serviceLocator<ShipmentDataRepository>();
-    final sourceDataRepository = serviceLocator<SourceDataRepository>();
     return MultiProvider(
       providers: [
-        FutureProvider<List<sourcedto.Source>>(
-          create: (_) => sourceDataRepository.retrieveSources(),
-          initialData: const <sourcedto.Source>[],
-        ),
-        FutureProvider<List<Mixer>>(
-            create: (_) => mixerDataRepository.retrieveMixers(),
-            initialData: const <Mixer>[]),
-        ProxyProvider<List<Mixer>, Future<List<int>>>(
-            update: (_, mixers, __) async {
-          final List<int> ints = [];
-
-          for (var mixer in mixers) {
-            final value = await shipmentdbService
-                .retrieveNumberOfShipmentsByMixerId(mixer.id);
-            ints.add(value);
-          }
-          return ints;
-        }),
-        ChangeNotifierProvider(
-          create: (_) => SourceNameProvider(),
-        ),
-        ChangeNotifierProvider(
-          create: (_) => MixerIDProvider(),
-        ),
+        ChangeNotifierProvider(create: (_) => mixersLisScreenViewmodel),
       ],
       child: MaterialApp(
         localizationsDelegates: const [

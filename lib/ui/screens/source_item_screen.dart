@@ -30,7 +30,7 @@ class _SourceItemScreenState extends State<SourceItemScreen> {
         entityArabicName: "كسارة",
         alertDialogConfirmationText: "تأكيد اضافة كسارة",
         entity: source,
-        adder: sourceDataRepo.addSource,
+        onAdd: sourceDataRepo.addSource,
       ),
       body: Padding(
         padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),

@@ -39,20 +39,20 @@ class _ShipmentItemScreenState extends State<ShipmentItemScreen> {
     );
     return Scaffold(
       // todo:8 pass onUpdate if isUpdating is true
-      appBar: EntityAdderAppBar(
-        entityArabicName: "نقلة",
-        title: widget.isUpdating ? "تعديل بيانات النقلة" : "اضافة نقلة",
-        // adder: widget.isUpdating
-        //     ? shipmentDataRepo.updateShipment()
-        //     : shipmentDataRepo.addShipment(shipment),
-        onAdd: shipmentDataRepo.addShipment,
-        onUpdate: shipmentDataRepo.updateShipment,
-        entity: shipment,
-        alertDialogConfirmationText: widget.isUpdating
-            ? "تأكيد تعديل بيانات النقلة${widget.mixer.name}"
-            : "تأكيد اضافة نقلة الى الخلاطة ${widget.mixer.name}",
-        formkey: _formKey,
-      ),
+      // appBar: EntityAdderAppBar(
+      //   entityArabicName: "نقلة",
+      //   title: widget.isUpdating ? "تعديل بيانات النقلة" : "اضافة نقلة",
+      //   // adder: widget.isUpdating
+      //   //     ? shipmentDataRepo.updateShipment()
+      //   //     : shipmentDataRepo.addShipment(shipment),
+      //   onAdd: shipmentDataRepo.addShipment,
+      //   onUpdate: shipmentDataRepo.updateShipment,
+      //   entity: shipment,
+      //   alertDialogConfirmationText: widget.isUpdating
+      //       ? "تأكيد تعديل بيانات النقلة${widget.mixer.name}"
+      //       : "تأكيد اضافة نقلة الى الخلاطة ${widget.mixer.name}",
+      //   formkey: _formKey,
+      // ),
       body: Padding(
         padding: const EdgeInsets.fromLTRB(16, 25, 16, 25),
         child: Form(

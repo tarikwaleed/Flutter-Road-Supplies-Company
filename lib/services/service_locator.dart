@@ -6,7 +6,7 @@ import 'package:salah_construction/viewmodels/viewmodels.dart';
 GetIt serviceLocator = GetIt.instance;
 
 void setupServiceLocator() {
-  //Service
+  //Services
   serviceLocator.registerLazySingleton<ShipmentDataRepository>(
       () => ShipmentFirestoreService());
   serviceLocator.registerLazySingleton<ClientDataRepository>(
@@ -16,10 +16,14 @@ void setupServiceLocator() {
   serviceLocator.registerLazySingleton<MixerDataRepository>(
       () => MixerFirestoreService());
 
-  // ViewModels
+  // Viewmodels
   serviceLocator
       .registerFactory<ShipmentCardViewmodel>(() => ShipmentCardViewmodel());
   //todo:3 register ShipmentItemViewModel
   serviceLocator.registerFactory<ShipmentItemScreenViewmodel>(
       () => ShipmentItemScreenViewmodel());
+  serviceLocator.registerFactory<MixersListScreenViewmodel>(
+      () => MixersListScreenViewmodel());
+  serviceLocator.registerFactory<MixerDetailsScreenViewmodel>(
+          () => MixerDetailsScreenViewmodel());
 }

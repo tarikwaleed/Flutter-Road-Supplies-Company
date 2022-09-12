@@ -6,7 +6,7 @@ class ShipmentFirestoreService implements ShipmentDataRepository {
   final FirebaseFirestore _db = FirebaseFirestore.instance;
 
   @override
-  Future<List<Shipment>> retrieveShipmentsByMixerId(String mixerId) async {
+  Future<List<Shipment>> retrieveShipmentsByMixerId(String? mixerId) async {
     QuerySnapshot<Map<String, dynamic>> snapshot = await _db
         .collection("shipments")
         .where("mixer_id", isEqualTo: mixerId)
