@@ -19,6 +19,10 @@ class _MixerCardState extends State<MixerCard> {
 
   @override
   void initState() {
+    _loadModel();
+  }
+
+  _loadModel() async {
     mixerCardViewmodel.loadShipmentsCounts();
   }
 
@@ -26,9 +30,8 @@ class _MixerCardState extends State<MixerCard> {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<MixerCardViewmodel>(
       create: (BuildContext context) => mixerCardViewmodel,
-      child: Consumer2<MixersListScreenViewmodel, MixerCardViewmodel>(
-          builder: (_, mixersListScreenViewmodel, mixerCardViewModel, __) =>
-              GestureDetector(
+      child: Consumer<MixersListScreenViewmodel>(
+          builder: (_, mixersListScreenViewmodel, __) => GestureDetector(
                 onTap: () {},
                 child: InkWell(
                   child: Padding(
@@ -67,11 +70,15 @@ class _MixerCardState extends State<MixerCard> {
                                   Column(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      Text(
-                                        '${mixerCardViewmodel.shipmentsCoutns[widget.index]}',
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyText1,
+                                      Consumer<MixerCardViewmodel>(
+                                        builder: (context, provider, child) {
+                                          return Text(
+                                            '${mixerCardViewmodel.shipmentsCoutns[widget.index]}',
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyText1,
+                                          );
+                                        },
                                       ),
                                       Text(
                                         "نقلة",

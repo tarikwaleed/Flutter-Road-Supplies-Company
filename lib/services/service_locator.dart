@@ -1,6 +1,7 @@
 import 'package:get_it/get_it.dart';
 import 'package:salah_construction/datarepos/datarepos.dart';
 import 'package:salah_construction/services/services.dart';
+import 'package:salah_construction/ui/components/components.dart';
 import 'package:salah_construction/viewmodels/viewmodels.dart';
 
 GetIt serviceLocator = GetIt.instance;
@@ -26,4 +27,6 @@ void setupServiceLocator() {
       () => MixersListScreenViewmodel());
   serviceLocator.registerFactory<MixerDetailsScreenViewmodel>(
           () => MixerDetailsScreenViewmodel());
+  serviceLocator.registerFactory<MixerCardViewmodel>(
+          () => MixerCardViewmodel());
 }

@@ -9,14 +9,20 @@ class MixersList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer<MixersListScreenViewmodel>(
-      builder: (_, mixersListScreenViewModel, __) => ListView.separated(
-        itemCount: mixersListScreenViewModel.mixers.length,
-        itemBuilder: (_, index) {
-          return MixerCard(index: index);
-        },
-        separatorBuilder: (_, __) => const SizedBox(
-          height: 10,
-        ),
+      builder: (_, mixersListScreenViewModel, __) => Column(
+        children: [
+          Expanded(
+            child: ListView.separated(
+              itemCount: mixersListScreenViewModel.mixers.length,
+              itemBuilder: (_, index) {
+                return MixerCard(index: index);
+              },
+              separatorBuilder: (_, __) => const SizedBox(
+                height: 10,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

@@ -2,7 +2,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
-import 'package:salah_construction/providers/providers.dart';
 import 'package:salah_construction/navigation/navigation.dart';
 import 'package:salah_construction/services/services.dart';
 import 'package:salah_construction/theme.dart';

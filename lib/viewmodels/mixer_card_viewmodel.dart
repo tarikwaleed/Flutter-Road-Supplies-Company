@@ -4,9 +4,8 @@ import 'package:salah_construction/services/services.dart';
 import 'package:salah_construction/viewmodels/viewmodels.dart';
 
 class MixerCardViewmodel extends ChangeNotifier {
-  static final _mixersListViewmodel =
+  final _mixersListViewmodel =
       serviceLocator<MixersListScreenViewmodel>();
-  static final _mixers = _mixersListViewmodel.mixers;
   final _shipmentDataRepository = serviceLocator<ShipmentDataRepository>();
 
   List<int> _shipmentsCoutns = <int>[];
@@ -14,6 +13,10 @@ class MixerCardViewmodel extends ChangeNotifier {
   List<int> get shipmentsCoutns => _shipmentsCoutns;
 
   loadShipmentsCounts() async {
+    await _loadCounts();
+  }
+
+  Future<void> _loadCounts() async {
     final List<int> ints = [];
 
     for (var mixer in _mixers) {
@@ -22,7 +25,6 @@ class MixerCardViewmodel extends ChangeNotifier {
       ints.add(value);
     }
     _shipmentsCoutns = ints;
-
     notifyListeners();
   }
 }
