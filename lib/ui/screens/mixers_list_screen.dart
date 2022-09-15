@@ -32,9 +32,9 @@ class _MixersListScreenState extends State<MixersListScreen> {
       drawer: SalahConstructionDrawer(),
       body: ChangeNotifierProvider(
         create: (BuildContext context) => mixersLisScreenViewmodel,
-        child: MixersList(
-          model: mixersLisScreenViewmodel,
-        ),
+        child: mixersLisScreenViewmodel.mixers.isNotEmpty
+            ? MixersList(model: mixersLisScreenViewmodel)
+            : Center(child: CircularProgressIndicator()),
       ),
     );
   }
