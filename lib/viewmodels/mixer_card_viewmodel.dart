@@ -19,11 +19,11 @@ class MixerCardViewmodel extends ChangeNotifier {
   Future<void> _loadCounts() async {
     final List<int> ints = [];
 
-    for (var mixer in _mixers) {
-      final value = await _shipmentDataRepository
-          .retrieveNumberOfShipmentsByMixerId(mixer.id);
-      ints.add(value);
-    }
+    // for (var mixer in _mixers) {
+    //   final value = await _shipmentDataRepository
+    //       .retrieveNumberOfShipmentsByMixerId(mixer.id);
+    //   ints.add(value);
+    // }
     _shipmentsCoutns = ints;
     notifyListeners();
   }

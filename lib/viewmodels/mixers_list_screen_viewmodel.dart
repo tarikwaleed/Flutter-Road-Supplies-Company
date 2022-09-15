@@ -10,8 +10,9 @@ class MixersListScreenViewmodel extends ChangeNotifier {
 
   List<Mixer> get mixers => _mixers;
 
-  loadMixers() async {
-    _mixers = await _mixersDataRepo.retrieveMixers();
+  Future<void> loadMixers() async {
+    final mixers = await _mixersDataRepo.retrieveMixers();
+    _mixers = mixers;
     notifyListeners();
   }
 }

@@ -13,15 +13,29 @@ class MixersListScreen extends StatefulWidget {
 }
 
 class _MixersListScreenState extends State<MixersListScreen> {
+  final mixersLisScreenViewmodel = serviceLocator<MixersListScreenViewmodel>();
+
   @override
-  void initState() {}
+  void initState() {
+    _loadModel();
+    print("MixersListScreen initState Called.");
+  }
+
+  _loadModel() async {
+    await mixersLisScreenViewmodel.loadMixers();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       appBar: SalahConstructionAppBar(title: "الخلاطات"),
       drawer: SalahConstructionDrawer(),
-      body: MixersList(),
+      body: ChangeNotifierProvider(
+        create: (BuildContext context) => mixersLisScreenViewmodel,
+        child: MixersList(
+          model: mixersLisScreenViewmodel,
+        ),
+      ),
     );
   }
 }

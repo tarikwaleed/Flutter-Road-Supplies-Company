@@ -23,7 +23,7 @@ class _MixerCardState extends State<MixerCard> {
   }
 
   _loadModel() async {
-    mixerCardViewmodel.loadShipmentsCounts();
+    await mixerCardViewmodel.loadShipmentsCounts();
   }
 
   @override
