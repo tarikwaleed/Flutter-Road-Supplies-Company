@@ -20,6 +20,7 @@ class _MixerCardState extends State<MixerCard> {
   @override
   void initState() {
     _loadModel();
+    mixerCardViewmodel.loadMixers();
   }
 
   _loadModel() async {
@@ -75,7 +76,7 @@ class _MixerCardState extends State<MixerCard> {
                               child: Consumer<MixerCardViewmodel>(
                                 builder: (context, mixerCardViewmodel, child) {
                                   return Text(
-                                    '${mixerCardViewmodel.shipmentsCoutns[widget.index]}',
+                                    '${mixerCardViewmodel.mixers[widget.index].name}',
                                     style:
                                         Theme.of(context).textTheme.bodyText1,
                                   );
