@@ -11,7 +11,6 @@ class ShipmentsList extends StatelessWidget {
   Widget build(BuildContext context) {
     final listOfShipments = context.watch<List<Shipment>>();
 
-
     if (listOfShipments.isNotEmpty) {
       return ListView.separated(
         itemCount: listOfShipments.length,

@@ -18,7 +18,12 @@ class RouteGenerator {
                 ));
       case '/shipment_item_screen':
         return MaterialPageRoute(
-            builder: (context) => ShipmentItemScreen(mixerData: args));
+            builder: (context) =>
+                // ShipmentItemScreenArguments arguments =
+                //     settings.arguments as ShipmentItemScreenArguments;
+                ShipmentItemScreen(
+                  mixer: args,
+                ));
       case '/login':
         return MaterialPageRoute(builder: (_) => LoginScreen());
       case '/clients':

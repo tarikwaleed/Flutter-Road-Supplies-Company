@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import '../../../../providers/providers.dart';
 
+//todo: Refacor each component to use the new Architecture
 class CarriagePriceTextFormField extends StatefulWidget {
   const CarriagePriceTextFormField({
     Key? key,

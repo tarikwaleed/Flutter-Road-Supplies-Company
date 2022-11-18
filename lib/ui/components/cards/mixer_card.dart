@@ -1,28 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:salah_construction/providers/providers.dart';
-import 'package:salah_construction/dtos/dtos.dart';
+import 'package:salah_construction/services/services.dart';
+import 'package:salah_construction/viewmodels/viewmodels.dart';
 
-class MixerCard extends StatelessWidget {
+class MixerCard extends StatefulWidget {
   const MixerCard({
     Key? key,
-    required this.mixer,
-    required this.numberOfShipments,
+    required this.index,
   }) : super(key: key);
-  final Mixer mixer;
-  final int? numberOfShipments;
+  final int index;
+
+  @override
+  State<MixerCard> createState() => _MixerCardState();
+}
+
+class _MixerCardState extends State<MixerCard> {
+  final mixerCardViewmodel = serviceLocator<MixerCardViewmodel>();
+
+  @override
+  void initState() {
+    _loadModel();
+    mixerCardViewmodel.loadMixers();
+  }
+
+  _loadModel() async {
+    await mixerCardViewmodel.loadShipmentsCounts();
+  }
 
   @override
   Widget build(BuildContext context) {
-    // todo: wrap with gesture dedector and navigate to /mixer_details
-    final mixerIdProvider = context.read<MixerIDProvider>();
-
     return GestureDetector(
-      onTap: () {
-        mixerIdProvider.setMixerId(mixer.id.toString());
-
-        Navigator.pushNamed(context, '/mixer_details', arguments: mixer);
-      },
+      onTap: () {},
       child: InkWell(
         child: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -41,9 +49,13 @@ class MixerCard extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
-                          "خلاطة ${mixer.name}",
-                          style: Theme.of(context).textTheme.headline6,
+                        Consumer<MixersListScreenViewmodel>(
+                          builder: (context, mixersListScreenViewmodel, child) {
+                            return Text(
+                              "خلاطة ${mixersListScreenViewmodel.mixers[widget.index].name}",
+                              style: Theme.of(context).textTheme.headline6,
+                            );
+                          },
                         ),
                       ],
                     ),
@@ -58,9 +70,18 @@ class MixerCard extends StatelessWidget {
                         Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text(
-                              '${numberOfShipments}',
-                              style: Theme.of(context).textTheme.bodyText1,
+                            ChangeNotifierProvider<MixerCardViewmodel>(
+                              create: (BuildContext context) =>
+                                  mixerCardViewmodel,
+                              child: Consumer<MixerCardViewmodel>(
+                                builder: (context, mixerCardViewmodel, child) {
+                                  return Text(
+                                    '${mixerCardViewmodel.mixers[widget.index].name}',
+                                    style:
+                                        Theme.of(context).textTheme.bodyText1,
+                                  );
+                                },
+                              ),
                             ),
                             Text(
                               "نقلة",

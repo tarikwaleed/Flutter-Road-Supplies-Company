@@ -1,37 +1,40 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:salah_construction/services/services.dart';
 import 'package:salah_construction/ui/components/components.dart';
-import 'package:salah_construction/dtos/dtos.dart';
+import 'package:salah_construction/ui/components/lists/mixers_list.dart';
+import 'package:salah_construction/viewmodels/viewmodels.dart';
 
-class MixersList extends StatelessWidget {
-  const MixersList({Key? key}) : super(key: key);
+class MixersListScreen extends StatefulWidget {
+  const MixersListScreen({Key? key}) : super(key: key);
+
+  @override
+  State<MixersListScreen> createState() => _MixersListScreenState();
+}
+
+class _MixersListScreenState extends State<MixersListScreen> {
+  final mixersLisScreenViewmodel = serviceLocator<MixersListScreenViewmodel>();
+
+  @override
+  void initState() {
+    _loadModel();
+    print("MixersListScreen initState Called.");
+  }
+
+  _loadModel() async {
+    await mixersLisScreenViewmodel.loadMixers();
+  }
 
   @override
   Widget build(BuildContext context) {
-    final List<Mixer> listOfMixers =
-        context.select<List<Mixer>, List<Mixer>>((mixers) => mixers);
-    debugPrint("list of Mixers is${listOfMixers.toString()}");
     return Scaffold(
       appBar: SalahConstructionAppBar(title: "الخلاطات"),
       drawer: SalahConstructionDrawer(),
-      body: FutureBuilder<List<int>>(
-        future: context.read<Future<List<int>>>(),
-        builder: (_, snapshot) {
-          if (snapshot.hasData &&
-              snapshot.data!.isNotEmpty &&
-              listOfMixers.isNotEmpty) {
-            return ListView.builder(
-                itemCount: listOfMixers.length,
-                itemBuilder: (_, index) {
-                  return MixerCard(
-                      mixer: listOfMixers[index],
-                      numberOfShipments: snapshot.data![index]);
-                });
-          }
-          return Center(
-            child: CircularProgressIndicator(),
-          );
-        },
+      body: ChangeNotifierProvider(
+        create: (BuildContext context) => mixersLisScreenViewmodel,
+        child: mixersLisScreenViewmodel.mixers.isNotEmpty
+            ? MixersList(model: mixersLisScreenViewmodel)
+            : Center(child: CircularProgressIndicator()),
       ),
     );
   }
