@@ -41,7 +41,7 @@ class ShipmentCard extends StatelessWidget {
                   // VehicleNumber 🚛🔢
                   //todo: VehicleNumber
                   ShipmentCardRow(
-                      icon: Icon(Icons.fire_truck),
+                      icon: Icon(Icons.numbers),
                       text: shipment.vehicleNumber.toString()),
                   SizedBox(
                     height: 10,
