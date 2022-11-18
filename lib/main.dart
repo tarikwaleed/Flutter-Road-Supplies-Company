@@ -10,8 +10,11 @@ import 'package:salah_construction/theme.dart';
 import 'package:salah_construction/dtos/dtos.dart';
 import 'package:salah_construction/dtos/source.dart' as sourcedto;
 
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+
   await Firebase.initializeApp();
   runApp(const MyApp());
 }
