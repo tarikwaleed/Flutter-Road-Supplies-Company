@@ -49,7 +49,7 @@ class ShipmentCard extends StatelessWidget {
                   // ClientName  🧔
                   //todo:ClientName
                   FutureBuilder(
-                    future: shipmentCardViewmodel.clientName(shipment.clientId),
+                    future: shipmentCardViewmodel.loadClientName(shipment.clientId),
                     builder: (_, snapshot) {
                       if (snapshot.hasData &&
                           snapshot.connectionState == ConnectionState.done) {
