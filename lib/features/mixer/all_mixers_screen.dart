@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:salah_construction/services/services.dart';
 import 'package:salah_construction/ui/components/components.dart';
-import 'package:salah_construction/ui/components/lists/mixers_list.dart';
+import 'package:salah_construction/features/mixer/mixers_list.dart';
 import 'package:salah_construction/viewmodels/viewmodels.dart';
 
 class MixersListScreen extends StatefulWidget {

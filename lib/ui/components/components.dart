@@ -1,6 +1,6 @@
 //GENERATED BARREL FILE 
 export 'salah_construction_drawer.dart'; 
-export './cards/mixer_card.dart'; 
+export '../../features/mixer/mixer_card.dart';
 export './cards/source_card.dart'; 
 export './cards/client_card/client_card.dart'; 
 export './cards/shipment_card/shipment_card.dart'; 

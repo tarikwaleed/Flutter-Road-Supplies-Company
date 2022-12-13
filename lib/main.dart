@@ -10,7 +10,7 @@ import 'package:salah_construction/theme.dart';
 
 
 Future<void> main() async {
-  bool useEmulator=true;
+  bool useEmulator=false;
   setupServiceLocator();
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
