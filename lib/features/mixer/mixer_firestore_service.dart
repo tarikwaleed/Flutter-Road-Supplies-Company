@@ -5,18 +5,18 @@ import 'package:salah_construction/dtos/dtos.dart';
 class MixerFirestoreService implements MixerDataRepository {
   final FirebaseFirestore _db = FirebaseFirestore.instance;
 
-  Future<List<Mixer>> retrieveMixers() async {
+  Future<List<MixerDTO>> retrieveMixers() async {
     QuerySnapshot<Map<String, dynamic>> snapshot =
         await _db.collection("mixers").get();
     return snapshot.docs
-        .map((docSnapshot) => Mixer.fromFirestore(docSnapshot))
+        .map((docSnapshot) => MixerDTO.fromFirestore(docSnapshot))
         .toList();
   }
 
-  Future<Mixer> getOne(String? mixerId) async {
+  Future<MixerDTO> getOne(String? mixerId) async {
     final docSnapshot = await _db.collection("mixers").doc(mixerId).get();
     DocumentSnapshot<Map<String, dynamic>>? data = docSnapshot;
-    Mixer mixer = Mixer.fromFirestore(data);
+    MixerDTO mixer = MixerDTO.fromFirestore(data);
     return mixer;
   }
 
@@ -24,7 +24,7 @@ class MixerFirestoreService implements MixerDataRepository {
     await _db.collection("mixers").doc(documentId).delete();
   }
 
-  void addMixer(Mixer mixer) async {
+  void addMixer(MixerDTO mixer) async {
     await _db.collection("mixers").add(mixer.toFirestore());
   }
 }

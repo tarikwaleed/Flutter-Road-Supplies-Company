@@ -1,22 +1,22 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class Mixer {
+class MixerDTO {
   final String? id;
   final String name;
 
-  Mixer({
+  MixerDTO({
     this.id,
     required this.name,
   });
 
   //Named Generative
-  Mixer.fromFirestore(
+  MixerDTO.fromFirestore(
     DocumentSnapshot<Map<String, dynamic>> snapshot,
   )   : name = snapshot.data()?["name"],
         id = snapshot.id;
 
   //Named Factory
-  factory Mixer.empty() => Mixer(name: "");
+  factory MixerDTO.empty() => MixerDTO(name: "");
 
   Map<String, dynamic> toFirestore() {
     return {

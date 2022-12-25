@@ -1,11 +1,11 @@
 import 'package:salah_construction/dtos/dtos.dart';
 
 abstract class MixerDataRepository {
-  Future<List<Mixer>> retrieveMixers();
+  Future<List<MixerDTO>> retrieveMixers();
 
-  Future<Mixer> getOne(String? mixerId);
+  Future<MixerDTO> getOne(String? mixerId);
 
   Future<void> deleteMixer(String documentId);
 
-  void addMixer(Mixer mixer);
+  void addMixer(MixerDTO mixer);
 }
